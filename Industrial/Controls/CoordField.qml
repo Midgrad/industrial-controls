@@ -50,13 +50,13 @@ TextField {
     function textInputToCoord() {
         if (dms) {
             if ( validatorInput() ) {
-                let latArr = [];
-                let longArr = [];
+                var latArr = [];
+                var longArr = [];
                 latArr.str = control.text.split("/")[0];
-                latArr.sign = latArr.str.slice(0,1).toUpperCase() === "N" ? 1 : -1
+                latArr.sign = latArr.str.slice(0,1).toUpperCase() === "N" ? 1 : -1;
                 latArr.coord = latArr.str.slice(1).split(",");
                 longArr.str = control.text.split("/")[1];
-                longArr.sign = longArr.str.slice(0,1).toUpperCase() === "E" ? 1 : -1
+                longArr.sign = longArr.str.slice(0,1).toUpperCase() === "E" ? 1 : -1;
                 longArr.coord = longArr.str.slice(1).split(",");
                 latitude = Helper.dmsToDegree(latArr.sign, Helper.stringToReal(latArr.coord[0]), Helper.stringToReal(latArr.coord[1]), Helper.stringToReal(latArr.coord[2]));
                 longitude = Helper.dmsToDegree(longArr.sign, Helper.stringToReal(longArr.coord[0]), Helper.stringToReal(longArr.coord[1]), Helper.stringToReal(longArr.coord[2]));
