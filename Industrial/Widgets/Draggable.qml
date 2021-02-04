@@ -162,7 +162,7 @@ Rectangle {
         }
         enabled: !mouseArea.drag.active && dragEnabled
         property bool isLast: model.index === _listView.count - 1
-        height: isLast ? _listView.contentHeight - y : contentItem.height
+        height: isLast ? draggedItemParent.height - contentItem.height - y : contentItem.height
 
         property int dropIndex: model.index + 1
     }
