@@ -12,17 +12,14 @@ Item {
     property real bottomItemMinHeight: bottomElement.item.implicitHeight
     property alias handleColor: handleRectangle.color
 
-    onTopItemMinHeightChanged: {
-        if(topItemMinHeight > handle.y && topItemMinHeight < root.height - handle.height - bottomItemMinHeight) {
-            handle.y = topItemMinHeight
-        }
+    function _updateHandleY() {
+        var minY = topItemMinHeight;
+        var maxY = root.height - handle.height - bottomItemMinHeight;
+        handle.y = Math.max(minY, Math.min(handle.y, maxY));
     }
 
-    onBottomItemMinHeightChanged: {
-        if(root.height - handle.height - bottomItemMinHeight > 0 && root.height - handle.height - bottomItemMinHeight < handle.y) {
-            handle.y = root.height - handle.height - bottomItemMinHeight;
-        }
-    }
+    onTopItemMinHeightChanged: _updateHandleY()
+    onBottomItemMinHeightChanged: _updateHandleY()
 
     Loader {
         id: topElement
