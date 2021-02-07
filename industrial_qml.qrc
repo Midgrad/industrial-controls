@@ -82,5 +82,6 @@
         <file>Industrial/Controls/ColorField.qml</file>
         <file>Industrial/Controls/AutoTabBar.qml</file>
         <file>Industrial/Controls/CoordField.qml</file>
+        <file>Industrial/Widgets/PropertyTable.qml</file>
     </qresource>
 </RCC>

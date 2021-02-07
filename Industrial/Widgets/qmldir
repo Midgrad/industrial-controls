@@ -15,3 +15,4 @@ TableView 1.0 TableView.qml
 TableViewColumn 1.0 TableViewColumn.qml
 CalendarPicker 1.0 CalendarPicker.qml
 TimePicker 1.0 TimePicker.qml
+PropertyTable 1.0 PropertyTable.qml
