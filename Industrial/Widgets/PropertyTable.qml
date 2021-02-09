@@ -5,19 +5,30 @@ import Industrial.Controls 1.0
 Rectangle {
     id: root
 
-    //default property alias children: table.children
     property real labelWidth: root.width / 2
     width: Theme.baseSize * 10
     height: Theme.baseSize * 12
     color: Theme.colors.background
+    clip: true
 
-    GridLayout {
-        id: table
+    Flickable {
         anchors.fill: parent
-        rowSpacing: 0
-        columnSpacing: 0
-        columns: 2
-        clip: true
+        contentWidth: table.width
+        contentHeight: table.height
+        flickableDirection: Flickable.VerticalFlick
+        boundsBehavior: Flickable.StopAtBounds
+
+        GridLayout {
+            id: table
+            width: root.width
+            rowSpacing: 0
+            columnSpacing: 0
+            columns: 2
+        }
+
+        ScrollBar.vertical: ScrollBar {
+            visible: table.height > root.height
+        }
     }
 
     Component {
@@ -38,7 +49,7 @@ Rectangle {
         Item { Layout.fillHeight: true }
     }
 
-    function blabla() {
+    function createTable() {
         var new_children = Object.values(children).splice(1, children.length);
         var length = new_children.length;
         for (var i = 0; i < length * 2; i += 2) {
@@ -56,6 +67,7 @@ Rectangle {
             }
 
             new_children[i+1].Layout.fillWidth = true;
+            new_children[i].Layout.minimumHeight = Theme.baseSize;
             new_children[i+1].Layout.minimumHeight = Theme.baseSize;
         }
         new_children.push(tableEnd.createObject());
@@ -63,6 +75,6 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        blabla();
+        createTable();
     }
 }
