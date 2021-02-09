@@ -6,76 +6,74 @@ import Industrial.Widgets 1.0
 Pane {
     id: root
 
+    PropertyTable {
+        width: parent.width / 3
+        height: parent.height
+        labelWidth: width / 3
 
-
-        PropertyTable {
-            ///*
-            TextField {
-                labelText: "TextField"
-                placeholderText: "This works too"
-            }
-
-            FilterField {
-                labelText: "FilterField"
-            }
-
-            PasswordField {
-                labelText: "PasswordField"
-                text: "password"
-            }
-
-            CoordField {
-                labelText: "CoordField"
-                latitude: 55.737347
-                longitude: 37.482394
-            }
-
-            ComboBox {
-                labelText: qsTr("Combobox")
-                model: [  qsTr("Combobox"), qsTr("TextField"), qsTr("FilterField"), qsTr("PasswordField"), qsTr("CoordField") ]
-                Layout.fillWidth: true
-            }
-
-            ColorField {
-                labelText: "ColorField"
-                text: "#ffaa00"
-            }
-            //не работают спины
-            /*
-            DateTimeField {
-                labelText: "DateTimeField"
-                mode:"dateTime"
-            }
-
-            SpinBox {
-                labelText: "SpinBox"
-            }
-
-            RealSpinBox {
-                labelText: "RealSpinBox"
-            }
-
-            CoordSpinBox {
-                labelText: "CoordSpinBox"
-            }
-            */
-
-            Switch {
-                text: "Switch"
-            }
-
-            CheckBox {
-                text: "CheckBox"
-            }
-
-            RadioButton {
-                text: "RadioButton"
-            }
-
-            Slider {
-                text: "Slider"
-                to: 100
-                value: 50
-            }
+        TextField {
+            labelText: "TextField"
+            placeholderText: "This works too"
         }
+
+        FilterField {
+            labelText: "FilterField"
+        }
+
+        PasswordField {
+            labelText: "PasswordField"
+            text: "password"
+        }
+
+        CoordField {
+            labelText: "CoordField"
+            latitude: 55.737347
+            longitude: 37.482394
+        }
+
+        ComboBox {
+            labelText: "Combobox"
+            model: [ "Combobox", "TextField", "FilterField", "PasswordField", "CoordField" ]
+        }
+
+        ColorField {
+            labelText: "ColorField"
+            text: "#ffaa00"
+        }
+
+        DateTimeField {
+            labelText: "DateTimeField"
+            mode:"dateTime"
+        }
+
+        SpinBox {
+            labelText: "SpinBox"
+        }
+
+        RealSpinBox {
+            labelText: "RealSpinBox"
+        }
+
+        CoordSpinBox {
+            labelText: "CoordSpinBox"
+        }
+
+        Switch {
+            text: "Switch"
+        }
+
+        CheckBox {
+            text: "CheckBox"
+        }
+
+        RadioButton {
+            text: "RadioButton"
+        }
+
+        Slider {
+            text: "Slider"
+            to: 100
+            value: 50
+        }
+    }
 }

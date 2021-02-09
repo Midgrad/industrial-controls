@@ -1,76 +1,68 @@
 ﻿import QtQuick 2.6
+import QtQuick.Layouts 1.3
 import Industrial.Controls 1.0
-import QtQml.Models 2.1
 
 Rectangle {
     id: root
 
-    property int labelWidth: listView.width / 2
+    //default property alias children: table.children
+    property real labelWidth: root.width / 2
+    width: Theme.baseSize * 10
+    height: Theme.baseSize * 12
+    color: Theme.colors.background
 
-    width: Theme.baseSize * 8
-    height: Theme.baseSize * 16
-
-    ListView {
-        id: listView
+    GridLayout {
+        id: table
         anchors.fill: parent
-        spacing: 0
-        model: ObjectModel {id: listModel}
+        rowSpacing: 0
+        columnSpacing: 0
+        columns: 2
         clip: true
-        boundsBehavior: Flickable.StopAtBounds
     }
 
     Component {
-        id: listDelegate
-        Row {
-            Text {
-                text: "Label"
-                font.pixelSize: Theme.auxFontSize
-                color: Theme.colors.description
-                width: labelWidth
-                leftPadding: Theme.padding
-                rightPadding: Theme.padding
-                anchors.verticalCenter: parent.verticalCenter
-            }
+        id: label
+        Text {
+            text: "Label"
+            font.pixelSize: Theme.auxFontSize
+            color: Theme.colors.description
+            elide: Text.ElideRight
+            Layout.leftMargin: Theme.padding
+            Layout.rightMargin: Theme.padding
+            Layout.preferredWidth: labelWidth
         }
+    }
+
+    Component {
+        id: tableEnd
+        Item { Layout.fillHeight: true }
     }
 
     function blabla() {
-        var length = children.length;
-        for (var i = 0; i <  length - 1; ++i) {
-            listModel.append(listDelegate.createObject());
+        var new_children = Object.values(children).splice(1, children.length);
+        var length = new_children.length;
+        for (var i = 0; i < length * 2; i += 2) {
+            new_children.splice(i, 0, label.createObject());
 
-            //listModel.get(i).children[0].text = children[1].labelText;
-
-            listModel.get(i).children.push(children[1]);
-            listModel.get(i).children[1].width = listView.width - labelWidth;
-
-            if (listModel.get(i).children[1] instanceof Slider || listModel.get(i).children[1] instanceof RadioButton || listModel.get(i).children[1] instanceof CheckBox || listModel.get(i).children[1] instanceof Switch ) {
-                listModel.get(i).children[0].text = listModel.get(i).children[1].text;
-                listModel.get(i).children[1].text = "";
-                listModel.get(i).children[1].leftPadding = 0;
+            if (new_children[i+1] instanceof Slider || new_children[i+1] instanceof RadioButton || new_children[i+1] instanceof CheckBox || new_children[i+1] instanceof Switch ) {
+                new_children[i].text = new_children[i+1].text;
+                new_children[i+1].text = "";
+                new_children[i+1].leftPadding = 0;
             }
             else {
-                listModel.get(i).children[0].text = listModel.get(i).children[1].labelText;
-                listModel.get(i).children[1].labelText = "";
-                listModel.get(i).children[1].table = true;
+                new_children[i].text = new_children[i+1].labelText;
+                new_children[i+1].labelText = "";
+                new_children[i+1].table = true;
             }
-            //*/
-        }
-    }
 
-    function listProperty(item) {
-        for (var p in item) {
-            if( typeof item[p] != "function" )
-                if(p !== "objectName")
-                    console.log(p + ":" + item[p]);
+            new_children[i+1].Layout.fillWidth = true;
+            new_children[i+1].Layout.minimumHeight = Theme.baseSize;
         }
+        new_children.push(tableEnd.createObject());
+        table.children = new_children;
     }
 
     Component.onCompleted: {
         blabla();
-        //console.log(children.length)
-        //console.log(listModel.get(1).children[0])
-        //console.log(listProperty(listModel.get(1).children[0]))
-        //console.log(listProperty(listModel.get(1).children[0].id))
     }
 }
