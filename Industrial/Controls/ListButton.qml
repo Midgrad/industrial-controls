@@ -1,4 +1,5 @@
 import QtQuick 2.6
+import QtQuick.Layouts 1.3
 import Industrial.Controls 1.0 as Controls
 
 Rectangle {
@@ -16,11 +17,11 @@ Rectangle {
                                          Controls.Theme.colors.highlight.hslLightness, 0.2)
     property alias text: label.text
     property alias amountVisible: amountLabel.visible
+    property alias rightPadding: rightPaddingItem.width
 
     signal mouseAreaPressed()
 
-    implicitHeight: button.implicitHeight
-    implicitWidth: button.implicitWidth + label.implicitWidth + Controls.Theme.margins
+    height: Controls.Theme.baseSize
 
     color: selected ? _selectedColor : hovered ? _hoveredColor : expanded ?
        Controls.Theme.colors.raised : "transparent"
@@ -35,47 +36,52 @@ Rectangle {
         }
     }
 
-    Controls.Button {
-        id: button
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.left: parent.left
+    RowLayout {
+        id: layout
+        anchors.fill: parent
 
-        flat: true
-        iconSource: control.expanded ? "/icons/down.svg"
-                                             : "/icons/right.svg"
-        iconColor: control.selected ?
-                       Qt.hsla(Controls.Theme.colors.selection.hslHue,
-                          Controls.Theme.colors.selection.hslSaturation,
-                          Controls.Theme.colors.selection.hslLightness, 0.5) :
-                       Controls.Theme.colors.description
+        Controls.Button {
+            id: button
+            flat: true
+            iconSource: control.expanded ? "/icons/down.svg"
+                                                 : "/icons/right.svg"
+            iconColor: control.selected ?
+                           Qt.hsla(Controls.Theme.colors.selection.hslHue,
+                              Controls.Theme.colors.selection.hslSaturation,
+                              Controls.Theme.colors.selection.hslLightness, 0.5) :
+                           Controls.Theme.colors.description
 
-        onClicked: control.expanded = !control.expanded
+            onClicked: control.expanded = !control.expanded
 
-        Rectangle {
-            anchors.left: parent.left
-            anchors.top: parent.top
-            height: parent.height
-            width: Controls.Theme.border
-            color: control.selected ? Controls.Theme.colors.highlight
-                                            : "transparent"
+            Rectangle {
+                anchors.left: parent.left
+                anchors.top: parent.top
+                height: parent.height
+                width: Controls.Theme.border
+                color: control.selected ? Controls.Theme.colors.highlight
+                                                : "transparent"
+            }
         }
-    }
 
-    Controls.Label {
-        id: label
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.left: button.right
-        anchors.leftMargin: Controls.Theme.margins
-    }
+        Controls.Label {
+            id: label
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.leftMargin: Controls.Theme.margins
+            wrapMode: Text.Wrap
+        }
 
-    Controls.Label {
-        id: amountLabel
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.left: label.right
-        anchors.leftMargin: Controls.Theme.margins
-        font.pixelSize: Controls.Theme.auxFontSize
-        color: Controls.Theme.colors.description
-        text: "(" + amount + ")"
-        visible: false
+        Controls.Label {
+            id: amountLabel
+            font.pixelSize: Controls.Theme.auxFontSize
+            color: Controls.Theme.colors.description
+            text: "(" + amount + ")"
+            visible: false
+        }
+
+        Item {
+            id: rightPaddingItem
+            width: 0
+        }
     }
 }
