@@ -1,11 +1,10 @@
 import QtQuick 2.6
-import QtQuick.Layouts 1.3
 import Industrial.Widgets 1.0
 
 TextField {
     id: control
 
-    property var mode: ["date", "time", "dateTime"]
+    property var mode: "dateTime" //"date", "time", "dateTime"
     property string dateMask: "dd.MM.yyyy"
     property string timeMask: "hh:mm"
 
@@ -42,7 +41,7 @@ TextField {
     }
 
     function validate() {
-        (!acceptableInput && text.length)? caution = true : caution = false;
+        (!acceptableInput && text.length) ? caution = true : caution = false;
         control.deselect();
     }
 
@@ -76,7 +75,7 @@ TextField {
 
     Button {
         id: button
-        iconSource: mode == "time" ? "qrc:/icons/clock.svg" : "qrc:/icons/calendar.svg"
+        iconSource: mode === "time" ? "qrc:/icons/clock.svg" : "qrc:/icons/calendar.svg"
         color: (control.focus && popup.visible) ? ((!control.isValid) ? Theme.colors.negative : ((control.caution) ? Theme.colors.neutral : Theme.colors.selection)) : "transparent"
         hoverColor: (!control.isValid) ? Theme.colors.negative : ((control.caution) ? Theme.colors.neutral : Theme.colors.highlight)
         highlightColor: (!control.isValid) ? Theme.colors.negative : ((control.caution) ? Theme.colors.neutral : Theme.colors.selection)
@@ -142,7 +141,7 @@ TextField {
                 round: true
                 navigationBarVisible: true
                 weekNumbersVisible: false
-                visible: (mode == "date" || mode == "dateTime")
+                visible: (mode === "date" || mode === "dateTime")
                 onReleased: inputStringWrite()
             }
 
@@ -150,7 +149,7 @@ TextField {
                 id: timePicker
                 color: Theme.colors.raised
                 anchors.verticalCenter: parent.verticalCenter
-                visible: (mode == "time" || mode == "dateTime")
+                visible: (mode === "time" || mode === "dateTime")
                 onTimeChanged: inputStringWrite()
             }
         }
@@ -166,7 +165,7 @@ TextField {
                 control.text = timePicker.selectedTime;
                 break;
             case "dateTime":
-                control.text = calendarPicker.selectedDate.toLocaleDateString(dateMask) + " " + timePicker.selectedTime + ":00";
+                control.text = calendarPicker.selectedDate.toLocaleDateString(dateMask) + " " + timePicker.selectedTime;
                 break;
         }
     }

@@ -43,7 +43,6 @@ Pane {
 
         DateTimeField {
             labelText: "DateTimeField"
-            mode:"dateTime"
         }
 
         SpinBox {

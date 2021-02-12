@@ -49,9 +49,13 @@ TextField {
         color: control.text.length > 0 ? control.text : control.defaultColor
         highlightColor: color
         hoverColor: "transparent"
-        width: Theme.baseSize
-        height: control.enabled ? control.height - Theme.border : control.height
+
+        width: control.table && control.activeFocus ? Theme.baseSize - Theme.border : Theme.baseSize
+        height: control.enabled ? (control.table && control.activeFocus ? control.height - Theme.border * 2 : control.height - Theme.border) : control.height
         anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.rightMargin: control.table && control.activeFocus ? Theme.border : 0
+        anchors.topMargin: control.table && control.activeFocus ? Theme.border : 0
 
         leftCropped: control.table ? 0 : radius
         bottomCropped: control.table ? 0 : radius

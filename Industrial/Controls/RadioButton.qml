@@ -8,10 +8,10 @@ T.RadioButton {
     property alias horizontalAlignment: label.horizontalAlignment
 
     font.pixelSize: Theme.mainFontSize
-    height: Theme.baseSize
     focusPolicy: Qt.NoFocus
     leftPadding: 0
     spacing: Theme.spacing
+    implicitHeight: Theme.baseSize
     implicitWidth: text.length > 0 ? contentItem.implicitWidth + spacing : indicator.implicitWidth
     hoverEnabled: true
 

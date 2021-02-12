@@ -35,6 +35,7 @@ TextField {
         radius: control.table ? 0 : Theme.rounding
 
         onClicked: {
+            control.forceActiveFocus();
             passwordVisible = !passwordVisible
             echoMode = passwordVisible ? TextInput.Normal : TextInput.Password
         }
