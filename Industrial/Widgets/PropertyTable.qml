@@ -41,6 +41,7 @@ Rectangle {
             Layout.leftMargin: Theme.padding
             Layout.rightMargin: Theme.padding
             Layout.preferredWidth: labelWidth
+            verticalAlignment: Text.AlignVCenter
         }
     }
 
