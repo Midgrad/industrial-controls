@@ -79,6 +79,7 @@ TextField {
         color: (control.focus && popup.visible) ? ((!control.isValid) ? Theme.colors.negative : ((control.caution) ? Theme.colors.neutral : Theme.colors.selection)) : "transparent"
         hoverColor: (!control.isValid) ? Theme.colors.negative : ((control.caution) ? Theme.colors.neutral : Theme.colors.highlight)
         highlightColor: (!control.isValid) ? Theme.colors.negative : ((control.caution) ? Theme.colors.neutral : Theme.colors.selection)
+        disabledColor: "transparent"
         iconColor: {
             if (pressed || popup.visible) return Theme.colors.highlightedText;
             if (hovered) return Theme.colors.text;
@@ -87,7 +88,6 @@ TextField {
             if (control.caution) return Theme.colors.neutral;
             return Theme.colors.description;
         }
-        flat: true
         width: Theme.baseSize
         height: parent.height - Theme.border
         anchors.right: parent.right

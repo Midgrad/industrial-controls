@@ -14,6 +14,7 @@ T.Button {
     property color color: Theme.colors.control
     property color highlightColor: Theme.colors.highlight
     property color selectionColor: Theme.colors.selection
+    property color disabledColor: Theme.colors.disabled
     property string tipText
 
     property alias iconSource: content.iconSource
@@ -48,7 +49,7 @@ T.Button {
         rightCropping: rightCropped ? radius : 0
         borderColor: control.activeFocus ? Theme.colors.highlight : "transparent"
         color: {
-            if (!control.enabled) return control.flat ? "transparent" : Theme.colors.disabled;
+            if (!control.enabled) return control.flat ? "transparent" : control.disabledColor;
             if (control.pressed || control.pressedImpl) return control.highlightColor;
             if (control.highlighted || control.checked) return control.selectionColor;
             return control.flat ? "transparent" : control.color;
