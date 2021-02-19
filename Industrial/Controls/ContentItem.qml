@@ -39,7 +39,8 @@ Item {
             id: icon
             implicitWidth: Theme.iconSize
             implicitHeight: Theme.iconSize
-            color: enabled ? iconColor : Theme.colors.disabled
+            //color: enabled ? iconColor : Theme.colors.disabled //////////////////////////////////////////
+            color: iconColor
             visible: iconSource != ""
             Layout.leftMargin: text.length > 0 ? (Math.min(content.height, content.width) - width) / 2 : (content.width - width) / 2
         }
@@ -48,7 +49,8 @@ Item {
             id: label
             elide: Text.ElideRight
             font.pixelSize: Theme.mainFontSize
-            color: enabled ? textColor : Theme.colors.disabled
+            //color: enabled ? textColor : Theme.colors.disabled //////////////////////////////////////////
+            color: textColor
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             visible: text.length > 0

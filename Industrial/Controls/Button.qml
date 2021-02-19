@@ -10,7 +10,6 @@ T.Button {
     property bool bottomCropped: false
     property bool leftCropped: false
     property bool rightCropped: false
-    property bool hatched: !enabled && !flat
     property bool toolTipAlwaysVisible: false
     property color color: Theme.colors.control
     property color highlightColor: Theme.colors.highlight
@@ -49,15 +48,10 @@ T.Button {
         rightCropping: rightCropped ? radius : 0
         borderColor: control.activeFocus ? Theme.colors.highlight : "transparent"
         color: {
+            if (!control.enabled) return control.flat ? "transparent" : Theme.colors.disabled;
             if (control.pressed || control.pressedImpl) return control.highlightColor;
             if (control.highlighted || control.checked) return control.selectionColor;
             return control.flat ? "transparent" : control.color;
-        }
-
-        Hatch {
-            anchors.fill: parent
-            color: Theme.colors.background
-            visible: control.hatched
         }
     }
 
@@ -68,6 +62,7 @@ T.Button {
         text: control.text
         font: control.font
         textColor: {
+            if (!enabled) return control.flat ? Theme.colors.disabled : Theme.colors.background;
             if (control.pressed || control.pressedImpl) return Theme.colors.highlightedText;
             if (control.highlighted || control.checked) return Theme.colors.selectedText;
             return Theme.colors.controlText;

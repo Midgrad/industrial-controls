@@ -47,7 +47,7 @@ T.ComboBox {
         width: height
         source: control.popup.visible ? "qrc:/icons/up.svg" : "qrc:/icons/down.svg"
         color: {
-            if (!control.enabled) return Theme.colors.background;
+            if (!control.enabled) return Theme.colors.disabled;
             if (!control.isValid || !control.isValid && highlighted) return Theme.colors.negative;
             if (control.caution || control.caution && highlighted) return Theme.colors.neutral;
             if (control.activeFocus) return Theme.colors.selection;

@@ -36,12 +36,9 @@ T.DelayButton {
         bottomCropping: bottomCropped ? radius : 0
         leftCropping: leftCropped ? radius : 0
         rightCropping: rightCropped ? radius : 0
-        color: control.flat ? "transparent" : Theme.colors.control
-
-        Hatch {
-            anchors.fill: parent
-            color: Theme.colors.background
-            visible: !enabled
+        color: {
+            if (!control.enabled) return control.flat ? "transparent" : Theme.colors.disabled;
+            return control.flat ? "transparent" : Theme.colors.control;
         }
     }
 
@@ -54,7 +51,10 @@ T.DelayButton {
             anchors.margins: control.padding
             text: control.text
             font: control.font
-            textColor: Theme.colors.controlText
+            textColor: {
+                if (!enabled) return control.flat ? Theme.colors.disabled : Theme.colors.background;
+                Theme.colors.controlText
+            }
         }
 
         Item {

@@ -87,6 +87,7 @@ TextField {
             if (control.caution) return Theme.colors.neutral;
             return Theme.colors.description;
         }
+        flat: true
         width: Theme.baseSize
         height: parent.height - Theme.border
         anchors.right: parent.right

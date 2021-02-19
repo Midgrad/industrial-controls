@@ -96,12 +96,6 @@ T.Slider {
         source: "qrc:/icons/plus.svg"
     }
 
-    Hatch {
-        anchors.fill: parent
-        color: Theme.colors.background
-        visible: !enabled
-    }
-
     Text {
         id: textItem
         anchors.centerIn: parent

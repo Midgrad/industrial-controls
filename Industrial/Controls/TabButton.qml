@@ -6,7 +6,6 @@ T.TabButton {
 
     property bool flat: false
     property color backgroundColor: Theme.colors.background
-
     property alias iconSource: content.iconSource
     property alias iconColor: content.iconColor
     property alias textColor: content.textColor
@@ -33,7 +32,11 @@ T.TabButton {
         id: content
         text: control.text
         font: control.font
-        textColor: control.checked ? Theme.colors.text :
-                                     (control.hovered ? Theme.colors.text : Theme.colors.description)
+        textColor: {
+            if (!enabled) return Theme.colors.disabled;
+            if (control.checked) return Theme.colors.text;
+            if (control.hovered) return Theme.colors.text;
+            return Theme.colors.description;
+        }
     }
 }

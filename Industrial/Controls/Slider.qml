@@ -39,12 +39,6 @@ T.Slider {
             }
             radius: height / 2
         }
-
-        Hatch {
-            anchors.fill: parent
-            color: Theme.colors.background
-            visible: !enabled
-        }
     }
 
     handle: Handle {
