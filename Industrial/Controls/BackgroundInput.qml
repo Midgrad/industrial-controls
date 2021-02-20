@@ -49,12 +49,6 @@ BackgroundItem {
         text: textItem.text
     }
 
-    Hatch {
-        anchors.fill: parent
-        color: Theme.colors.background
-        visible: !enabled
-    }
-
     Rectangle {
         id: highlighter
         anchors.bottom: parent.bottom

@@ -31,12 +31,6 @@ T.RadioButton {
             visible: control.checked || control.down
             color: base.indicatorColor
         }
-
-        Hatch {
-            anchors.fill: parent
-            color: Theme.colors.background
-            visible: !control.enabled
-        }
     }
 
     contentItem: Label {

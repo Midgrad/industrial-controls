@@ -33,10 +33,4 @@ BackgroundItem {
         if (checked) return Theme.colors.selection;
         return Theme.colors.controlBorder;
     }
-
-    Hatch {
-        anchors.fill: parent
-        color: Theme.colors.background
-        visible: !enabled
-    }
 }

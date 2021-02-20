@@ -51,11 +51,4 @@ T.ProgressBar {
         source: indicator
         maskSource: mask
     }
-
-    Hatch {
-        anchors.fill: parent
-        color: Theme.colors.background
-        visible: !enabled
-        z: 10
-    }
 }

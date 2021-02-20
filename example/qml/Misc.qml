@@ -174,6 +174,8 @@ Pane {
             enabled: false
             //rotation: 90
         }
+
+        Item { Layout.fillHeight: true }
     }
 }
 

@@ -125,13 +125,12 @@ Pane {
 
         Item { Layout.fillHeight: true }
 
-        //--
         GridLayout {
             columnSpacing: Theme.spacing
             rowSpacing: 0
             columns: 2
 
-            //
+
             Label {
                 text: qsTr("Sample fields")
                 font.pixelSize: Theme.auxFontSize
@@ -143,7 +142,7 @@ Pane {
                 anchors.right: Layout.right
                 Layout.fillWidth: true
             }
-            //
+
             Label {
                 text: qsTr("Placeholder")
                 font.pixelSize: Theme.auxFontSize
@@ -156,7 +155,7 @@ Pane {
                 anchors.right: Layout.right
                 Layout.fillWidth: true
             }
-            //
+
             Label {
                 text: qsTr("Password")
                 font.pixelSize: Theme.auxFontSize
@@ -170,7 +169,7 @@ Pane {
                 anchors.right: Layout.right
                 Layout.fillWidth: true
             }
-            //
+
             Label {
                 text: qsTr("Filter fields")
                 font.pixelSize: Theme.auxFontSize
@@ -183,7 +182,7 @@ Pane {
                 anchors.right: Layout.right
                 Layout.fillWidth: true
             }
-            //
+
             Label {
                 text: qsTr("Combobox")
                 font.pixelSize: Theme.auxFontSize
@@ -196,17 +195,16 @@ Pane {
                 anchors.right: Layout.right
                 Layout.fillWidth: true
             }
+
+            Item { Layout.fillHeight: true }
         }
-        //--
 
-
-        //--
         GridLayout {
             columnSpacing: Theme.spacing
             rowSpacing: 0
             columns: 2
 
-            //
+
             Label {
                 text: qsTr("Sample fields")
                 font.pixelSize: Theme.auxFontSize
@@ -219,7 +217,7 @@ Pane {
                 anchors.right: Layout.right
                 Layout.fillWidth: true
             }
-            //
+
             Label {
                 text: qsTr("Placeholder")
                 font.pixelSize: Theme.auxFontSize
@@ -233,7 +231,7 @@ Pane {
                 anchors.right: Layout.right
                 Layout.fillWidth: true
             }
-            //
+
             Label {
                 text: qsTr("Password")
                 font.pixelSize: Theme.auxFontSize
@@ -248,7 +246,7 @@ Pane {
                 anchors.right: Layout.right
                 Layout.fillWidth: true
             }
-            //
+
             Label {
                 text: qsTr("Filter fields")
                 font.pixelSize: Theme.auxFontSize
@@ -262,7 +260,7 @@ Pane {
                 anchors.right: Layout.right
                 Layout.fillWidth: true
             }
-            //
+
             Label {
                 text: qsTr("Combobox")
                 font.pixelSize: Theme.auxFontSize
@@ -276,17 +274,16 @@ Pane {
                 anchors.right: Layout.right
                 Layout.fillWidth: true
             }
+
+            Item { Layout.fillHeight: true }
         }
-        //--
 
-
-        //--
         GridLayout {
             columnSpacing: Theme.spacing
             rowSpacing: 0
             columns: 2
 
-            //
+
             Label {
                 text: qsTr("Sample fields")
                 font.pixelSize: Theme.auxFontSize
@@ -299,7 +296,7 @@ Pane {
                 anchors.right: Layout.right
                 Layout.fillWidth: true
             }
-            //
+
             Label {
                 text: qsTr("Placeholder")
                 font.pixelSize: Theme.auxFontSize
@@ -313,7 +310,7 @@ Pane {
                 anchors.right: Layout.right
                 Layout.fillWidth: true
             }
-            //
+
             Label {
                 text: qsTr("Password")
                 font.pixelSize: Theme.auxFontSize
@@ -328,7 +325,7 @@ Pane {
                 anchors.right: Layout.right
                 Layout.fillWidth: true
             }
-            //
+
             Label {
                 text: qsTr("Filter fields")
                 font.pixelSize: Theme.auxFontSize
@@ -342,7 +339,7 @@ Pane {
                 anchors.right: Layout.right
                 Layout.fillWidth: true
             }
-            //
+
             Label {
                 text: qsTr("Combobox")
                 font.pixelSize: Theme.auxFontSize
@@ -356,7 +353,8 @@ Pane {
                 anchors.right: Layout.right
                 Layout.fillWidth: true
             }
+
+            Item { Layout.fillHeight: true }
         }
-        //--
     }
 }
