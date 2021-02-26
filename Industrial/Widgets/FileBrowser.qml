@@ -148,7 +148,7 @@ Controls.Frame {
 
                     Controls.Button {
                         enabled: _historyPosition > 0
-                        iconSource: "qrc:/icons/left"
+                        iconSource: "/icons/left.svg"
                         onClicked: {
                             --_historyPosition;
                             folder = _history[_historyPosition];
@@ -157,7 +157,7 @@ Controls.Frame {
 
                     Controls.Button {
                         enabled: _historyPosition + 1 < _history.length
-                        iconSource: "qrc:/icons/right"
+                        iconSource: "/icons/right.svg"
                         onClicked: {
                             ++_historyPosition;
                             folder = _history[_historyPosition];
@@ -165,7 +165,7 @@ Controls.Frame {
                     }
 
                     Controls.Button {
-                        iconSource: "qrc:/icons/up"
+                        iconSource: "/icons/up.svg"
                         onClicked: folder = dirModel.parentFolder
                     }
                 }
@@ -259,7 +259,7 @@ Controls.Frame {
                 Controls.Button {
                     id: optionsButton
 
-                    iconSource: "qrc:/icons/burger"
+                    iconSource: "/icons/burger.svg"
                     Layout.alignment: Qt.AlignRight
                     anchors.right: parent.right
 
@@ -631,7 +631,7 @@ Controls.Frame {
                         height: Controls.Theme.baseSize
 
                         text: modelData.name
-                        iconSource: "qrc:/icons/folder-2"
+                        iconSource: "/icons/folder-2.svg"
                         textColor: isHighlighted ? Controls.Theme.colors.controlText
                                                  : Controls.Theme.colors.description
 
@@ -760,7 +760,7 @@ Controls.Frame {
                             color: fileView.isDir(styleData.row) ?
                                        Controls.Theme.colors.link : Controls.Theme.colors.fileIcon
                             source: fileView.isDir(styleData.row) ?
-                                        "qrc:/icons/folder" : "qrc:/icons/file"
+                                        "/icons/folder.svg" : "/icons/file.svg"
                         }
 
                         Controls.Label {
