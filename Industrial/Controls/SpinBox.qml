@@ -88,6 +88,22 @@ T.SpinBox {
         stepSize = stepSizeDefault;
     }
 
+    onFromChanged: {
+        var newValue = control.valueFromText(text, control.locale);
+        if (control.value !== newValue) {
+            control.value = newValue;
+            control.valueModified();
+        }
+    }
+
+    onToChanged: {
+        var newValue = control.valueFromText(text, control.locale);
+        if (control.value !== newValue) {
+            control.value = newValue;
+            control.valueModified();
+        }
+    }
+
     Keys.onPressed: {
         if (event.key === Qt.Key_Shift) stepSize = stepSizeShift;
         if (event.key === Qt.Key_Control) stepSize = stepSizeControl;
