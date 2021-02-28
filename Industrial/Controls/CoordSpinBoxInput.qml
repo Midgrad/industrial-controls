@@ -23,9 +23,7 @@ Item {
 
     function validate() {
         control.caution = false;
-        input.focus = false;
         mouseSlide = true;
-        mouseArea.cursorShape = Qt.SplitHCursor;
     }
 
     Row {
@@ -54,10 +52,12 @@ Item {
                 if (activeFocus) {
                     _focusedItem = root;
                     cursorPosition = 0;
+                    input.selectAll();
                 }
                 else {
                     updateValueFromControls();
                     validate();
+                    input.deselect();
                 }
             }
             onEditingFinished: {
@@ -137,6 +137,7 @@ Item {
             else {
                 mouse.accepted = false;
             }
+            input.focus = false;
             startX = mouse.x;
             oldX = startX;
         }
@@ -153,7 +154,7 @@ Item {
             control.mouseDown = false;
             if (startX == mouse.x && control.mouseSlide) {
                 control.mouseSlide = false;
-                cursorShape = Qt.IBeamCursor;
+                input.focus = true;
                 input.forceActiveFocus();
                 input.selectAll();
             }
