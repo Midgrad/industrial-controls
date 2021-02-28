@@ -71,7 +71,7 @@ T.ComboBox {
         width: control.width
         horizontalAlignment: control.horizontalAlignment
         text: {
-            if (modelData !== undefined) {
+            if (typeof (modelData) !== "undefined") {
                 return modelData[control.textRole] ? modelData[control.textRole] : modelData;
             }
             if (model !== undefined) {
@@ -81,7 +81,7 @@ T.ComboBox {
         }
 
         iconSource: {
-            if (modelData !== undefined) {
+            if (typeof (modelData) !== "undefined") {
                 return modelData[control.iconRole] ? modelData[control.iconRole] : "";
             }
             if (model !== undefined) {
@@ -95,7 +95,11 @@ T.ComboBox {
         isValid: control.isValid
 
         Loader {
-            property var delegateModel: modelData
+            property var delegateModel: {
+                if (typeof (modelData) !== "undefined")
+                    return modelData;
+                return model;
+            }
 
             anchors.right: parent.right
             anchors.rightMargin: Theme.margins
