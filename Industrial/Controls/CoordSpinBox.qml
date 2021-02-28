@@ -6,11 +6,16 @@ import Industrial.Controls 1.0 as Controls
 T.Control {
     id: control
 
+    property alias table: background.table
+    property alias caution: background.caution
+    property alias backgroundColor: background.color
+    property alias labelText: background.text
+    property alias flat: background.flat
+
     property int stepSizeDefault: 1
     property int stepSizeShift: 10
     property int stepSizeControl: 100
     property int stepSize: stepSizeDefault
-
     property bool mouseDown: false
     property bool mouseSlide: true
 
@@ -24,17 +29,11 @@ T.Control {
     property real to: isLongitude ? 180 : 90
     property color color: Theme.colors.text
 
+    property int _sign: 1
     property string suffix: _sign < 0 ? (isLongitude ? qsTr("W") : qsTr("S")) :
                                        (isLongitude ? qsTr("E") : qsTr("N"))
 
-    property alias table: background.table
-    property alias caution: background.caution
-    property alias backgroundColor: background.color
-    property alias labelText: background.text
-    property alias flat: background.flat
     readonly property bool focused: _focusedItem && _focusedItem.visible
-
-    property int _sign: 1
     readonly property bool _increaseEnabled: Math.abs(value) < to
     readonly property bool _decreaseEnabled: Math.abs(value) > from
 
@@ -129,10 +128,16 @@ T.Control {
         id: scope
         activeFocusOnTab: true
         anchors.fill: parent
+
         onActiveFocusChanged: {
             if (activeFocus) return;
 
+            dInput.input.focus = true;
             _focusedItem = null;
+        }
+
+        onFocusChanged: {
+            stepSize = stepSizeDefault;
         }
 
         RowLayout {
@@ -156,9 +161,9 @@ T.Control {
                     return "qrc:/icons/left.svg"
                 }
                 iconColor: {
+                    if (!enabled) return Theme.colors.disabled;
                     if (pressed) return Theme.colors.highlightedText;
                     if (hovered) return Theme.colors.text;
-                    if (!control.enabled) return Theme.colors.disabled;
                     if (control.caution) return Theme.colors.neutral;
                     if (!control.isValid) return Theme.colors.negative;
                     return Theme.colors.description;
@@ -223,9 +228,9 @@ T.Control {
                 focusPolicy: Qt.NoFocus
                 enabled: value != 0
                 textColor: {
+                    if (!enabled) return Theme.colors.disabled;
                     if (pressed) return Theme.colors.highlightedText;
                     if (hovered) return Theme.colors.text;
-                    if (!control.enabled) return Theme.colors.disabled;
                     if (control.caution) return Theme.colors.neutral;
                     if (!control.isValid) return Theme.colors.negative;
                     return Theme.colors.description;
@@ -255,9 +260,9 @@ T.Control {
                     return "qrc:/icons/right.svg"
                 }
                 iconColor: {
+                    if (!enabled) return Theme.colors.disabled;
                     if (pressed) return Theme.colors.highlightedText;
                     if (hovered) return Theme.colors.text;
-                    if (!control.enabled) return Theme.colors.disabled;
                     if (control.caution) return Theme.colors.neutral;
                     if (!control.isValid) return Theme.colors.negative;
                     return Theme.colors.description;
@@ -297,13 +302,9 @@ T.Control {
         width: _focusedItem ? _focusedItem.width : 0
         height: Theme.border
         x: _focusedItem ? _focusedItem.x : 0
-        visible: _focusedItem       
+        visible: _focusedItem
         color: Theme.colors.text;
         Behavior on x { NumberAnimation { duration: 150 } }
-    }
-
-    onFocusedChanged: {
-        stepSize = stepSizeDefault;
     }
 
     Keys.onPressed: {
@@ -312,6 +313,7 @@ T.Control {
         else return;
         event.accepted = true;
     }
+
     Keys.onReleased: {
         if (event.key === Qt.Key_Shift) stepSize = stepSizeDefault;
         if (event.key === Qt.Key_Control) stepSize = stepSizeDefault;

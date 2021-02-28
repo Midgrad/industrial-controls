@@ -45,43 +45,23 @@ T.SpinBox {
     clip: true
     to: 10000
 
-    Connections {
-        target: up
-        onPressedChanged: if (!control.activeFocus) control.forceActiveFocus()
-    }
-
-    Connections {
-        target: down
-        onPressedChanged: if (!control.activeFocus) control.forceActiveFocus()
-    }
-
     validator: IntValidator {
         bottom: Math.min(control.from, control.to)
         top: Math.max(control.from, control.to)
-    }
-
-    background: BackgroundInput {
-        id: background
-        hovered: control.hovered
-        highlighted: control.activeFocus
-        isValid: control.isValid
-        textPadding: down.indicator.width + Theme.padding
-        spin: true
-        highlighterHeight: !vertical ? Theme.underline : 0
-        bottomCropping: !vertical ? radius : 0
-    }
+    }    
 
     function validate() {
         value = valueFromText(input.text, locale);
         caution = false;
         input.text = Qt.binding(function() { return control.textFromValue(value, locale) });
-        input.focus = false;
         mouseSlide = true;
-        mouseArea.cursorShape = Qt.SplitHCursor;
     }
 
     onActiveFocusChanged: {
-        validate();
+        if(activeFocus) {
+            input.focus = true;
+            input.selectAll();
+        }
     }
 
     onFocusChanged: {
@@ -104,18 +84,15 @@ T.SpinBox {
         }
     }
 
-    Keys.onPressed: {
-        if (event.key === Qt.Key_Shift) stepSize = stepSizeShift;
-        if (event.key === Qt.Key_Control) stepSize = stepSizeControl;
-        else return;
-        event.accepted = true;
-    }
-
-    Keys.onReleased: {
-        if (event.key === Qt.Key_Shift) stepSize = stepSizeDefault;
-        if (event.key === Qt.Key_Control) stepSize = stepSizeDefault;
-        else return;
-        event.accepted = true;
+    background: BackgroundInput {
+        id: background
+        hovered: control.hovered
+        highlighted: control.activeFocus
+        isValid: control.isValid
+        textPadding: down.indicator.width + Theme.padding
+        spin: true
+        highlighterHeight: !vertical ? Theme.underline : 0
+        bottomCropping: !vertical ? radius : 0
     }
 
     MouseArea{
@@ -134,6 +111,7 @@ T.SpinBox {
             else {
                 mouse.accepted = false;
             }
+            input.focus = false;
             startX = mouse.x;
             oldX = startX;
         }
@@ -151,10 +129,11 @@ T.SpinBox {
             mouseDown = false;
             if (startX == mouse.x && mouseSlide) {
                 mouseSlide = false;
-                cursorShape = Qt.IBeamCursor;
+                input.focus = true;
                 input.forceActiveFocus();
                 input.selectAll();
             }
+            control.valueModified();
         }
 
         onWheel: {
@@ -182,11 +161,12 @@ T.SpinBox {
                 when: !activeFocus || up.hovered || down.hovered
             }
             onTextEdited: {
-                control.value = control.valueFromText(text, control.locale)
-                control.valueModified()
+                control.value = control.valueFromText(text, control.locale);
+                control.valueModified();
             }
             onFinished: control.finished()
             onEditingFinished: {
+                input.focus = false;
                 control.validate();
                 control.valueModified();
             }
@@ -267,6 +247,36 @@ T.SpinBox {
                 return Theme.colors.description;
             }
         }
+    }
+
+    Connections {
+        target: up
+        onPressedChanged: {
+            if (!control.activeFocus) control.forceActiveFocus();
+            control.valueModified();
+        }
+    }
+
+    Connections {
+        target: down
+        onPressedChanged: {
+            if (!control.activeFocus) control.forceActiveFocus();
+            control.valueModified();
+        }
+    }
+
+    Keys.onPressed: {
+        if (event.key === Qt.Key_Shift) stepSize = stepSizeShift;
+        if (event.key === Qt.Key_Control) stepSize = stepSizeControl;
+        else return;
+        event.accepted = true;
+    }
+
+    Keys.onReleased: {
+        if (event.key === Qt.Key_Shift) stepSize = stepSizeDefault;
+        if (event.key === Qt.Key_Control) stepSize = stepSizeDefault;
+        else return;
+        event.accepted = true;
     }
 
     textFromValue: function(value, locale) {
