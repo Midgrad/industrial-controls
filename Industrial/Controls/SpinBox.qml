@@ -89,6 +89,8 @@ T.SpinBox {
     }
 
     onFromChanged: {
+        if (text === "") return; // FIXME: crutch for situation
+
         var newValue = control.valueFromText(text, control.locale);
         if (control.value !== newValue) {
             control.value = newValue;
@@ -97,6 +99,8 @@ T.SpinBox {
     }
 
     onToChanged: {
+        if (text === "") return; // FIXME: crutch for situation
+
         var newValue = control.valueFromText(text, control.locale);
         if (control.value !== newValue) {
             control.value = newValue;
