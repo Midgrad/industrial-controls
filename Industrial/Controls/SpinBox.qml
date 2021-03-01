@@ -166,7 +166,6 @@ T.SpinBox {
             }
             onTextEdited: {
                 control.value = control.valueFromText(text, control.locale);
-                control.valueModified();
             }
             onFinished: control.finished()
             onEditingFinished: {
