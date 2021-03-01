@@ -33,12 +33,14 @@ T.SpinBox {
 
     stepSize: stepSizeDefault
     implicitWidth: !vertical ? Theme.baseSize * 4 : Theme.baseSize
-    implicitHeight: !vertical ? (labelText.length > 0 ? Theme.baseSize * 1.25 : Theme.baseSize) : Theme.baseSize * 3
+    implicitHeight: !vertical ? (labelText.length > 0 ? Theme.baseSize * 1.25 : Theme.baseSize) :
+                                Theme.baseSize * 3
 
     leftPadding: !vertical ? down.indicator.width : 0
     rightPadding: !vertical ? up.indicator.width : 0
     bottomPadding: !vertical ? 0 : down.indicator.width
-    topPadding: !vertical ? (labelText.length > 0 ? (Theme.auxFontSize / 1.2 - Theme.border) : 0) : up.indicator.width
+    topPadding: !vertical ? (labelText.length > 0 ? (Theme.auxFontSize / 1.2 - Theme.border) : 0) :
+                            up.indicator.width
 
     font.pixelSize: Theme.mainFontSize
     editable: true
@@ -48,7 +50,7 @@ T.SpinBox {
     validator: IntValidator {
         bottom: Math.min(control.from, control.to)
         top: Math.max(control.from, control.to)
-    }    
+    }
 
     function validate() {
         value = valueFromText(input.text, locale);
@@ -69,22 +71,18 @@ T.SpinBox {
     }
 
     onFromChanged: {
-        if (text === "") return; // FIXME: crutch for situation
-
         var newValue = control.valueFromText(text, control.locale);
+
         if (control.value !== newValue) {
             control.value = newValue;
-            control.valueModified();
         }
     }
 
     onToChanged: {
-        if (text === "") return; // FIXME: crutch for situation
-
         var newValue = control.valueFromText(text, control.locale);
+
         if (control.value !== newValue) {
             control.value = newValue;
-            control.valueModified();
         }
     }
 
