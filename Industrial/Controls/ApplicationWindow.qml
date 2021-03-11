@@ -1,8 +1,16 @@
 import QtQuick 2.6
-import QtQuick.Controls 2.2 as Controls
+import QtQuick.Templates 2.2 as T
 
-Controls.ApplicationWindow {
+T.ApplicationWindow {
     id: window
 
     color: Theme.colors.sunken
+
+    overlay.modal: Rectangle {
+            color: Color.transparent(Theme.colors.shadow, 0.5)
+        }
+
+        overlay.modeless: Rectangle {
+            color: Color.transparent(Theme.colors.shadow, 0.12)
+        }
 }
