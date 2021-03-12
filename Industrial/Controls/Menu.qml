@@ -1,6 +1,7 @@
 import QtQuick 2.6
 import QtQuick.Templates 2.4 as T
 import QtQuick.Controls 2.4
+import QtQuick.Window 2.11
 
 T.Menu {
     id: control

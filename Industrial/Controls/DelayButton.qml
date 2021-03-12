@@ -18,8 +18,7 @@ T.DelayButton {
 
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
                             contentItem.implicitWidth + leftPadding + rightPadding)
-    implicitHeight: Math.max(background ? background.implicitHeight : 0,
-                             contentItem.implicitHeight + topPadding + bottomPadding)
+    implicitHeight: Theme.baseSize
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
     onActivated: progress = 0
