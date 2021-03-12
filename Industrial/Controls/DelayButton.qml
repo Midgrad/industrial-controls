@@ -16,19 +16,16 @@ T.DelayButton {
     property alias iconColor: content.iconColor
     property alias backgroundColor: backgroundItem.color
 
-    implicitWidth: Math.max(background ? background.implicitWidth : 0,
-                            contentItem.implicitWidth + leftPadding + rightPadding)
+    implicitWidth: Math.max(implicitHeight, content.implicitWidth + control.padding * 2)
     implicitHeight: Theme.baseSize
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
     onActivated: progress = 0
 
     font.pixelSize: Theme.mainFontSize
-//    implicitWidth: Math.max(Theme.baseSize, content.implicitWidth + control.padding * 2)
-//    implicitHeight: Theme.baseSize
     focusPolicy: Qt.NoFocus
     hoverEnabled: true
-    padding: Theme.padding
+    padding: text.length > 0 ? Theme.padding : 0
     delay: 1000
 
     transition: Transition {
