@@ -1,6 +1,6 @@
 module Industrial.Controls
-depends QtQuick.Templates 2.2
-depends QtQuick.Controls 2.2
+depends QtQuick.Templates 2.4
+depends QtQuick.Controls 2.4
 designersupported
 
 Helper 1.0 helper.js

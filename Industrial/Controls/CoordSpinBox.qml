@@ -1,6 +1,6 @@
 import QtQuick 2.6
 import QtQuick.Layouts 1.3
-import QtQuick.Templates 2.2 as T
+import QtQuick.Templates 2.4 as T
 import Industrial.Controls 1.0 as Controls
 
 T.Control {

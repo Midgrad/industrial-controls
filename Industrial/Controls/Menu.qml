@@ -31,11 +31,11 @@ T.Menu {
     }
 
     T.Overlay.modal: Rectangle {
-        color: Color.transparent(Theme.colors.shadow, 0.5)
+        color: Qt.rgba(Theme.colors.shadow.r, Theme.colors.shadow.g, Theme.colors.shadow.b, Theme.colors.shadow.a * 0.5)
     }
 
     T.Overlay.modeless: Rectangle {
-        color: Color.transparent(Theme.colors.shadow, 0.12)
+        color: Qt.rgba(Theme.colors.shadow.r, Theme.colors.shadow.g, Theme.colors.shadow.b, Theme.colors.shadow.a * 0.12)
     }
 
     background: Rectangle {

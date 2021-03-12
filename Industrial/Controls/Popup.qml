@@ -1,4 +1,5 @@
-import QtQuick 2.6
+import QtQuick 2.11
+import QtQuick.Controls 2.4
 import QtQuick.Templates 2.4 as T
 
 T.Popup {
@@ -15,11 +16,11 @@ T.Popup {
     contentHeight: contentItem.implicitHeight || (contentChildren.length === 1 ? contentChildren[0].implicitHeight : 0)
 
     T.Overlay.modal: Rectangle {
-        color: Color.transparent(Theme.colors.shadow, 0.5)
+        color: Qt.rgba(Theme.colors.shadow.r, Theme.colors.shadow.g, Theme.colors.shadow.b, Theme.colors.shadow.a * 0.5)
     }
 
     T.Overlay.modeless: Rectangle {
-        color: Color.transparent(Theme.colors.shadow, 0.12)
+        color: Qt.rgba(Theme.colors.shadow.r, Theme.colors.shadow.g, Theme.colors.shadow.b, Theme.colors.shadow.a * 0.12)
     }
 
     padding: Theme.padding * 2

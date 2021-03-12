@@ -1,5 +1,6 @@
 import QtQuick 2.6
-import QtQuick.Templates 2.2 as T
+import QtQuick.Window 2.3
+import QtQuick.Templates 2.4 as T
 
 T.ApplicationWindow {
     id: window
@@ -7,10 +8,10 @@ T.ApplicationWindow {
     color: Theme.colors.sunken
 
     overlay.modal: Rectangle {
-            color: Color.transparent(Theme.colors.shadow, 0.5)
+            color: Qt.rgba(Theme.colors.shadow.r, Theme.colors.shadow.g, Theme.colors.shadow.b, Theme.colors.shadow.a * 0.5)
         }
 
         overlay.modeless: Rectangle {
-            color: Color.transparent(Theme.colors.shadow, 0.12)
+            color: Qt.rgba(Theme.colors.shadow.r, Theme.colors.shadow.g, Theme.colors.shadow.b, Theme.colors.shadow.a * 0.12)
         }
 }

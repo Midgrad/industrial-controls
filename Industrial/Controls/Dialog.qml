@@ -1,5 +1,5 @@
 import QtQuick 2.6
-import QtQuick.Controls 2.2 as T
+import QtQuick.Controls 2.4 as T
 
 T.Dialog {
     id: control
@@ -47,10 +47,10 @@ T.Dialog {
     footer: DialogButtonBox {}
 
     T.Overlay.modal: Rectangle {
-            color: Color.transparent(Theme.colors.shadow, 0.5)
-        }
+        color: Qt.rgba(Theme.colors.shadow.r, Theme.colors.shadow.g, Theme.colors.shadow.b, Theme.colors.shadow.a * 0.5)
+    }
 
-        T.Overlay.modeless: Rectangle {
-            color: Color.transparent(Theme.colors.shadow, 0.12)
-        }
+    T.Overlay.modeless: Rectangle {
+        color: Qt.rgba(Theme.colors.shadow.r, Theme.colors.shadow.g, Theme.colors.shadow.b, Theme.colors.shadow.a * 0.12)
+    }
 }
