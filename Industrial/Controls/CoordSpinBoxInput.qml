@@ -91,11 +91,11 @@ Item {
                 }
                 else if (event.key === Qt.Key_Up) {
                     up = true;
-                    increaseValue();
+                    if (control.editable) increaseValue();
                 }
                 else if (event.key === Qt.Key_Down) {
                     down = true;
-                    decreaseValue();
+                    if (control.editable) decreaseValue();
                 }
                 else return;
 
@@ -124,14 +124,14 @@ Item {
     MouseArea{
         id: mouseArea
         anchors.fill: parent
-        cursorShape: Qt.SplitHCursor;
+        cursorShape: control.editable ? Qt.SplitHCursor : Qt.IBeamCursor;
 
         onPressed: {
             if (!input.activeFocus) {
                 control.mouseSlide = true;
                 input.forceActiveFocus();
             }
-            if (input.activeFocus && control.mouseSlide) {
+            if (input.activeFocus && control.mouseSlide && control.editable) {
                 control.mouseDown = true;
             }
             else {
@@ -152,7 +152,7 @@ Item {
 
         onReleased: {
             control.mouseDown = false;
-            if (startX == mouse.x && control.mouseSlide) {
+            if (startX === mouse.x && control.mouseSlide) {
                 control.mouseSlide = false;
                 input.focus = true;
                 input.forceActiveFocus();
@@ -162,8 +162,7 @@ Item {
 
         onWheel: {
             if (!control.activeFocus) input.forceActiveFocus();
-            if (wheel.angleDelta.y > 0) increaseValue();
-            else decreaseValue();
+            if (control.editable) wheel.angleDelta.y > 0 ? increaseValue() : decreaseValue();
         }
     }
 }
