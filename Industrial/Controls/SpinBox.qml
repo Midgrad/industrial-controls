@@ -161,10 +161,11 @@ T.SpinBox {
             overwriteMode: false
             Binding on text {
                 value: control.textFromValue(control.value, control.locale);
-                when: !activeFocus || up.hovered || down.hovered
+                when: !activeFocus;
             }
             onTextEdited: {
                 control.value = control.valueFromText(text, control.locale);
+                control.valueModified();
             }
             onFinished: control.finished()
             onEditingFinished: {
