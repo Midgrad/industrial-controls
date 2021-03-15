@@ -1,6 +1,7 @@
 import QtQuick 2.6
 import QtQuick.Layouts 1.3
-import Industrial.Controls 1.0 as Controls
+
+import Industrial.Controls 1.0
 
 Rectangle {
     id: control
@@ -9,22 +10,22 @@ Rectangle {
     property bool selected: false
     property bool hovered: false
     property int amount: 0
-    property color _selectedColor: Qt.hsla(Controls.Theme.colors.selection.hslHue,
-                                         Controls.Theme.colors.selection.hslSaturation,
-                                         Controls.Theme.colors.selection.hslLightness, 0.5)
-    property color _hoveredColor: Qt.hsla(Controls.Theme.colors.highlight.hslHue,
-                                         Controls.Theme.colors.highlight.hslSaturation,
-                                         Controls.Theme.colors.highlight.hslLightness, 0.2)
+    property color _selectedColor: Qt.hsla(Theme.colors.selection.hslHue,
+                                         Theme.colors.selection.hslSaturation,
+                                         Theme.colors.selection.hslLightness, 0.5)
+    property color _hoveredColor: Qt.hsla(Theme.colors.highlight.hslHue,
+                                         Theme.colors.highlight.hslSaturation,
+                                         Theme.colors.highlight.hslLightness, 0.2)
     property alias text: label.text
     property alias amountVisible: amountLabel.visible
     property alias rightPadding: rightPaddingItem.width
 
     signal mouseAreaPressed()
 
-    height: Controls.Theme.baseSize
+    height: Theme.baseSize
 
     color: selected ? _selectedColor : hovered ? _hoveredColor : expanded ?
-       Controls.Theme.colors.raised : "transparent"
+       Theme.colors.raised : "transparent"
 
     MouseArea {
         id: mouseArea
@@ -40,16 +41,16 @@ Rectangle {
         id: layout
         anchors.fill: parent
 
-        Controls.Button {
+        Button {
             id: button
             flat: true
             iconSource: control.expanded ? "/icons/down.svg"
                                          : "/icons/right.svg"
             iconColor: control.selected ?
-                           Qt.hsla(Controls.Theme.colors.selection.hslHue,
-                              Controls.Theme.colors.selection.hslSaturation,
-                              Controls.Theme.colors.selection.hslLightness, 0.5) :
-                           Controls.Theme.colors.description
+                           Qt.hsla(Theme.colors.selection.hslHue,
+                                   Theme.colors.selection.hslSaturation,
+                                   Theme.colors.selection.hslLightness, 0.5) :
+                           Theme.colors.description
 
             onClicked: control.expanded = !control.expanded
 
@@ -57,24 +58,24 @@ Rectangle {
                 anchors.left: parent.left
                 anchors.top: parent.top
                 height: parent.height
-                width: Controls.Theme.border
-                color: control.selected ? Controls.Theme.colors.highlight
+                width: Theme.border
+                color: control.selected ? Theme.colors.highlight
                                                 : "transparent"
             }
         }
 
-        Controls.Label {
+        Label {
             id: label
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.leftMargin: Controls.Theme.margins
+            Layout.leftMargin: Theme.margins
             wrapMode: Text.Wrap
         }
 
-        Controls.Label {
+        Label {
             id: amountLabel
-            font.pixelSize: Controls.Theme.auxFontSize
-            color: Controls.Theme.colors.description
+            font.pixelSize: Theme.auxFontSize
+            color: Theme.colors.description
             text: "(" + amount + ")"
             visible: false
         }

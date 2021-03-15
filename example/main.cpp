@@ -2,7 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-#include "theme_loader.h"
+#include "theme_activator.h"
 
 int main(int argc, char* argv[])
 {
@@ -10,10 +10,9 @@ int main(int argc, char* argv[])
 
     QGuiApplication app(argc, argv);
 
-    qmlRegisterType<ThemeLoader>("Industrial.Controls", 1, 0, "ThemeLoader");
-
     QQmlApplicationEngine engine;
-    engine.addImportPath(QStringLiteral("qrc:/"));
+    industrial_theme_activate(false, &engine);
+//    engine.addImportPath(QStringLiteral("qrc:/"));
 
     engine.load(QStringLiteral("../qml/Main.qml"));
     if (engine.rootObjects().isEmpty())

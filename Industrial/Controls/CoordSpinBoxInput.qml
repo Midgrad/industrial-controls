@@ -1,5 +1,7 @@
 import QtQuick 2.9
 
+import Industrial.Controls 1.0
+
 Item {
     id: root
 

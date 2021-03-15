@@ -1,14 +1,14 @@
 #include "custom_double_validator.h"
 
-#include <QCoreApplication>
-#include <QQmlEngine>
+//#include <QCoreApplication>
+//#include <QQmlEngine>
 
-void registerCustomDoubleValidator()
-{
-    qmlRegisterType<CustomDoubleValidator>("Industrial.Controls", 1, 0, "CustomDoubleValidator");
-}
+//void registerCustomDoubleValidator()
+//{
+//    qmlRegisterType<CustomDoubleValidator>("Industrial.Controls", 1, 0, "CustomDoubleValidator");
+//}
 
-Q_COREAPP_STARTUP_FUNCTION(registerCustomDoubleValidator)
+//Q_COREAPP_STARTUP_FUNCTION(registerCustomDoubleValidator)
 
 CustomDoubleValidator::CustomDoubleValidator(QObject* parent) : QDoubleValidator(parent)
 {
