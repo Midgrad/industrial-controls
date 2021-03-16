@@ -163,7 +163,7 @@ T.Control {
                 }
                 iconColor: {
                     if (!enabled) return Theme.colors.disabled;
-                    if (pressed) return Theme.colors.highlightedText;
+                    if (pressed || pressedImpl) return Theme.colors.highlightedText;
                     if (hovered) return Theme.colors.text;
                     if (control.caution) return Theme.colors.neutral;
                     if (!control.isValid) return Theme.colors.negative;
@@ -171,7 +171,7 @@ T.Control {
                 }
                 pressedImpl: _decreaseEnabled && _focusedItem && _focusedItem.down
                 onClicked: {
-                    if (!_focusedItem) return;
+                    if (!_focusedItem || !editable) return;
                     updateValueFromControls();
                     _focusedItem.decreaseValue();
                 }
@@ -227,7 +227,7 @@ T.Control {
                 flat: true
                 highlightColor: Theme.colors.selection
                 focusPolicy: Qt.NoFocus
-                enabled: value != 0
+                //enabled: value != 0
                 textColor: {
                     if (!enabled) return Theme.colors.disabled;
                     if (pressed) return Theme.colors.highlightedText;
@@ -238,6 +238,7 @@ T.Control {
                 }
                 text: suffix
                 onClicked: {
+                    if (!editable) return;
                     value = -value;
                     updateControlsFromValue();
                     valueModified(value);
@@ -262,7 +263,7 @@ T.Control {
                 }
                 iconColor: {
                     if (!enabled) return Theme.colors.disabled;
-                    if (pressed) return Theme.colors.highlightedText;
+                    if (pressed || pressedImpl) return Theme.colors.highlightedText;
                     if (hovered) return Theme.colors.text;
                     if (control.caution) return Theme.colors.neutral;
                     if (!control.isValid) return Theme.colors.negative;
@@ -270,7 +271,7 @@ T.Control {
                 }
                 pressedImpl: _increaseEnabled && _focusedItem && _focusedItem.up
                 onClicked: {
-                    if (!_focusedItem) return;
+                    if (!_focusedItem || !editable) return;
 
                     updateValueFromControls();
                     _focusedItem.increaseValue();
