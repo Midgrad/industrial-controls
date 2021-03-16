@@ -44,7 +44,7 @@ Rectangle {
             id: button
             flat: true
             iconSource: control.expanded ? "/icons/down.svg"
-                                                 : "/icons/right.svg"
+                                         : "/icons/right.svg"
             iconColor: control.selected ?
                            Qt.hsla(Controls.Theme.colors.selection.hslHue,
                               Controls.Theme.colors.selection.hslSaturation,

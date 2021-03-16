@@ -1,5 +1,5 @@
 import QtQuick 2.6
-import QtQuick.Controls 2.2 as T
+import QtQuick.Templates 2.2 as T
 
 T.DelayButton {
     id: control
@@ -16,15 +16,23 @@ T.DelayButton {
     property alias iconColor: content.iconColor
     property alias backgroundColor: backgroundItem.color
 
+    implicitWidth: Math.max(implicitHeight, content.implicitWidth + control.padding * 2)
+    implicitHeight: Theme.baseSize
+    baselineOffset: contentItem.y + contentItem.baselineOffset
+
     onActivated: progress = 0
 
     font.pixelSize: Theme.mainFontSize
-    implicitWidth: Math.max(Theme.baseSize, content.implicitWidth + control.padding * 2)
-    implicitHeight: Theme.baseSize
     focusPolicy: Qt.NoFocus
     hoverEnabled: true
-    padding: Theme.padding
+    padding: text.length > 0 ? Theme.padding : 0
     delay: 1000
+
+    transition: Transition {
+            NumberAnimation {
+                duration: control.delay * (control.pressed ? 1.0 - control.progress : 0.3 * control.progress)
+            }
+        }
 
     background: BackgroundItem {
         id: backgroundItem

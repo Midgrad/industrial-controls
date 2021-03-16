@@ -1,6 +1,7 @@
 import QtQuick 2.6
-import QtQuick.Templates 2.4
-import QtQuick.Controls 2.4 as T
+import QtQuick.Templates 2.4 as T
+import QtQuick.Controls 2.4
+import QtQuick.Window 2.11
 
 T.Menu {
     id: control
@@ -8,9 +9,34 @@ T.Menu {
     property alias menuSize: backgroundRect.implicitWidth
     property alias backgroundColor: backgroundRect.color
 
+    implicitWidth: Math.max(background ? background.implicitWidth : 0,
+                            contentItem ? contentItem.implicitWidth + leftPadding + rightPadding : 0)
+    implicitHeight: Math.max(background ? background.implicitHeight : 0,
+                             contentItem ? contentItem.implicitHeight : 0) + topPadding + bottomPadding
+
+    margins: 0
+    overlap: 1
     padding: 0
     topPadding: Theme.padding
     bottomPadding: Theme.padding
+
+    contentItem: ListView {
+        implicitHeight: contentHeight
+        model: control.contentModel
+        interactive: Window.window ? contentHeight > Window.window.height : false
+        clip: true
+        currentIndex: control.currentIndex
+
+        ScrollIndicator.vertical: ScrollIndicator {}
+    }
+
+    T.Overlay.modal: Rectangle {
+        color: Qt.rgba(Theme.colors.shadow.r, Theme.colors.shadow.g, Theme.colors.shadow.b, Theme.colors.shadow.a * 0.5)
+    }
+
+    T.Overlay.modeless: Rectangle {
+        color: Qt.rgba(Theme.colors.shadow.r, Theme.colors.shadow.g, Theme.colors.shadow.b, Theme.colors.shadow.a * 0.12)
+    }
 
     background: Rectangle {
         id: backgroundRect
@@ -19,6 +45,7 @@ T.Menu {
         implicitHeight: Theme.baseSize
 
         color: Theme.colors.raised
+        border.color: Theme.colors.border
         radius: Theme.rounding
 
         Shadow {
