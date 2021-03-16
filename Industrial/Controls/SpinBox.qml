@@ -31,7 +31,7 @@ T.SpinBox {
 
     property QtObject _input: input
 
-    signal finished()
+    signal editingFinished()
 
     stepSize: stepSizeDefault
     implicitWidth: !vertical ? Theme.baseSize * 4 : Theme.baseSize
@@ -137,7 +137,9 @@ T.SpinBox {
                 input.forceActiveFocus();
                 input.selectAll();
             }
-            control.valueModified();
+            else {
+                control.editingFinished();
+            }
         }
 
         onWheel: {
@@ -167,7 +169,7 @@ T.SpinBox {
                 control.value = control.valueFromText(text, control.locale);
                 control.valueModified();
             }
-            onFinished: control.finished()
+            onFinished: control.editingFinished()
             onEditingFinished: {
                 input.focus = false;
                 control.validate();
@@ -273,16 +275,20 @@ T.SpinBox {
     Connections {
         target: up
         onPressedChanged: {
-            if (!control.activeFocus) control.forceActiveFocus();
-            control.valueModified();
+            if (!up.pressed || control.activeFocus) return;
+
+            control.forceActiveFocus();
+            input.focus = false;
         }
     }
 
     Connections {
         target: down
         onPressedChanged: {
-            if (!control.activeFocus) control.forceActiveFocus();
-            control.valueModified();
+            if (!down.pressed || control.activeFocus) return;
+
+            control.forceActiveFocus();
+            input.focus = false;
         }
     }
 
