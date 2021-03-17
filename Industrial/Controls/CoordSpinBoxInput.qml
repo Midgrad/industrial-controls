@@ -152,7 +152,7 @@ Item {
 
         onReleased: {
             control.mouseDown = false;
-            if (startX === mouse.x && control.mouseSlide) {
+            if (startX === oldX && control.mouseSlide) {
                 control.mouseSlide = false;
                 input.focus = true;
                 input.forceActiveFocus();

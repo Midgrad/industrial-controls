@@ -5,8 +5,8 @@ T.SpinBox {
     id: control
 
     property int stepSizeDefault: 1
-    property int stepSizeShift: 10
-    property int stepSizeControl: 100
+    property int stepSizeShift: 100
+    property int stepSizeControl: 10000
     property bool mouseDown: false
     property bool mouseSlide: true
     property int startX: 0
@@ -33,7 +33,11 @@ T.SpinBox {
 
     signal editingFinished()
 
+    value: 0
+    from: -100000
+    to: 100000
     stepSize: stepSizeDefault
+
     implicitWidth: !vertical ? Theme.baseSize * 4 : Theme.baseSize
     implicitHeight: !vertical ? (labelText.length > 0 ? Theme.baseSize * 1.25 : Theme.baseSize) :
                                 Theme.baseSize * 3
@@ -47,7 +51,6 @@ T.SpinBox {
     font.pixelSize: Theme.mainFontSize
     editable: true
     clip: true
-    to: 10000
 
     validator: IntValidator {
         bottom: Math.min(control.from, control.to)
@@ -131,7 +134,7 @@ T.SpinBox {
 
         onReleased: {
             mouseDown = false;
-            if (startX === mouse.x && mouseSlide) {
+            if (startX === oldX && mouseSlide) {
                 mouseSlide = false;
                 input.focus = true;
                 input.forceActiveFocus();
@@ -175,7 +178,7 @@ T.SpinBox {
                 control.validate();
                 control.valueModified();
             }
-            maximumLength: control.to.toString().length + 1
+            maximumLength: Math.max(from.toString().length, to.toString().length) + 1
             selectionColor: background.highlighterColor
             selectedTextColor: control.activeFocus ? Theme.colors.selectedText : Theme.colors.text
             validator: control.validator
