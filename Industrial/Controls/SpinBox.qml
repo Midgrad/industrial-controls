@@ -138,7 +138,6 @@ T.SpinBox {
                 input.forceActiveFocus();
                 input.selectAll();
             }
-            //control.valueModified();
         }
 
         onWheel: {
