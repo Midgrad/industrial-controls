@@ -12,6 +12,8 @@ T.SpinBox {
     property int startX: 0
     property int oldX: 0
 
+    property bool keyUp: false
+    property bool keyDown: false
     property bool vertical: false
     property bool isValid: text.length
     property color color: Theme.colors.text
@@ -29,7 +31,7 @@ T.SpinBox {
 
     property QtObject _input: input
 
-    signal finished()
+    signal editingFinished()
 
     value: 0
     from: -100000
@@ -103,14 +105,14 @@ T.SpinBox {
     MouseArea{
         id: mouseArea
         anchors.fill: contentItem
-        cursorShape: Qt.SplitHCursor;
+        cursorShape: editable ? Qt.SplitHCursor : Qt.IBeamCursor;
 
         onPressed: {
             if (!control.activeFocus) {
                 mouseSlide = true;
                 control.forceActiveFocus();
             }
-            if (control.activeFocus && mouseSlide) {
+            if (control.activeFocus && mouseSlide && editable) {
                 mouseDown = true;
             }
             else {
@@ -138,12 +140,14 @@ T.SpinBox {
                 input.forceActiveFocus();
                 input.selectAll();
             }
+            else {
+                control.editingFinished();
+            }
         }
 
         onWheel: {
             if (!control.activeFocus) control.forceActiveFocus();
-            if (wheel.angleDelta.y > 0) control.increase();
-            else control.decrease();
+            if (editable) wheel.angleDelta.y > 0 ? control.increase() : control.decrease();
             control.valueModified();
         }
     }
@@ -166,8 +170,9 @@ T.SpinBox {
             }
             onTextEdited: {
                 control.value = control.valueFromText(text, control.locale);
+                control.valueModified();
             }
-            onFinished: control.finished()
+            onFinished: control.editingFinished()
             onEditingFinished: {
                 input.focus = false;
                 control.validate();
@@ -177,6 +182,24 @@ T.SpinBox {
             selectionColor: background.highlighterColor
             selectedTextColor: control.activeFocus ? Theme.colors.selectedText : Theme.colors.text
             validator: control.validator
+            Keys.onPressed: {
+                if (event.key === Qt.Key_Up) {
+                    keyUp = true;
+                    if (control.editable) control.increase();
+                }
+                else if (event.key === Qt.Key_Down) {
+                    keyDown = true;
+                    if (control.editable) control.decrease();
+                }
+                else return;
+                event.accepted = true;
+            }
+            Keys.onReleased: {
+                if (event.key === Qt.Key_Up) keyUp = false;
+                else if (event.key === Qt.Key_Down) keyDown = false;
+                else return;
+                event.accepted = true;
+            }
         }
     }
 
@@ -193,7 +216,7 @@ T.SpinBox {
         rightCropping: !vertical ? radius : 0
         bottomCropping: !vertical ? (round ? 0 : radius) : 0
         topCropping: !vertical ? 0 : radius
-        color: down.pressed && enabled ? Theme.colors.selection : "transparent"
+        color: down.pressed && enabled || keyDown && control.activeFocus ? Theme.colors.selection : "transparent"
         hovered: down.hovered
 
         ColoredIcon {
@@ -207,7 +230,7 @@ T.SpinBox {
                 if (stepSize == stepSizeControl) return "qrc:/icons/left_3.svg"
             }
             color: {
-                if (down.pressed) return Theme.colors.highlightedText;
+                if (down.pressed || keyDown) return Theme.colors.highlightedText;
                 if (down.hovered) return Theme.colors.text;
                 if (!enabled) return Theme.colors.disabled;
                 if (control.caution) return Theme.colors.neutral;
@@ -228,7 +251,7 @@ T.SpinBox {
         }
         leftCropping: !vertical ? radius : 0
         bottomCropping: round ? 0 : radius
-        color: up.pressed && enabled ? Theme.colors.selection : "transparent"
+        color: up.pressed && enabled || keyUp && control.activeFocus ? Theme.colors.selection : "transparent"
         hovered: up.hovered
 
         ColoredIcon {
@@ -242,7 +265,7 @@ T.SpinBox {
                 if (stepSize == stepSizeControl) return "qrc:/icons/right_3.svg"
             }
             color: {
-                if (up.pressed) return Theme.colors.highlightedText;
+                if (up.pressed || keyUp) return Theme.colors.highlightedText;
                 if (up.hovered) return Theme.colors.text;
                 if (!enabled) return Theme.colors.disabled;
                 if (control.caution) return Theme.colors.neutral;
@@ -255,29 +278,33 @@ T.SpinBox {
     Connections {
         target: up
         onPressedChanged: {
-            if (!control.activeFocus) control.forceActiveFocus();
-            control.valueModified();
+            if (!up.pressed || control.activeFocus) return;
+
+            control.forceActiveFocus();
+            input.focus = false;
         }
     }
 
     Connections {
         target: down
         onPressedChanged: {
-            if (!control.activeFocus) control.forceActiveFocus();
-            control.valueModified();
+            if (!down.pressed || control.activeFocus) return;
+
+            control.forceActiveFocus();
+            input.focus = false;
         }
     }
 
     Keys.onPressed: {
         if (event.key === Qt.Key_Shift) stepSize = stepSizeShift;
-        if (event.key === Qt.Key_Control) stepSize = stepSizeControl;
+        else if (event.key === Qt.Key_Control) stepSize = stepSizeControl;
         else return;
         event.accepted = true;
     }
 
     Keys.onReleased: {
         if (event.key === Qt.Key_Shift) stepSize = stepSizeDefault;
-        if (event.key === Qt.Key_Control) stepSize = stepSizeDefault;
+        else if (event.key === Qt.Key_Control) stepSize = stepSizeDefault;
         else return;
         event.accepted = true;
     }
