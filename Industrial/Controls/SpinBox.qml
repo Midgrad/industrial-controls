@@ -6,7 +6,7 @@ T.SpinBox {
 
     property int stepSizeDefault: 1
     property int stepSizeShift: 100
-    property int stepSizeAlt: 1000
+    property int stepSizeControl: 1000
     property bool mouseDown: false
     property bool mouseSlide: true
     property int startX: 0
@@ -204,7 +204,7 @@ T.SpinBox {
             source: {
                 if (stepSize == stepSizeDefault) return "qrc:/icons/left.svg"
                 if (stepSize == stepSizeShift) return "qrc:/icons/left_2.svg"
-                if (stepSize == stepSizeAlt) return "qrc:/icons/left_3.svg"
+                if (stepSize == stepSizeControl) return "qrc:/icons/left_3.svg"
             }
             color: {
                 if (down.pressed) return Theme.colors.highlightedText;
@@ -239,7 +239,7 @@ T.SpinBox {
             source: {
                 if (stepSize == stepSizeDefault) return "qrc:/icons/right.svg"
                 if (stepSize == stepSizeShift) return "qrc:/icons/right_2.svg"
-                if (stepSize == stepSizeAlt) return "qrc:/icons/right_3.svg"
+                if (stepSize == stepSizeControl) return "qrc:/icons/right_3.svg"
             }
             color: {
                 if (up.pressed) return Theme.colors.highlightedText;
@@ -270,7 +270,7 @@ T.SpinBox {
 
     Keys.onPressed: {
         if (event.key === Qt.Key_Shift) stepSize = stepSizeShift;
-        if (event.key === Qt.Key_Alt) stepSize = stepSizeAlt;
+        if (event.key === Qt.Key_Alt) stepSize = stepSizeControl;
         else return;
         event.accepted = true;
     }
