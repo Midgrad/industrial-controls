@@ -167,12 +167,6 @@ T.SpinBox {
             onTextEdited: {
                 control.value = control.valueFromText(text, control.locale);
             }
-
-            onTextChanged: {
-                console.log(control.text + " = " + control.realValue)///////
-            }
-
-
             onFinished: control.finished()
             onEditingFinished: {
                 input.focus = false;
