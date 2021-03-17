@@ -4,13 +4,14 @@ import Industrial.Controls 1.0 as Controls
 SpinBox {
     id: control
 
-    property real realValue: 0.0
-    property real realFrom: 0
-    property real realTo: 100
+    property real realValue: 0.00
+    property real realFrom: -1000.00
+    property real realTo: 1000.00
     property real precision: 0.01
 
-    to: realTo / precision
+    value: realValue / precision
     from: realFrom / precision
+    to: realTo / precision
     isValid: !isNaN(realValue)
 
     validator: Controls.CustomDoubleValidator {
@@ -30,11 +31,11 @@ SpinBox {
 
     onValueChanged: {
         if (caution) validate();
-        realValue = value * precision;
+        realValue = (value * precision).toFixed(getDecimals(precision));
     }
 
     textFromValue: function(value, locale) {
-        return (value * precision).toFixed(getDecimals(precision)).replace(".", locale.decimalPoint)
+        return (value * precision).toFixed(getDecimals(precision)).replace(".", locale.decimalPoint);
     }
 
     valueFromText: function(text, locale) {
