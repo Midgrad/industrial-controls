@@ -1,5 +1,5 @@
-#ifndef THEME_LOADER_H
-#define THEME_LOADER_H
+#ifndef INDUSTRIAL_THEME_LOADER_H
+#define INDUSTRIAL_THEME_LOADER_H
 
 #include "export.h"
 
@@ -35,4 +35,4 @@ private:
     QString m_filename;
 };
 
-#endif // THEME_LOADER_H
+#endif // INDUSTRIAL_THEME_LOADER_H

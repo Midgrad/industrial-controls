@@ -1,6 +1,8 @@
 import QtQuick 2.9
 import QtQuick.Templates 2.3 as T
 
+import Industrial.Controls 1.0
+
 T.SpinBox {
     id: control
 

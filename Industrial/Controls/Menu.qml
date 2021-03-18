@@ -3,6 +3,8 @@ import QtQuick.Templates 2.4 as T
 import QtQuick.Controls 2.4
 import QtQuick.Window 2.11
 
+import Industrial.Controls 1.0
+
 T.Menu {
     id: control
 

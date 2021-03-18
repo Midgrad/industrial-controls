@@ -1,5 +1,6 @@
 import QtQuick 2.6
 import Industrial.Widgets 1.0
+import Industrial.Controls 1.0
 
 TextField {
     id: control

@@ -1,7 +1,8 @@
 import QtQuick 2.6
 import QtQuick.Layouts 1.3
 import QtQuick.Templates 2.4 as T
-import Industrial.Controls 1.0 as Controls
+
+import Industrial.Controls 1.0
 
 T.Control {
     id: control
@@ -210,7 +211,7 @@ T.Control {
                 id: sInput
                 implicitWidth: Theme.baseSize * (0.75 + secondsPrecision / 5 * 2)
                 input.maximumLength: 3 + secondsPrecision
-                input.validator: Controls.CustomDoubleValidator { bottom: 0; top: 60 }
+                input.validator: CustomDoubleValidator { bottom: 0; top: 60 }
                 previousItem: mInput.input
                 sign: "\""
                 onIncreaseValue: if (_increaseEnabled) changeValue(2, Math.pow(10, -secondsPrecision) * stepSize)

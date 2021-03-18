@@ -6,6 +6,8 @@
 #include <QJsonParseError>
 #include <QQmlEngine>
 
+#include "theme.h"
+
 namespace
 {
 constexpr char night[] = "night";
@@ -87,6 +89,8 @@ void ThemeLoader::load()
     if (!jsonFile.open(QFile::ReadOnly))
         return;
 
+    IndustrialTheme* themeObject = qobject_cast<IndustrialTheme*>(m_theme);
+
     QJsonObject json = QJsonDocument::fromJson(jsonFile.readAll()).object();
     QObject* dayColors = m_theme->property(::dayColors).value<QObject*>();
     QObject* nightColors = m_theme->property(::nightColors).value<QObject*>();
@@ -96,19 +100,67 @@ void ThemeLoader::load()
         QVariantMap commonColors = json.value(::commonColorsPath).toObject().toVariantMap();
 
         if (dayColors)
-            ::propertiesToObject(dayColors, commonColors);
+        {
+            if (themeObject)
+            {
+                IndustrialThemeColors colors;
+                colors.fromMap(commonColors);
+                m_theme->setProperty(::dayColors, QVariant::fromValue(colors));
+            }
+            else
+                ::propertiesToObject(dayColors, commonColors);
+        }
         if (nightColors)
-            ::propertiesToObject(nightColors, commonColors);
+        {
+            if (themeObject)
+            {
+                IndustrialThemeColors colors;
+                colors.fromMap(commonColors);
+                m_theme->setProperty(::nightColors, QVariant::fromValue(colors));
+            }
+            else
+                ::propertiesToObject(nightColors, commonColors);
+        }
     }
 
-    if (dayColors && json.contains(::dayColorsPath))
-        ::propertiesToObject(dayColors, json.value(::dayColorsPath).toObject().toVariantMap());
-    if (nightColors && json.contains(::nightColorsPath))
-        ::propertiesToObject(nightColors, json.value(::nightColorsPath).toObject().toVariantMap());
+    if (json.contains(::dayColorsPath))
+    {
+        if (themeObject)
+        {
+            IndustrialThemeColors colors;
+            colors.fromMap(json.value(::dayColorsPath).toObject().toVariantMap());
+            m_theme->setProperty(::dayColors, QVariant::fromValue(colors));
+        }
+        else if(dayColors)
+            ::propertiesToObject(dayColors, json.value(::dayColorsPath).toObject().toVariantMap());
+    }
+    if (json.contains(::nightColorsPath))
+    {
+        if (themeObject)
+        {
+            IndustrialThemeColors colors;
+            colors.fromMap(json.value(::nightColorsPath).toObject().toVariantMap());
+            m_theme->setProperty(::nightColors, QVariant::fromValue(colors));
+        }
+        else if(nightColors)
+            ::propertiesToObject(nightColors, json.value(::nightColorsPath).toObject().toVariantMap());
+    }
 
-    QObject* factors = m_theme->property(::factors).value<QObject*>();
-    if (factors && json.contains(::factorsPath))
-        ::propertiesToObject(factors, json.value(::factorsPath).toObject().toVariantMap());
+    if (json.contains(::factorsPath))
+    {
+        if (themeObject)
+        {
+            IndustrialThemeFactors factors;
+            factors.fromMap(json.value(::factorsPath).toObject().toVariantMap());
+            m_theme->setProperty(::factorsPath, QVariant::fromValue(factors));
+        }
+        else
+        {
+            QObject* factors = m_theme->property(::factors).value<QObject*>();
+            if (factors)
+                ::propertiesToObject(factors, json.value(::factorsPath).toObject().toVariantMap());
+        }
+    }
 
     if (json.contains(::nightPath))
         m_theme->setProperty(::night, json.value(::nightPath).toVariant());

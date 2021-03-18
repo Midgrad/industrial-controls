@@ -1,6 +1,8 @@
 import QtQuick 2.6
 import QtQuick.Templates 2.4 as T
 
+import Industrial.Controls 1.0
+
 T.Slider {
     id: control
 
