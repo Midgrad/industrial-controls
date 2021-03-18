@@ -27,11 +27,8 @@ class INDUSTRIAL_CONTROLS_EXPORT IndustrialThemeFactors
     Q_PROPERTY(qreal underline READ underline)// WRITE setUnderline)
     Q_PROPERTY(qreal shadow READ shadow)// WRITE setShadow)
     Q_PROPERTY(qreal border READ border)// WRITE setBorder)
+    
 public:
-//    ~IndustrialThemeFactors() {}
-//    IndustrialThemeFactors(const IndustrialThemeFactors&) = default;
-//    IndustrialThemeFactors(IndustrialThemeFactors&&) = default;
-//    IndustrialThemeFactors& operator=(const IndustrialThemeFactors&) = default;
     QVariantMap toMap() const;
     void fromMap(const QVariantMap& map);
 
@@ -123,12 +120,8 @@ class INDUSTRIAL_CONTROLS_EXPORT IndustrialThemeColors
     Q_PROPERTY(QColor shadow READ shadow)// WRITE setShadow)
 
     Q_PROPERTY(QColor fileIcon READ fileIcon)// WRITE setfileIcon)
+
 public:
-//    IndustrialThemeColors();
-//    ~IndustrialThemeColors() {}
-//    IndustrialThemeColors(const IndustrialThemeColors&) = default;
-//    IndustrialThemeColors(IndustrialThemeColors&&) = default;
-//    IndustrialThemeColors& operator=(const IndustrialThemeColors&) = default;
     QVariantMap toMap() const;
     void fromMap(const QVariantMap& map);
 
