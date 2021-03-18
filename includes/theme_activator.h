@@ -5,7 +5,7 @@
 
 class QQmlEngine;
 
-void INDUSTRIAL_CONTROLS_EXPORT industrial_theme_activate(bool setAsDefaultStyle = false,
+void INDUSTRIAL_CONTROLS_EXPORT industrialThemeActivate(bool setAsDefaultStyle = false,
                                                           QQmlEngine* engine = nullptr);
 
 #endif // INDUSTRIAL_THEME_ACTIVATOR_H

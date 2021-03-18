@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
-    industrial_theme_activate(false, &engine);
+    industrialThemeActivate(false, &engine);
 //    engine.addImportPath(QStringLiteral("qrc:/"));
 
     engine.load(QStringLiteral("../qml/Main.qml"));
