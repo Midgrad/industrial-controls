@@ -6,7 +6,7 @@ T.SpinBox {
 
     property int stepSizeDefault: 1
     property int stepSizeShift: 100
-    property int stepSizeControl: 10000
+    property int stepSizeControl: 1000
     property bool mouseDown: false
     property bool mouseSlide: true
     property int startX: 0
@@ -297,14 +297,14 @@ T.SpinBox {
 
     Keys.onPressed: {
         if (event.key === Qt.Key_Shift) stepSize = stepSizeShift;
-        else if (event.key === Qt.Key_Control) stepSize = stepSizeControl;
+        if (event.key === Qt.Key_Alt) stepSize = stepSizeControl;
         else return;
         event.accepted = true;
     }
 
     Keys.onReleased: {
         if (event.key === Qt.Key_Shift) stepSize = stepSizeDefault;
-        else if (event.key === Qt.Key_Control) stepSize = stepSizeDefault;
+        if (event.key === Qt.Key_Alt) stepSize = stepSizeDefault;
         else return;
         event.accepted = true;
     }

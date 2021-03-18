@@ -310,14 +310,14 @@ T.Control {
 
     Keys.onPressed: {
         if (event.key === Qt.Key_Shift) stepSize = stepSizeShift;
-        if (event.key === Qt.Key_Control) stepSize = stepSizeControl;
+        if (event.key === Qt.Key_Alt) stepSize = stepSizeControl;
         else return;
         event.accepted = true;
     }
 
     Keys.onReleased: {
         if (event.key === Qt.Key_Shift) stepSize = stepSizeDefault;
-        if (event.key === Qt.Key_Control) stepSize = stepSizeDefault;
+        if (event.key === Qt.Key_Alt) stepSize = stepSizeDefault;
         else return;
         event.accepted = true;
     }
