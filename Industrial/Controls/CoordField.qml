@@ -104,8 +104,6 @@ TextField {
 
     Keys.onReturnPressed: valueFromText();
 
-    onTextChanged: validate();
-
     RowLayout {
         id: row
         anchors.fill: parent
