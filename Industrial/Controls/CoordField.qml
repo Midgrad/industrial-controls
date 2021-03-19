@@ -47,7 +47,7 @@ TextField {
 
     text: latitudeStr.replace(".", locale.decimalPoint) + "/" + longitudeStr.replace(".", locale.decimalPoint)
 
-    function valueFromText() {
+    function coordFromText() {
         if (dms) {
             if ( preValidate() ) {
                 var latArr = [];
@@ -100,9 +100,9 @@ TextField {
                 Helper.pad(dms.sec, 3 + secondsPrecision);
     }
 
-    onActiveFocusChanged: valueFromText();
+    onActiveFocusChanged: coordFromText();
 
-    Keys.onReturnPressed: valueFromText();
+    Keys.onReturnPressed: coordFromText();
 
     RowLayout {
         id: row
@@ -131,7 +131,7 @@ TextField {
             visible: labelText.length > 0 ? background.inputed : true
             onClicked: {
                 control.forceActiveFocus();
-                valueFromText();
+                coordFromText();
                 dms = preValidate() ? !dms : dms
             }
             Layout.topMargin: labelText.length > 0 && background.inputed ? (Theme.auxFontSize / 1.2 - Theme.border) : 0
