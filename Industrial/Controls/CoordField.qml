@@ -45,41 +45,45 @@ TextField {
         }
     }
 
-    text: latitudeStr + "/" + longitudeStr
+    text: latitudeStr.replace(".", locale.decimalPoint) + "/" + longitudeStr.replace(".", locale.decimalPoint)
 
-    function textInputToCoord() {
+    function valueFromText() {
         if (dms) {
-            if ( validatorInput() ) {
+            if ( preValidate() ) {
                 var latArr = [];
                 var longArr = [];
                 latArr.str = control.text.split("/")[0];
                 latArr.sign = latArr.str.slice(0,1).toUpperCase() === "N" ? 1 : -1;
-                latArr.coord = latArr.str.slice(1).split(",");
+                latArr.coord = latArr.str.slice(1).split(";");
                 longArr.str = control.text.split("/")[1];
                 longArr.sign = longArr.str.slice(0,1).toUpperCase() === "E" ? 1 : -1;
-                longArr.coord = longArr.str.slice(1).split(",");
-                latitude = Helper.dmsToDegree(latArr.sign, Helper.stringToReal(latArr.coord[0]), Helper.stringToReal(latArr.coord[1]), Helper.stringToReal(latArr.coord[2]));
-                longitude = Helper.dmsToDegree(longArr.sign, Helper.stringToReal(longArr.coord[0]), Helper.stringToReal(longArr.coord[1]), Helper.stringToReal(longArr.coord[2]));
+                longArr.coord = longArr.str.slice(1).split(";");
+                latitude = Helper.dmsToDegree(latArr.sign, Helper.stringToReal(latArr.coord[0]), Helper.stringToReal(latArr.coord[1]), Helper.stringToReal(latArr.coord[2].replace(locale.decimalPoint, '.')));
+                longitude = Helper.dmsToDegree(longArr.sign, Helper.stringToReal(longArr.coord[0]), Helper.stringToReal(longArr.coord[1]), Helper.stringToReal(longArr.coord[2].replace(locale.decimalPoint, '.')));
                 validate();
             }
             else caution = true;
         }
         if (!dms) {
-            if ( validatorInput() ) {
-                latitude = Helper.stringToReal(control.text.split("/")[0], ".");
-                longitude = Helper.stringToReal(control.text.split("/")[1], ".");
+            if ( preValidate() ) {
+                latitude = Helper.stringToReal(control.text.split("/")[0], locale.decimalPoint);
+                longitude = Helper.stringToReal(control.text.split("/")[1], locale.decimalPoint);
                 validate();
             }
             else caution = true;
         }
     }
 
-    function validatorInput() {
-        switch (dms) {
-        case true:
-            return /[N|S][\d]{1,2}([,][\d]{1,2})([,][\d]{1,2})([.][\d]{1,2})?\/[E|W][\d]{1,3}([,][\d]{1,2})([,][\d]{1,2})([.][\d]{1,2})?/i.test(control.text);
-        case false:
-            return /-?[\d]{1,3}([.][\d]*)?\/-?[\d]{1,3}([.][\d]*)?/.test(control.text);
+    validator: RegExpValidator {
+        regExp: /[NSEW\d\/;,.-]*/i
+    }
+
+    function preValidate() {
+        if (dms) {
+            return /[N|S][\d]{1,2}([;][\d]{1,2})([;][\d]{1,2})([.||,][\d]{1,2})?\/[E|W][\d]{1,3}([;][\d]{1,2})([;][\d]{1,2})([.||,][\d]{1,2})?/i.test(control.text);
+        }
+        if (!dms) {
+            return /-?[\d]{1,3}([.||,][\d]*)?\/-?[\d]{1,3}([.||,][\d]*)?/.test(control.text);
         }
     }
 
@@ -92,13 +96,15 @@ TextField {
         if (isNaN(degrees)) return "-"
         var dms = Helper.degreesToDms(degrees, lng, secondsPrecision);
         return (dms.sign < 0 ? lng ? qsTr("W") : qsTr("S") : lng ? qsTr("E") : qsTr("N")) +
-                Helper.pad(dms.deg, lng ? 3 : 2) + "," + Helper.pad(dms.min, 2) + "," +
+                Helper.pad(dms.deg, lng ? 3 : 2) + ";" + Helper.pad(dms.min, 2) + ";" +
                 Helper.pad(dms.sec, 3 + secondsPrecision);
     }
 
-    onActiveFocusChanged: textInputToCoord();
+    onActiveFocusChanged: valueFromText();
 
-    Keys.onReturnPressed: textInputToCoord();
+    Keys.onReturnPressed: valueFromText();
+
+    onTextChanged: validate();
 
     RowLayout {
         id: row
@@ -127,8 +133,8 @@ TextField {
             visible: labelText.length > 0 ? background.inputed : true
             onClicked: {
                 control.forceActiveFocus();
-                textInputToCoord();
-                dms = validatorInput() ? !dms : dms
+                valueFromText();
+                dms = preValidate() ? !dms : dms
             }
             Layout.topMargin: labelText.length > 0 && background.inputed ? (Theme.auxFontSize / 1.2 - Theme.border) : 0
             Layout.leftMargin: Theme.padding / 2
