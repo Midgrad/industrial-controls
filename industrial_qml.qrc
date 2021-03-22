@@ -1,10 +1,9 @@
 <RCC>
     <qresource prefix="/">
+        <file>Industrial/Tools/qmldir</file>
+        <file>Industrial/Tools/SelectorFrame.qml</file>
         <file>Industrial/Controls/qmldir</file>
         <file>Industrial/Controls/helper.js</file>
-        <file>Industrial/Controls/Theme.qml</file>
-        <file>Industrial/Controls/ThemeColors.qml</file>
-        <file>Industrial/Controls/ThemeFactors.qml</file>
         <file>Industrial/Controls/Shadow.qml</file>
         <file>Industrial/Controls/Hatch.qml</file>
         <file>Industrial/Controls/ApplicationWindow.qml</file>
@@ -59,6 +58,13 @@
         <file>Industrial/Controls/Drawer.qml</file>
         <file>Industrial/Controls/Separator.qml</file>
         <file>Industrial/Controls/Notification.qml</file>
+        <file>Industrial/Controls/ClickBar.qml</file>
+        <file>Industrial/Controls/DateTimeField.qml</file>
+        <file>Industrial/Controls/ListButton.qml</file>
+        <file>Industrial/Controls/MenuSeparator.qml</file>
+        <file>Industrial/Controls/ColorField.qml</file>
+        <file>Industrial/Controls/AutoTabBar.qml</file>
+        <file>Industrial/Controls/CoordField.qml</file>
         <file>Industrial/Widgets/qmldir</file>
         <file>Industrial/Widgets/ColorPicker.qml</file>
         <file>Industrial/Widgets/DualColorPicker.qml</file>
@@ -68,20 +74,11 @@
         <file>Industrial/Widgets/ListFader.qml</file>
         <file>Industrial/Widgets/ListTable.qml</file>
         <file>Industrial/Widgets/SplitView.qml</file>
-        <file>Industrial/Tools/qmldir</file>
-        <file>Industrial/Tools/SelectorFrame.qml</file>
-        <file>Industrial/Controls/ClickBar.qml</file>
         <file>Industrial/Widgets/FileBrowser.qml</file>
         <file>Industrial/Widgets/TableView.qml</file>
         <file>Industrial/Widgets/TableViewColumn.qml</file>
         <file>Industrial/Widgets/CalendarPicker.qml</file>
-        <file>Industrial/Controls/DateTimeField.qml</file>
-        <file>Industrial/Widgets/TimePicker.qml</file>
-        <file>Industrial/Controls/ListButton.qml</file>
-        <file>Industrial/Controls/MenuSeparator.qml</file>
-        <file>Industrial/Controls/ColorField.qml</file>
-        <file>Industrial/Controls/AutoTabBar.qml</file>
-        <file>Industrial/Controls/CoordField.qml</file>
         <file>Industrial/Widgets/PropertyTable.qml</file>
+        <file>Industrial/Widgets/TimePicker.qml</file>
     </qresource>
 </RCC>
