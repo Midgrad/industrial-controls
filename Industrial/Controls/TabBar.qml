@@ -8,10 +8,10 @@ T.TabBar { // TODO: replace with model-based bar
 
     property alias backgroundColor: backgroundRect.color
 
-//    implicitWidth: Math.max(background ? background.implicitWidth : 0,
-//                            contentWidth + leftPadding + rightPadding)
-//    implicitHeight: Math.max(background ? background.implicitHeight : 0,
-//                             contentHeight + topPadding + bottomPadding)
+    implicitWidth: Math.max(background ? background.implicitWidth : 0,
+                            contentWidth + leftPadding + rightPadding)
+    implicitHeight: Math.max(background ? background.implicitHeight : 0,
+                             contentHeight + topPadding + bottomPadding)
 
     spacing: 1
 
@@ -31,8 +31,8 @@ T.TabBar { // TODO: replace with model-based bar
         preferredHighlightEnd: width - 40
     }
 
-    implicitWidth: Theme.baseSize * count * 6
-    implicitHeight: Theme.baseSize
+//    implicitWidth: Theme.baseSize * count * 6
+//    implicitHeight: Theme.baseSize
 
     background: Item {
         clip: true
