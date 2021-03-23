@@ -6,6 +6,11 @@ import Industrial.Controls 1.0
 T.ToolBar {
     id: control
 
+    implicitWidth: Math.max(background ? background.implicitWidth : 0,
+                            contentItem.implicitWidth + leftPadding + rightPadding)
+    implicitHeight: Math.max(background ? background.implicitHeight : 0,
+                             contentItem.implicitHeight + topPadding + bottomPadding)
+
     padding: Theme.padding
 
     background: Rectangle {
