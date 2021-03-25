@@ -27,7 +27,7 @@ Rectangle {
 
     implicitWidth: list.contentWidth
     implicitHeight: Math.max(list.contentHeight, Controls.Theme.baseSize)
-    color: Controls.Theme.colors.background ///////////////////////////////////////////////////////
+    color: Controls.Theme.colors.background
     radius: Controls.Theme.rounding
     clip: true
 
