@@ -5,21 +5,17 @@ import Industrial.Controls 1.0 as Controls
 Item {
     id: root
 
-    implicitHeight: topItemMinHeight + bottomItemMinHeight + Controls.Theme.sliderSize * 2
     property Component topItemDelegate
     property Component bottomItemDelegate
-    property real topItemMinHeight: topElement.item.implicitHeight
-    property real bottomItemMinHeight: bottomElement.item.implicitHeight
+    property real minHandleY: 0
+    property real maxHandleY: height - handle.height
+
+    property alias currentHandleY: handle.y
+    property alias handleHeight: handle.height
+    property alias heightWidth: handle.width
     property alias handleColor: handleRectangle.color
 
-    function _updateHandleY() {
-        var minY = topItemMinHeight;
-        var maxY = root.height - handle.height - bottomItemMinHeight;
-        handle.y = Math.max(minY, Math.min(handle.y, maxY));
-    }
-
-    onTopItemMinHeightChanged: _updateHandleY()
-    onBottomItemMinHeightChanged: _updateHandleY()
+    implicitHeight: topElement.item.implicitHeight + bottomElement.item.implicitHeight + handle.height
 
     Loader {
         id: topElement
@@ -32,26 +28,24 @@ Item {
 
     Item {
         id: handle
-        height: Controls.Theme.sliderSize * 2
+        height: Controls.Theme.sliderSize
         width: parent.width
-        y: topItemMinHeight
+        y: parent.height / 2 - height / 2
 
         Rectangle {
             id: handleRectangle
             anchors.fill: parent
-            color: Controls.Theme.colors.raised
-            radius: height / 2
+            color: Controls.Theme.colors.sunken
         }
 
         Controls.ColoredIcon {
             id: icon
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
-            height: parent.height * 4
+            height: Controls.Theme.iconSize
             width: height
-            rotation: 90
-            color: Controls.Theme.colors.description
-            source: "qrc:/icons/dots.svg"
+            color: Controls.Theme.colors.control
+            source: "qrc:/icons/more.svg"
         }
 
         MouseArea{
@@ -61,8 +55,8 @@ Item {
             drag.threshold: 0
             drag.target: handle
             drag.axis: Drag.YAxis
-            drag.minimumY: topItemMinHeight
-            drag.maximumY: root.height - handle.height - bottomItemMinHeight
+            drag.minimumY: minHandleY
+            drag.maximumY: maxHandleY
         }
     }
 
