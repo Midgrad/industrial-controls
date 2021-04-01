@@ -5,12 +5,12 @@ import Industrial.Controls 1.0
 Rectangle {
     id: root
 
-    property alias backgroundColor: root.color //////////////////////////////
-    property real padding: Theme.padding ////////////////////////
-    property real topPadding ////////////////////////
-    property real bottomPadding //////////////////////////
-    property real leftPadding: Theme.padding * 2 ////////////////////////
-    property real rightPadding: Theme.padding * 2 //////////////////////////
+    property alias backgroundColor: root.color
+    property real padding: Theme.padding
+    property real topPadding
+    property real bottomPadding
+    property real leftPadding: Theme.padding * 2
+    property real rightPadding: Theme.padding * 2
     property real labelWidth: root.width / 2
 
     width: Theme.baseSize * 10
@@ -19,7 +19,7 @@ Rectangle {
 
     Flickable {
         anchors.fill: parent
-        contentHeight: table.implicitHeight + table.anchors.topMargin + table.anchors.bottomMargin //table.implicitHeight //////////////////////
+        contentHeight: table.implicitHeight + table.anchors.topMargin + table.anchors.bottomMargin
         flickableDirection: Flickable.VerticalFlick
         boundsBehavior: Flickable.StopAtBounds
 
@@ -29,10 +29,10 @@ Rectangle {
             rowSpacing: 0
             columnSpacing: Theme.padding
             columns: 2
-            anchors.topMargin: topPadding ? topPadding : padding //////////////////////////
-            anchors.bottomMargin: bottomPadding ? bottomPadding : padding //////////////////////////////
-            anchors.leftMargin: leftPadding ? leftPadding : padding //////////////////////////
-            anchors.rightMargin: rightPadding ? rightPadding : padding //////////////////////////////
+            anchors.topMargin: topPadding ? topPadding : padding
+            anchors.bottomMargin: bottomPadding ? bottomPadding : padding
+            anchors.leftMargin: leftPadding ? leftPadding : padding
+            anchors.rightMargin: rightPadding ? rightPadding : padding
         }
 
         ScrollBar.vertical: ScrollBar {
@@ -50,11 +50,6 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
         }
     }
-
-    //Component {
-    //    id: tableEnd
-    //    Item { Layout.fillHeight: true }
-    //}
 
     function createTable() {
         var new_children = Object.values(children).splice(1, children.length);
@@ -76,11 +71,9 @@ Rectangle {
             new_children[i+1].Layout.fillWidth = true;
             new_children[i].Layout.minimumHeight = Theme.baseSize;
             new_children[i+1].Layout.minimumHeight = new_children[i].Layout.minimumHeight;
-            root.implicitHeight += new_children[i].Layout.minimumHeight; ///////////////////////////////////////
+            root.implicitHeight += new_children[i].Layout.minimumHeight;
         }
-        //new_children.push(tableEnd.createObject());
-        //root.implicitHeight += (topPadding ? topPadding : padding) + (bottomPadding ? bottomPadding : padding) /////////////////////////////////
-        root.implicitHeight += table.anchors.topMargin + table.anchors.bottomMargin /////////////////////////////////
+        root.implicitHeight += table.anchors.topMargin + table.anchors.bottomMargin
         table.children = new_children;
     }
 
