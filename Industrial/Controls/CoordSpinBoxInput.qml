@@ -163,8 +163,10 @@ Item {
         }
 
         onWheel: {
-            if (!control.activeFocus) input.forceActiveFocus();
-            if (control.editable) wheel.angleDelta.y > 0 ? increaseValue() : decreaseValue();
+            if (control.focused) {
+                if (!input.focused) input.forceActiveFocus();
+                if (control.editable) wheel.angleDelta.y > 0 ? increaseValue() : decreaseValue();
+            }
         }
     }
 }

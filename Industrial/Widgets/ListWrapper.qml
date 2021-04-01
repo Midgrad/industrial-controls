@@ -83,6 +83,7 @@ Rectangle {
         Controls.Label {
             anchors.centerIn: parent
             text: emptyText
+            type: "label"
             visible: list.count === 0
         }
     }
