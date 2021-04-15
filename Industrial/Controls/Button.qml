@@ -6,13 +6,17 @@ import Industrial.Controls 1.0
 T.Button {
     id: control
 
-    //type
-    //type: "primary"
-    //type: "secondary"
-    //type: "red"
-    //type: "yellow"
-    //type: "green"
-    property string type: "primary"
+    property var types: {
+        "primary": 0,
+        "secondary": 1,
+        "red": 2,
+        "yellow": 3,
+        "green": 4,
+        "link_primary": 5,
+        "link_secondary": 6
+    }
+
+    property var type: types.primary
 
     property bool round: false
     property bool pressedImpl: false
@@ -21,17 +25,23 @@ T.Button {
     property bool leftCropped: false
     property bool rightCropped: false
     property bool toolTipAlwaysVisible: false
+    property string tipText
+
     property color color: Theme.colors.control
     property color highlightColor: Theme.colors.highlight
     property color selectionColor: Theme.colors.selection
     property color disabledColor: Theme.colors.disabled
-    property string tipText
+
+    property color textColor: Theme.colors.controlText
+    property color highlightTextColor: Theme.colors.highlightedText
+    property color selectionTextColor: Theme.colors.selectedText
+    property color checkedTextColor: Theme.colors.selectedText
+    property color disabledTextColor: Theme.colors.background
 
     property alias iconSource: content.iconSource
     property alias iconColor: content.iconColor
     property alias iconSize: content.iconSize
     property alias textSize: content.textSize
-    property alias textColor: content.textColor
     property alias contentWidth: content.width
     property alias horizontalAlignment: content.horizontalAlignment
     property alias radius: backgroundItem.radius
@@ -59,29 +69,44 @@ T.Button {
         rightCropping: rightCropped ? radius : 0
         borderColor: control.activeFocus ? Theme.colors.highlight : "transparent"
         color: {
-            if (!control.enabled) return control.flat ? "transparent" : control.disabledColor;
+            if (!control.enabled) {
+                if (control.flat) return "transparent";
+                if (type === types.link_primary) return "transparent";
+                if (type === types.link_secondary) return "transparent";
+                return control.disabledColor;
+            }
             if (control.pressed || control.pressedImpl) {
-                if (type === "primary") return control.highlightColor;
-                if (type === "secondary") return control.highlightColor;
-                if (type === "red") return Theme.colors.negative;
-                if (type === "yellow") return Theme.colors.neutral;
-                if (type === "green") return Theme.colors.positive;
+                if (type === types.primary) return control.highlightColor;
+                if (type === types.secondary) return control.highlightColor;
+                if (type === types.red) return Theme.colors.negative;
+                if (type === types.yellow) return Theme.colors.neutral;
+                if (type === types.green) return Theme.colors.positive;
+                if (type === types.link_primary) return control.highlightColor;
+                if (type === types.link_secondary) return control.highlightColor;
             }
             if (control.highlighted || control.checked) {
-                if (type === "primary") return control.selectionColor;
-                if (type === "secondary") return control.selectionColor;
-                if (type === "red") return Theme.colors.negative;
-                if (type === "yellow") return Theme.colors.neutral;
-                if (type === "green") return Theme.colors.positive;
+                if (type === types.primary) return control.selectionColor;
+                if (type === types.secondary) return control.selectionColor;
+                if (type === types.red) return Theme.colors.negative;
+                if (type === types.yellow) return Theme.colors.neutral;
+                if (type === types.green) return Theme.colors.positive;
+                if (type === types.link_primary) return "transparent";
+                if (type === types.link_secondary) return "transparent";
             }
-            return control.flat ? "transparent" : control.color;
+            if (!control.flat) {
+                if (type === types.link_primary) return "transparent";
+                if (type === types.link_secondary) return "transparent";
+                return control.color;
+            } else return "transparent";
         }
         hoverColor: {
-            if (type === "primary") return Theme.colors.highlight;
-            if (type === "secondary") return Theme.colors.highlight;
-            if (type === "red") return Theme.colors.negative;
-            if (type === "yellow") return Theme.colors.neutral;
-            if (type === "green") return Theme.colors.positive;
+            if (type === types.primary) return control.highlightColor;
+            if (type === types.secondary) return control.highlightColor;
+            if (type === types.red) return Theme.colors.negative;
+            if (type === types.yellow) return Theme.colors.neutral;
+            if (type === types.green) return Theme.colors.positive;
+            if (type === types.link_primary) return control.highlightColor;
+            if (type === types.link_secondary) return control.highlightColor;
         }
     }
 
@@ -92,17 +117,24 @@ T.Button {
         text: control.text
         font: control.font
         textColor: {
-            if (!enabled) return control.flat ? Theme.colors.disabled : Theme.colors.background;
-            if (control.pressed || control.pressedImpl) return Theme.colors.highlightedText;
-            if (control.checked) return Theme.colors.selectedText;
-            if (control.highlighted || control.hovered) return Theme.colors.controlText;
+            if (!enabled) return control.flat ? Theme.colors.disabled : control.disabledTextColor;
+            if (control.pressed || control.pressedImpl) return control.highlightTextColor;
+            if (control.highlighted || control.hovered) return control.textColor;
+            if (control.checked) return control.checkedTextColor;
             if (control.flat) {
-                if (type === "primary") return Theme.colors.controlText;
-                if (type === "secondary") return Theme.colors.description;
-                if (type === "red") return Theme.colors.negative;
-                if (type === "yellow") return Theme.colors.neutral;
-                if (type === "green") return Theme.colors.positive;
-            } else { return Theme.colors.controlText; }
+                if (type === types.primary) return Theme.colors.controlText;
+                if (type === types.secondary) return Theme.colors.description;
+                if (type === types.red) return Theme.colors.negative;
+                if (type === types.yellow) return Theme.colors.neutral;
+                if (type === types.green) return Theme.colors.positive;
+                if (type === types.link_primary) return Theme.colors.controlText;
+                if (type === types.link_secondary) return Theme.colors.description;
+            }
+            else {
+                if (type === types.link_primary) return Theme.colors.controlText;
+                if (type === types.link_secondary) return Theme.colors.description;
+                return control.textColor;
+            }
         }
     }
 

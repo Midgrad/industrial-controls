@@ -6,16 +6,19 @@ import Industrial.Controls 1.0
 T.Label {
     id: control
 
-    //type
-    //type: "text" - обычный текст
-    //type: "label" - лэйбл
-    //type: "title" - заголовок, таб
-    property string type: "text"
+    property var types: {
+        "text": 0,
+        "label": 1,
+        "title": 2
+    }
 
-    font.pixelSize: type === "text" ? Theme.mainFontSize : Theme.auxFontSize
-    color: control.enabled ? (type === "text" ? Theme.colors.text : Theme.colors.description) : Theme.colors.disabled
-    font.weight: type === "title" ? Font.Bold : Font.Normal
-    font.capitalization: type === "title" ? Font.AllUppercase : Font.MixedCase
+    property var type: types.text
+
+    font.pixelSize: type === types.text ? Theme.mainFontSize : Theme.auxFontSize
+    color: control.enabled ? (type === types.text ? Theme.colors.text : Theme.colors.description) : Theme.colors.disabled
+    font.weight: type === types.title ? Font.Bold : Font.Normal
+    font.capitalization: type === types.title ? Font.AllUppercase : Font.MixedCase
     verticalAlignment: Text.AlignVCenter
     elide: Text.ElideRight
 }
+
