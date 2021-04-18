@@ -22,7 +22,7 @@ TextField {
             if (!control.isValid) return Theme.colors.negative;
             return Theme.colors.description;
         }
-        color: "transparent"
+        flat: true
         hoverColor: {
             if (control.caution) return Theme.colors.neutral;
             if (!control.isValid) return Theme.colors.negative;

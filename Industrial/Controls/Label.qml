@@ -6,8 +6,20 @@ import Industrial.Controls 1.0
 T.Label {
     id: control
 
-    font.pixelSize: Theme.mainFontSize
-    color: control.enabled ? Theme.colors.text : Theme.colors.disabled
+    enum Type {
+        Text,
+        Label,
+        Title
+    }
+
+    property int type: Label.Type.Text
+
+    font.pixelSize: type === Label.Type.Text ? Theme.mainFontSize : Theme.auxFontSize
+    color: control.enabled ? (type === Label.Type.Text ? Theme.colors.text : Theme.colors.description) :
+                             Theme.colors.disabled
+    font.weight: type === Label.Type.Title ? Font.Bold : Font.Normal
+    font.capitalization: type === Label.Type.Title ? Font.AllUppercase : Font.MixedCase
     verticalAlignment: Text.AlignVCenter
     elide: Text.ElideRight
 }
+

@@ -51,7 +51,7 @@ Calendar{
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
                 round: true
-                color: "transparent"
+                flat: true
                 iconSource: "qrc:/icons/left.svg"
                 onClicked: control.showPreviousMonth()
             }
@@ -63,7 +63,7 @@ Calendar{
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.right
                 round: true
-                color: "transparent"
+                flat: true
                 iconSource: "qrc:/icons/right.svg"
                 onClicked: control.showNextMonth()
             }

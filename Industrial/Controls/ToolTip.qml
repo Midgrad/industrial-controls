@@ -15,8 +15,11 @@ T.ToolTip {
     implicitHeight: Math.max(background ? background.implicitHeight : 0,
                              contentItem.implicitHeight + topPadding + bottomPadding)
 
+    font.pixelSize: Theme.auxFontSize
     margins: Theme.margins
     padding: Theme.padding
+    topPadding: Theme.padding * 0.5
+    bottomPadding: Theme.padding * 0.5
 
     closePolicy: T.Popup.CloseOnEscape | T.Popup.CloseOnPressOutsideParent | T.Popup.CloseOnReleaseOutsideParent
 
@@ -29,7 +32,7 @@ T.ToolTip {
 
     background: Rectangle {
         color: Theme.colors.tip
-        radius: 3
+        radius: Theme.rounding
 
         MouseArea {
             anchors.fill: parent

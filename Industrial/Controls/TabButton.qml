@@ -14,7 +14,7 @@ T.TabButton {
 
     // TODO: flat
     font.pixelSize: Theme.auxFontSize
-    font.weight: Font.Medium
+    font.weight: Font.Bold
     font.capitalization: Font.AllUppercase
     implicitWidth: Math.max(Theme.baseSize, contentItem.implicitWidth + control.padding * 2)
     implicitHeight: Theme.baseSize

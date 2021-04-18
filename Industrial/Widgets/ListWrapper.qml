@@ -34,7 +34,6 @@ Rectangle {
     ListView {
         id: list
         anchors.fill: parent
-        spacing: offset
         headerPositioning: ListView.OverlayHeader
         footerPositioning: ListView.OverlayFooter
         flickableDirection: Flickable.AutoFlickIfNeeded
@@ -83,6 +82,7 @@ Rectangle {
         Controls.Label {
             anchors.centerIn: parent
             text: emptyText
+            type: Controls.Label.Type.Label
             visible: list.count === 0
         }
     }

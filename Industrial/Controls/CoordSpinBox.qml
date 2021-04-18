@@ -14,8 +14,8 @@ T.Control {
     property alias flat: background.flat
 
     property int stepSizeDefault: 1
-    property int stepSizeShift: 10
-    property int stepSizeControl: 100
+    property int stepSizeTwo: 10
+    property int stepSizeThree: 100
     property int stepSize: stepSizeDefault
     property bool mouseDown: false
     property bool mouseSlide: true
@@ -157,8 +157,8 @@ T.Control {
                 rightCropped: true
                 bottomCropped: true
                 iconSource: {
-                    if (stepSize == stepSizeControl) return "qrc:/icons/left_3.svg"
-                    if (stepSize == stepSizeShift) return "qrc:/icons/left_2.svg"
+                    if (stepSize == stepSizeThree) return "qrc:/icons/left_3.svg"
+                    if (stepSize == stepSizeTwo) return "qrc:/icons/left_2.svg"
                     return "qrc:/icons/left.svg"
                 }
                 iconColor: {
@@ -257,8 +257,8 @@ T.Control {
                 leftCropped: true
                 bottomCropped: true
                 iconSource: {
-                    if (stepSize == stepSizeControl) return "qrc:/icons/right_3.svg"
-                    if (stepSize == stepSizeShift) return "qrc:/icons/right_2.svg"
+                    if (stepSize == stepSizeThree) return "qrc:/icons/right_3.svg"
+                    if (stepSize == stepSizeTwo) return "qrc:/icons/right_2.svg"
                     return "qrc:/icons/right.svg"
                 }
                 iconColor: {
@@ -310,8 +310,8 @@ T.Control {
     }
 
     Keys.onPressed: {
-        if (event.key === Qt.Key_Shift) stepSize = stepSizeShift;
-        if (event.key === Qt.Key_Alt) stepSize = stepSizeControl;
+        if (event.key === Qt.Key_Shift) stepSize = stepSizeTwo;
+        if (event.key === Qt.Key_Alt) stepSize = stepSizeThree;
         else return;
         event.accepted = true;
     }

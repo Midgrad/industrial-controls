@@ -52,7 +52,7 @@ Rectangle {
             top: parent.top
         }
         height: 0
-        color: Theme.colors.highlight
+        color: Theme.colors.hover
     }
 
     Item {
@@ -89,8 +89,8 @@ Rectangle {
                 anchors.fill: parent
                 drag.target: root.dragEnabled ? parent : null
                 drag.smoothed: false
-                drag.minimumX: -1
-                drag.maximumX: draggedItemParent.width - contentItem.width + 1
+                drag.minimumX: -contentItem.width + 1
+                drag.maximumX: - contentItem.width + 1
                 drag.minimumY: -1
                 drag.maximumY: draggedItemParent.height - contentItem.height + 1
                 hoverEnabled: true
@@ -178,7 +178,6 @@ Rectangle {
             }
             PropertyChanges {
                 target: contentItemWrapper
-                opacity: 0.9
                 anchors.fill: undefined
                 width: contentItem.width
                 height: contentItem.height
@@ -219,7 +218,7 @@ Rectangle {
             }
         },
         State {
-            when: !!topDropAreaLoader.item && topDropAreaLoader.item.containsDrag
+            when: topDropAreaLoader.item && topDropAreaLoader.item.containsDrag
             name: "droppingAbove"
             PropertyChanges {
                 target: topPlaceholder

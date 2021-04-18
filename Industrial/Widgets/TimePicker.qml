@@ -27,8 +27,8 @@ Rectangle{
             value: selectedTime.split(":")[0] * 1
             vertical: true
             wrap: true
-            stepSizeShift: 1
-            stepSizeControl: 1
+            stepSizeTwo: 1
+            stepSizeThree: 1
             height: parent.height
             width: Theme.baseSize * 2
             font.pixelSize: Theme.baseSize
@@ -60,8 +60,8 @@ Rectangle{
             value: selectedTime.split(":")[1] * 1
             vertical: true
             wrap: true
-            stepSizeShift: 5
-            stepSizeControl: 10
+            stepSizeTwo: 5
+            stepSizeThree: 10
             height: parent.height
             width: Theme.baseSize * 2
             font.pixelSize: Theme.baseSize

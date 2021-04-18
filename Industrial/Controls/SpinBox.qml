@@ -7,8 +7,8 @@ T.SpinBox {
     id: control
 
     property int stepSizeDefault: 1
-    property int stepSizeShift: 100
-    property int stepSizeControl: 1000
+    property int stepSizeTwo: 100
+    property int stepSizeThree: 1000
     property bool mouseDown: false
     property bool mouseSlide: true
     property int startX: 0
@@ -148,9 +148,10 @@ T.SpinBox {
         }
 
         onWheel: {
-            if (!control.activeFocus) control.forceActiveFocus();
-            if (editable) wheel.angleDelta.y > 0 ? control.increase() : control.decrease();
-            control.valueModified();
+            if (control.activeFocus) {
+                if (control.editable) wheel.angleDelta.y > 0 ? control.increase() : control.decrease();
+                control.valueModified();
+            }
         }
     }
 
@@ -228,8 +229,8 @@ T.SpinBox {
             rotation: !vertical ? 0: -90
             source: {
                 if (stepSize == stepSizeDefault) return "qrc:/icons/left.svg"
-                if (stepSize == stepSizeShift) return "qrc:/icons/left_2.svg"
-                if (stepSize == stepSizeControl) return "qrc:/icons/left_3.svg"
+                if (stepSize == stepSizeTwo) return "qrc:/icons/left_2.svg"
+                if (stepSize == stepSizeThree) return "qrc:/icons/left_3.svg"
             }
             color: {
                 if (down.pressed || keyDown) return Theme.colors.highlightedText;
@@ -263,8 +264,8 @@ T.SpinBox {
             rotation: !vertical ? 0: -90
             source: {
                 if (stepSize == stepSizeDefault) return "qrc:/icons/right.svg"
-                if (stepSize == stepSizeShift) return "qrc:/icons/right_2.svg"
-                if (stepSize == stepSizeControl) return "qrc:/icons/right_3.svg"
+                if (stepSize == stepSizeTwo) return "qrc:/icons/right_2.svg"
+                if (stepSize == stepSizeThree) return "qrc:/icons/right_3.svg"
             }
             color: {
                 if (up.pressed || keyUp) return Theme.colors.highlightedText;
@@ -298,8 +299,8 @@ T.SpinBox {
     }
 
     Keys.onPressed: {
-        if (event.key === Qt.Key_Shift) stepSize = stepSizeShift;
-        if (event.key === Qt.Key_Alt) stepSize = stepSizeControl;
+        if (event.key === Qt.Key_Shift) stepSize = stepSizeTwo;
+        if (event.key === Qt.Key_Alt) stepSize = stepSizeThree;
         else return;
         event.accepted = true;
     }

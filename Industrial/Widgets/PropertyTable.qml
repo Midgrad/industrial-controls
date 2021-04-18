@@ -5,29 +5,38 @@ import Industrial.Controls 1.0
 Rectangle {
     id: root
 
+    property alias backgroundColor: root.color
+    property real padding: Theme.padding
+    property real topPadding
+    property real bottomPadding
+    property real leftPadding: Theme.padding * 2
+    property real rightPadding: Theme.padding * 2
     property real labelWidth: root.width / 2
+
     width: Theme.baseSize * 10
-    height: Theme.baseSize * 12
     color: Theme.colors.background
     clip: true
 
     Flickable {
         anchors.fill: parent
-        contentWidth: table.width
-        contentHeight: table.height
+        contentHeight: table.implicitHeight + table.anchors.topMargin + table.anchors.bottomMargin
         flickableDirection: Flickable.VerticalFlick
         boundsBehavior: Flickable.StopAtBounds
 
         GridLayout {
             id: table
-            width: root.width
+            anchors.fill: parent
             rowSpacing: 0
-            columnSpacing: 0
+            columnSpacing: Theme.padding
             columns: 2
+            anchors.topMargin: topPadding ? topPadding : padding
+            anchors.bottomMargin: bottomPadding ? bottomPadding : padding
+            anchors.leftMargin: leftPadding ? leftPadding : padding
+            anchors.rightMargin: rightPadding ? rightPadding : padding
         }
 
         ScrollBar.vertical: ScrollBar {
-            visible: table.height > root.height
+            visible: table.height + table.anchors.topMargin + table.anchors.bottomMargin > root.height
         }
     }
 
@@ -38,16 +47,8 @@ Rectangle {
             font.pixelSize: Theme.auxFontSize
             color: Theme.colors.description
             elide: Text.ElideRight
-            Layout.leftMargin: Theme.padding
-            Layout.rightMargin: Theme.padding
-            Layout.preferredWidth: labelWidth
             verticalAlignment: Text.AlignVCenter
         }
-    }
-
-    Component {
-        id: tableEnd
-        Item { Layout.fillHeight: true }
     }
 
     function createTable() {
@@ -69,9 +70,10 @@ Rectangle {
 
             new_children[i+1].Layout.fillWidth = true;
             new_children[i].Layout.minimumHeight = Theme.baseSize;
-            new_children[i+1].Layout.minimumHeight = Theme.baseSize;
+            new_children[i+1].Layout.minimumHeight = new_children[i].Layout.minimumHeight;
+            root.implicitHeight += new_children[i].Layout.minimumHeight;
         }
-        new_children.push(tableEnd.createObject());
+        root.implicitHeight += table.anchors.topMargin + table.anchors.bottomMargin
         table.children = new_children;
     }
 
