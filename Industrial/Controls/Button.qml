@@ -80,6 +80,13 @@ T.Button {
                 if (control.highlighted || control.checked)
                     return control.selectionColor;
                 break;
+            case Button.Type.LinkPrimary: // no break
+            case Button.Type.LinkSecondary:
+                if (control.pressed || control.pressedImpl)
+                    return control.highlightColor;
+                if (control.highlighted || control.checked)
+                    return "transparent";
+                break;
             case Button.Type.Negative:
                 if (control.pressed || control.pressedImpl || control.highlighted || control.checked)
                     return control.negative;
@@ -94,12 +101,20 @@ T.Button {
                 break;
             }
 
-            return control.flat ? "transparent" : control.color;
+            if (!control.flat) {
+                if (control.type === Button.Type.LinkPrimary) return "transparent";
+                if (control.type === Button.Type.LinkSecondary) return "transparent";
+                return control.color;
+            } else {
+                return "transparent";
+            }
         }
         hoverColor: {
             switch (control.type) {
             case Button.Type.Primary: // no break
-            case Button.Type.Secondary:
+            case Button.Type.Secondary: // no break
+            case Button.Type.LinkPrimary: // no break
+            case Button.Type.LinkSecondary:
                 return Theme.colors.highlight;
             case Button.Type.Negative:
                 return Theme.colors.negative;
