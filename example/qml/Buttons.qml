@@ -44,7 +44,6 @@ Pane {
                     text: qsTr("Flat")
                     Layout.fillWidth: true
                     onClicked: buttonStateChange();
-                    //checked: true
                 }
 
                 CheckBox {
@@ -52,7 +51,6 @@ Pane {
                     text: qsTr("Checkable")
                     Layout.fillWidth: true
                     onClicked: buttonStateChange();
-                    //checked: true
                 }
 
                 CheckBox {
@@ -60,7 +58,6 @@ Pane {
                     text: qsTr("Disable")
                     Layout.fillWidth: true
                     onClicked: buttonStateChange();
-                    //checked: true
                 }
 
                 Item { Layout.fillHeight: true }
