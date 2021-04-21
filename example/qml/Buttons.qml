@@ -5,220 +5,267 @@ import Industrial.Controls 1.0
 Pane {
     id: root
 
-    padding: Theme.padding
+    padding: Theme.padding * 2
 
-    GridLayout {
+    function buttonStateChange() {
+        for (var i = 0; i < buttonGrid.visibleChildren.length; ++i) {
+            if ( buttonGrid.visibleChildren[i].Layout.fillHeight === true) continue;
+            buttonGrid.visibleChildren[i].flat = checkFlat.checked;
+            buttonGrid.visibleChildren[i].checkable = checkCheckable.checked;
+            buttonGrid.visibleChildren[i].enabled = !checkDisable.checked;
+            if (checkCheckable.checked === false) buttonGrid.visibleChildren[i].checked = false;
+        }
+        for (var i = 0; i < buttonOtherGrid.visibleChildren.length; ++i) {
+            if ( buttonOtherGrid.visibleChildren[i].Layout.fillHeight === true) continue;
+            buttonOtherGrid.visibleChildren[i].flat = checkFlat.checked;
+            buttonOtherGrid.visibleChildren[i].enabled = !checkDisable.checked;
+        }
+    }
+
+    Component.onCompleted: {
+        buttonStateChange();
+    }
+
+    RowLayout {
         anchors.fill: parent
-        anchors.margins: Theme.padding
-        rowSpacing: Theme.spacing
-        columnSpacing: Theme.spacing
-        columns: 6
+        spacing: Theme.spacing * 2
 
-        Label {}
-
-        Label {
-            text: qsTr("Text")
-            font.pixelSize: Theme.auxFontSize
-            Layout.alignment: Qt.AlignHCenter
-        }
-
-        Label {
-            text: qsTr("Icon")
-            font.pixelSize: Theme.auxFontSize
-            Layout.alignment: Qt.AlignHCenter
-        }
-
-        Label {
-            text: qsTr("Text & icon")
-            font.pixelSize: Theme.auxFontSize
-            Layout.alignment: Qt.AlignHCenter
-        }
-
-        Label {
-            text: qsTr("Disabled text")
-            font.pixelSize: Theme.auxFontSize
-            Layout.alignment: Qt.AlignHCenter
-        }
-
-        Label {
-            text: qsTr("Disabled icon")
-            font.pixelSize: Theme.auxFontSize
-            Layout.alignment: Qt.AlignHCenter
-        }
-
-        Label { text: qsTr("Common"); font.pixelSize: Theme.auxFontSize }
-
-        Button {
-            text: qsTr("Common button")
+        Pane {
+            backgroundColor: Theme.colors.sunken
+            clip: true
             Layout.fillWidth: true
+            Layout.fillHeight: true
+
+            ColumnLayout {
+                spacing: Theme.spacing
+
+                CheckBox {
+                    id: checkFlat
+                    text: qsTr("Flat")
+                    Layout.fillWidth: true
+                    onClicked: buttonStateChange();
+                    //checked: true
+                }
+
+                CheckBox {
+                    id: checkCheckable
+                    text: qsTr("Checkable")
+                    Layout.fillWidth: true
+                    onClicked: buttonStateChange();
+                    //checked: true
+                }
+
+                CheckBox {
+                    id: checkDisable
+                    text: qsTr("Disable")
+                    Layout.fillWidth: true
+                    onClicked: buttonStateChange();
+                    //checked: true
+                }
+
+                Item { Layout.fillHeight: true }
+            }
         }
 
-        Button {
-            iconSource: "qrc:/icons/plus.svg"
-            tipText: qsTr("Icon button")
-        }
-
-        Button {
-            iconSource: "qrc:/icons/up.svg"
-            text: qsTr("Up button")
+        GridLayout {
+            id: buttonGrid
             Layout.fillWidth: true
+            Layout.fillHeight: true
+            rowSpacing: Theme.spacing
+            columnSpacing: Theme.spacing
+            columns: 3
+
+            Button {
+                type: Button.Type.Primary
+                text: checked ? qsTr("Close") : qsTr("Button")
+                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
+                tipText: qsTr("Button")
+                Layout.fillWidth: true
+            }
+            Button {
+                type: Button.Type.Primary
+                text: checked ? qsTr("Close") : qsTr("Button")
+                tipText: qsTr("Button")
+                Layout.fillWidth: true
+            }
+            Button {
+                type: Button.Type.Primary
+                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
+                tipText: qsTr("Button")
+            }
+
+            Button {
+                type: Button.Type.Secondary
+                text: checked ? qsTr("Close") : qsTr("Button")
+                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
+                tipText: qsTr("Button")
+                Layout.fillWidth: true
+            }
+            Button {
+                type: Button.Type.Secondary
+                text: checked ? qsTr("Close") : qsTr("Button")
+                tipText: qsTr("Button")
+                Layout.fillWidth: true
+            }
+            Button {
+                type: Button.Type.Secondary
+                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
+                tipText: qsTr("Button")
+            }
+
+            Button {
+                type: Button.Type.Negative
+                text: checked ? qsTr("Close") : qsTr("Button")
+                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
+                tipText: qsTr("Button")
+                Layout.fillWidth: true
+            }
+            Button {
+                type: Button.Type.Negative
+                text: checked ? qsTr("Close") : qsTr("Button")
+                tipText: qsTr("Button")
+                Layout.fillWidth: true
+            }
+            Button {
+                type: Button.Type.Negative
+                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
+                tipText: qsTr("Button")
+            }
+
+            Button {
+                type: Button.Type.Neutral
+                text: checked ? qsTr("Close") : qsTr("Button")
+                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
+                tipText: qsTr("Button")
+                Layout.fillWidth: true
+            }
+            Button {
+                type: Button.Type.Neutral
+                text: checked ? qsTr("Close") : qsTr("Button")
+                tipText: qsTr("Button")
+                Layout.fillWidth: true
+            }
+            Button {
+                type: Button.Type.Neutral
+                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
+                tipText: qsTr("Button")
+            }
+
+            Button {
+                type: Button.Type.Positive
+                text: checked ? qsTr("Close") : qsTr("Button")
+                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
+                tipText: qsTr("Button")
+                Layout.fillWidth: true
+            }
+            Button {
+                type: Button.Type.Positive
+                text: checked ? qsTr("Close") : qsTr("Button")
+                tipText: qsTr("Button")
+                Layout.fillWidth: true
+            }
+            Button {
+                type: Button.Type.Positive
+                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
+                tipText: qsTr("Button")
+            }
+
+            Button {
+                type: Button.Type.LinkPrimary
+                text: checked ? qsTr("Close") : qsTr("Button")
+                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
+                tipText: qsTr("Button")
+                checkedTextColor: Theme.colors.highlight
+                Layout.fillWidth: true
+            }
+            Button {
+                type: Button.Type.LinkPrimary
+                text: checked ? qsTr("Close") : qsTr("Button")
+                tipText: qsTr("Button")
+                checkedTextColor: Theme.colors.highlight
+                Layout.fillWidth: true
+            }
+            Button {
+                type: Button.Type.LinkPrimary
+                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
+                tipText: qsTr("Button")
+                checkedTextColor: Theme.colors.highlight
+            }
+
+            Button {
+                type: Button.Type.LinkSecondary
+                text: checked ? qsTr("Close") : qsTr("Button")
+                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
+                tipText: qsTr("Button")
+                Layout.fillWidth: true
+            }
+            Button {
+                type: Button.Type.LinkSecondary
+                text: checked ? qsTr("Close") : qsTr("Button")
+                tipText: qsTr("Button")
+                Layout.fillWidth: true
+            }
+            Button {
+                type: Button.Type.LinkSecondary
+                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
+                tipText: qsTr("Button")
+            }
+
+            Item { Layout.fillHeight: true }
         }
 
-        Button {
-            text: qsTr("Disabled button")
-            enabled: false
+        GridLayout {
+            id: buttonOtherGrid
             Layout.fillWidth: true
+            Layout.fillHeight: true
+            rowSpacing: Theme.spacing
+            columnSpacing: Theme.spacing
+            columns: 3
+
+            DelayButton {
+                text: qsTr("Delay")
+                iconSource: "qrc:/icons/plus.svg"
+                tipText: qsTr("Delay")
+                Layout.fillWidth: true
+            }
+            DelayButton {
+                text: qsTr("Delay")
+                tipText: qsTr("Delay")
+                Layout.fillWidth: true
+            }
+            DelayButton {
+                iconSource: "qrc:/icons/plus.svg"
+                tipText: qsTr("Delay")
+            }
+
+            ListModel{
+                id: listModel
+                ListElement { text: qsTr("Menu item") }
+                ListElement { text: qsTr("Menu item") }
+                ListElement { text: qsTr("Menu item") }
+                ListElement { text: qsTr("Menu item") }
+                ListElement { text: qsTr("Menu item") }
+            }
+            MenuButton {
+                text: qsTr("Menu")
+                iconSource: "qrc:/icons/plus.svg"
+                tipText: qsTr("Menu")
+                model: listModel
+                Layout.fillWidth: true
+            }
+            MenuButton {
+                text: qsTr("Menu")
+                tipText: qsTr("Menu")
+                model: listModel
+                Layout.fillWidth: true
+            }
+            MenuButton {
+                iconSource: "qrc:/icons/plus.svg"
+                tipText: qsTr("Menu")
+                model: listModel
+            }
+
+            Item { Layout.fillHeight: true }
         }
-
-        Button {
-            iconSource: "qrc:/icons/ok.svg"
-            enabled: false
-            Layout.alignment: Qt.AlignHCenter
-        }
-
-        Label { text: qsTr("Flat"); font.pixelSize: Theme.auxFontSize }
-
-        Button {
-            text: qsTr("Flat button")
-            flat: true
-            Layout.fillWidth: true
-        }
-
-        Button {
-            iconSource: "qrc:/icons/minus.svg"
-            tipText: qsTr("Flat icon button")
-            flat: true
-        }
-
-        Button {
-            iconSource: "qrc:/icons/down.svg"
-            text: qsTr("Down button")
-            flat: true
-            Layout.fillWidth: true
-        }
-
-        Button {
-            text: qsTr("Disabled flat button")
-            flat: true
-            enabled: false
-            Layout.fillWidth: true
-        }
-
-        Button {
-            iconSource: "qrc:/icons/cancel.svg"
-            flat: true
-            enabled: false
-            Layout.alignment: Qt.AlignHCenter
-        }
-
-        Label { text: qsTr("Checkable"); font.pixelSize: Theme.auxFontSize }
-
-        Button {
-            text: qsTr("Checkable")
-            checkable: true
-            Layout.fillWidth: true
-        }
-
-        Button {
-            iconSource: "qrc:/icons/refresh.svg"
-            tipText: qsTr("Checkable icon")
-            checkable: true
-        }
-
-        Button {
-            iconSource: "qrc:/icons/left.svg"
-            text: qsTr("Left button")
-            checkable: true
-            Layout.fillWidth: true
-        }
-
-        Button {
-            text: qsTr("Disabled checkable")
-            checkable: true
-            enabled: false
-            Layout.fillWidth: true
-        }
-
-        Button {
-            iconSource: "qrc:/icons/dots.svg"
-            checkable: true
-            enabled: false
-            Layout.alignment: Qt.AlignHCenter
-        }
-
-        Label { text: qsTr("Checkable & flat"); font.pixelSize: Theme.auxFontSize }
-
-        Button {
-            text: qsTr("Checkable flat")
-            checkable: true
-            flat: true
-            Layout.fillWidth: true
-        }
-
-        Button {
-            iconSource: "qrc:/icons/restore.svg"
-            tipText: qsTr("Checkable icon")
-            checkable: true
-            flat: true
-        }
-
-        Button {
-            iconSource: "qrc:/icons/right.svg"
-            text: qsTr("Right button")
-            checkable: true
-            flat: true
-            Layout.fillWidth: true
-        }
-
-        Button {
-            text: qsTr("Disabled checkable")
-            checkable: true
-            enabled: false
-            flat: true
-            Layout.fillWidth: true
-        }
-
-        Button {
-            iconSource: "qrc:/icons/cancel.svg"
-            checkable: true
-            enabled: false
-            flat: true
-            Layout.alignment: Qt.AlignHCenter
-        }
-
-        Label { text: qsTr("Delay"); font.pixelSize: Theme.auxFontSize }
-
-        DelayButton {
-            text: qsTr("Delay")
-            Layout.fillWidth: true
-        }
-
-        DelayButton {
-            iconSource: "qrc:/icons/up.svg"
-            tipText: qsTr("Delay icon button")
-        }
-
-        DelayButton {
-            iconSource: "qrc:/icons/down.svg"
-            text: qsTr("Delay down")
-            Layout.fillWidth: true
-        }
-
-        DelayButton {
-            iconSource: "qrc:/icons/up.svg"
-            text: qsTr("Delay up")
-            enabled: false
-            Layout.fillWidth: true
-        }
-
-        DelayButton {
-            iconSource: "qrc:/icons/dots.svg"
-            Layout.alignment: Qt.AlignHCenter
-            enabled: false
-        }
-
-        // TODO: confirm buttons
-
-        Item { Layout.fillHeight: true }
     }
 }

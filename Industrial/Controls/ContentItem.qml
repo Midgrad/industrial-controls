@@ -35,7 +35,7 @@ Item {
         id: row
         anchors.centerIn: parent
         width: parent.width
-        spacing: Theme.spacing
+        spacing: Theme.padding
 
         ColoredIcon {
             id: icon
