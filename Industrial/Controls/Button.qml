@@ -67,19 +67,38 @@ T.Button {
         bottomCropping: bottomCropped ? radius : 0
         leftCropping: leftCropped ? radius : 0
         rightCropping: rightCropped ? radius : 0
-        borderColor: control.activeFocus ? Theme.colors.highlight : "transparent"
+        borderColor: {
+            if (control.activeFocus) return Theme.colors.highlight;
+            if (control.type === Button.Type.Secondary) {
+                if (!control.enabled)
+                    return control.flat ? "transparent" : control.disabledColor;
+                if (control.pressed || control.pressedImpl || control.highlighted || control.checked || control.flat)
+                    return "transparent";
+                return Theme.colors.controlBorder;
+            }
+            return "transparent";
+        }
         color: {
-            if (!control.enabled)
+            if (!control.enabled) {
+                if (control.type === Button.Type.Secondary) return "transparent";
+                if (control.type === Button.Type.LinkPrimary) return "transparent";
+                if (control.type === Button.Type.LinkSecondary) return "transparent";
                 return control.flat ? "transparent" : control.disabledColor;
+            }
 
             switch (control.type) {
-            case Button.Type.Primary: // no break
-            case Button.Type.Secondary:
+            case Button.Type.Primary:
                 if (control.pressed || control.pressedImpl)
                     return control.highlightColor;
                 if (control.highlighted || control.checked)
                     return control.selectionColor;
                 break;
+            case Button.Type.Secondary:
+                if (control.pressed || control.pressedImpl)
+                    return control.highlightColor;
+                if (control.highlighted || control.checked)
+                    return control.selectionColor;
+                return "transparent";
             case Button.Type.LinkPrimary: // no break
             case Button.Type.LinkSecondary:
                 if (control.pressed || control.pressedImpl)
@@ -135,7 +154,12 @@ T.Button {
         text: control.text
         font: control.font
         textColor: {
-            if (!enabled) return control.flat ? Theme.colors.disabled : control.disabledTextColor;
+            if (!enabled) {
+                if (control.type === Button.Type.Secondary) return control.disabledColor;
+                if (control.type === Button.Type.LinkPrimary) return control.disabledColor;
+                if (control.type === Button.Type.LinkSecondary) return control.disabledColor;
+                return control.flat ? control.disabledColor : control.disabledTextColor;
+            }
             if (control.pressed || control.pressedImpl) return control.highlightTextColor;
             if (control.highlighted || control.hovered) return control.textColor;
             if (control.checked) return control.checkedTextColor;
@@ -155,10 +179,14 @@ T.Button {
                     return Theme.colors.positive;
                 }
             } else {
-                if (type === Button.Type.LinkPrimary)
-                    return Theme.colors.controlText;
-                else if (type === Button.Type.LinkSecondary)
+                switch (control.type) {
+                case Button.Type.Secondary:
                     return Theme.colors.description;
+                case Button.Type.LinkPrimary:
+                    return Theme.colors.controlText;
+                case Button.Type.LinkSecondary:
+                    return Theme.colors.description;
+                }
             }
             return Theme.colors.controlText;
         }
