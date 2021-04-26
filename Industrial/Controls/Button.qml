@@ -6,17 +6,7 @@ import Industrial.Controls 1.0
 T.Button {
     id: control
 
-    enum Type {
-        Primary,
-        Secondary,
-        Negative,
-        Neutral,
-        Positive,
-        LinkPrimary,
-        LinkSecondary
-    }
-
-    property int type: Button.Type.Primary
+    property int type: Theme.Primary
 
     property bool round: false
     property bool pressedImpl: false
@@ -69,7 +59,7 @@ T.Button {
         rightCropping: rightCropped ? radius : 0
         borderColor: {
             if (control.activeFocus) return Theme.colors.highlight;
-            if (control.type === Button.Type.Secondary) {
+            if (control.type === Theme.Secondary) {
                 if (!control.enabled)
                     return control.flat ? "transparent" : control.disabledColor;
                 if (control.pressed || control.pressedImpl || control.highlighted || control.checked || control.flat)
@@ -80,49 +70,49 @@ T.Button {
         }
         color: {
             if (!control.enabled) {
-                if (control.type === Button.Type.Secondary) return "transparent";
-                if (control.type === Button.Type.LinkPrimary) return "transparent";
-                if (control.type === Button.Type.LinkSecondary) return "transparent";
+                if (control.type === Theme.Secondary) return "transparent";
+                if (control.type === Theme.LinkPrimary) return "transparent";
+                if (control.type === Theme.LinkSecondary) return "transparent";
                 return control.flat ? "transparent" : control.disabledColor;
             }
 
             switch (control.type) {
-            case Button.Type.Primary:
+            case Theme.Primary:
                 if (control.pressed || control.pressedImpl)
                     return control.highlightColor;
                 if (control.highlighted || control.checked)
                     return control.selectionColor;
                 break;
-            case Button.Type.Secondary:
+            case Theme.Secondary:
                 if (control.pressed || control.pressedImpl)
                     return control.highlightColor;
                 if (control.highlighted || control.checked)
                     return control.selectionColor;
                 return "transparent";
-            case Button.Type.LinkPrimary: // no break
-            case Button.Type.LinkSecondary:
+            case Theme.LinkPrimary: // no break
+            case Theme.LinkSecondary:
                 if (control.pressed || control.pressedImpl)
                     return control.highlightColor;
                 if (control.highlighted || control.checked)
                     return "transparent";
                 break;
-            case Button.Type.Negative:
+            case Theme.Negative:
                 if (control.pressed || control.pressedImpl || control.highlighted || control.checked)
                     return Theme.colors.negative;
                 break;
-            case Button.Type.Neutral:
+            case Theme.Neutral:
                 if (control.pressed || control.pressedImpl || control.highlighted || control.checked)
                     return Theme.colors.neutral;
                 break;
-            case Button.Type.Positive:
+            case Theme.Positive:
                 if (control.pressed || control.pressedImpl || control.highlighted || control.checked)
                     return Theme.colors.positive;
                 break;
             }
 
             if (!control.flat) {
-                if (control.type === Button.Type.LinkPrimary) return "transparent";
-                if (control.type === Button.Type.LinkSecondary) return "transparent";
+                if (control.type === Theme.LinkPrimary) return "transparent";
+                if (control.type === Theme.LinkSecondary) return "transparent";
                 return control.color;
             }
 
@@ -130,16 +120,16 @@ T.Button {
         }
         hoverColor: {
             switch (control.type) {
-            case Button.Type.Primary: // no break
-            case Button.Type.Secondary: // no break
-            case Button.Type.LinkPrimary: // no break
-            case Button.Type.LinkSecondary:
+            case Theme.Primary: // no break
+            case Theme.Secondary: // no break
+            case Theme.LinkPrimary: // no break
+            case Theme.LinkSecondary:
                 return Theme.colors.highlight;
-            case Button.Type.Negative:
+            case Theme.Negative:
                 return Theme.colors.negative;
-            case Button.Type.Neutral:
+            case Theme.Neutral:
                 return Theme.colors.neutral;
-            case Button.Type.Positive:
+            case Theme.Positive:
                 return Theme.colors.positive;
             }
 
@@ -155,9 +145,9 @@ T.Button {
         font: control.font
         textColor: {
             if (!enabled) {
-                if (control.type === Button.Type.Secondary) return control.disabledColor;
-                if (control.type === Button.Type.LinkPrimary) return control.disabledColor;
-                if (control.type === Button.Type.LinkSecondary) return control.disabledColor;
+                if (control.type === Theme.Secondary) return control.disabledColor;
+                if (control.type === Theme.LinkPrimary) return control.disabledColor;
+                if (control.type === Theme.LinkSecondary) return control.disabledColor;
                 return control.flat ? control.disabledColor : control.disabledTextColor;
             }
             if (control.pressed || control.pressedImpl) return control.highlightTextColor;
@@ -165,26 +155,26 @@ T.Button {
             if (control.checked) return control.checkedTextColor;
             if (control.flat) {
                 switch (control.type) {
-                case Button.Type.Primary:
-                case Button.Type.LinkPrimary:
+                case Theme.Primary:
+                case Theme.LinkPrimary:
                     return Theme.colors.controlText;
-                case Button.Type.Secondary:
-                case Button.Type.LinkSecondary:
+                case Theme.Secondary:
+                case Theme.LinkSecondary:
                     return Theme.colors.description;
-                case Button.Type.Negative:
+                case Theme.Negative:
                     return Theme.colors.negative;
-                case Button.Type.Neutral:
+                case Theme.Neutral:
                     return Theme.colors.neutral;
-                case Button.Type.Positive:
+                case Theme.Positive:
                     return Theme.colors.positive;
                 }
             } else {
                 switch (control.type) {
-                case Button.Type.Secondary:
+                case Theme.Secondary:
                     return Theme.colors.description;
-                case Button.Type.LinkPrimary:
+                case Theme.LinkPrimary:
                     return Theme.colors.controlText;
-                case Button.Type.LinkSecondary:
+                case Theme.LinkSecondary:
                     return Theme.colors.description;
                 }
             }

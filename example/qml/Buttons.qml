@@ -73,102 +73,102 @@ Pane {
             columns: 3
 
             Button {
-                type: Button.Type.Primary
+                type: Theme.Primary
                 text: checked ? qsTr("Close") : qsTr("Button")
                 iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
                 tipText: qsTr("Button")
                 Layout.fillWidth: true
             }
             Button {
-                type: Button.Type.Primary
+                type: Theme.Primary
                 text: checked ? qsTr("Close") : qsTr("Button")
                 tipText: qsTr("Button")
                 Layout.fillWidth: true
             }
             Button {
-                type: Button.Type.Primary
-                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
-                tipText: qsTr("Button")
-            }
-
-            Button {
-                type: Button.Type.Secondary
-                text: checked ? qsTr("Close") : qsTr("Button")
-                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
-                tipText: qsTr("Button")
-                Layout.fillWidth: true
-            }
-            Button {
-                type: Button.Type.Secondary
-                text: checked ? qsTr("Close") : qsTr("Button")
-                tipText: qsTr("Button")
-                Layout.fillWidth: true
-            }
-            Button {
-                type: Button.Type.Secondary
+                type: Theme.Primary
                 iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
                 tipText: qsTr("Button")
             }
 
             Button {
-                type: Button.Type.Negative
+                type: Theme.Secondary
                 text: checked ? qsTr("Close") : qsTr("Button")
                 iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
                 tipText: qsTr("Button")
                 Layout.fillWidth: true
             }
             Button {
-                type: Button.Type.Negative
+                type: Theme.Secondary
                 text: checked ? qsTr("Close") : qsTr("Button")
                 tipText: qsTr("Button")
                 Layout.fillWidth: true
             }
             Button {
-                type: Button.Type.Negative
-                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
-                tipText: qsTr("Button")
-            }
-
-            Button {
-                type: Button.Type.Neutral
-                text: checked ? qsTr("Close") : qsTr("Button")
-                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
-                tipText: qsTr("Button")
-                Layout.fillWidth: true
-            }
-            Button {
-                type: Button.Type.Neutral
-                text: checked ? qsTr("Close") : qsTr("Button")
-                tipText: qsTr("Button")
-                Layout.fillWidth: true
-            }
-            Button {
-                type: Button.Type.Neutral
+                type: Theme.Secondary
                 iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
                 tipText: qsTr("Button")
             }
 
             Button {
-                type: Button.Type.Positive
+                type: Theme.Negative
                 text: checked ? qsTr("Close") : qsTr("Button")
                 iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
                 tipText: qsTr("Button")
                 Layout.fillWidth: true
             }
             Button {
-                type: Button.Type.Positive
+                type: Theme.Negative
                 text: checked ? qsTr("Close") : qsTr("Button")
                 tipText: qsTr("Button")
                 Layout.fillWidth: true
             }
             Button {
-                type: Button.Type.Positive
+                type: Theme.Negative
                 iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
                 tipText: qsTr("Button")
             }
 
             Button {
-                type: Button.Type.LinkPrimary
+                type: Theme.Neutral
+                text: checked ? qsTr("Close") : qsTr("Button")
+                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
+                tipText: qsTr("Button")
+                Layout.fillWidth: true
+            }
+            Button {
+                type: Theme.Neutral
+                text: checked ? qsTr("Close") : qsTr("Button")
+                tipText: qsTr("Button")
+                Layout.fillWidth: true
+            }
+            Button {
+                type: Theme.Neutral
+                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
+                tipText: qsTr("Button")
+            }
+
+            Button {
+                type: Theme.Positive
+                text: checked ? qsTr("Close") : qsTr("Button")
+                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
+                tipText: qsTr("Button")
+                Layout.fillWidth: true
+            }
+            Button {
+                type: Theme.Positive
+                text: checked ? qsTr("Close") : qsTr("Button")
+                tipText: qsTr("Button")
+                Layout.fillWidth: true
+            }
+            Button {
+                type: Theme.Positive
+                iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
+                tipText: qsTr("Button")
+            }
+
+            Button {
+                type: Theme.LinkPrimary
                 text: checked ? qsTr("Close") : qsTr("Button")
                 iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
                 tipText: qsTr("Button")
@@ -176,34 +176,34 @@ Pane {
                 Layout.fillWidth: true
             }
             Button {
-                type: Button.Type.LinkPrimary
+                type: Theme.LinkPrimary
                 text: checked ? qsTr("Close") : qsTr("Button")
                 tipText: qsTr("Button")
                 checkedTextColor: Theme.colors.highlight
                 Layout.fillWidth: true
             }
             Button {
-                type: Button.Type.LinkPrimary
+                type: Theme.LinkPrimary
                 iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
                 tipText: qsTr("Button")
                 checkedTextColor: Theme.colors.highlight
             }
 
             Button {
-                type: Button.Type.LinkSecondary
+                type: Theme.LinkSecondary
                 text: checked ? qsTr("Close") : qsTr("Button")
                 iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
                 tipText: qsTr("Button")
                 Layout.fillWidth: true
             }
             Button {
-                type: Button.Type.LinkSecondary
+                type: Theme.LinkSecondary
                 text: checked ? qsTr("Close") : qsTr("Button")
                 tipText: qsTr("Button")
                 Layout.fillWidth: true
             }
             Button {
-                type: Button.Type.LinkSecondary
+                type: Theme.LinkSecondary
                 iconSource: checked ? "qrc:/icons/close.svg" : "qrc:/icons/plus.svg"
                 tipText: qsTr("Button")
             }

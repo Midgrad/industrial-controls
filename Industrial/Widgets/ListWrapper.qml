@@ -82,7 +82,7 @@ Rectangle {
         Controls.Label {
             anchors.centerIn: parent
             text: emptyText
-            type: Controls.Label.Type.Label
+            type: Controls.Theme.Label
             visible: list.count === 0
         }
     }
