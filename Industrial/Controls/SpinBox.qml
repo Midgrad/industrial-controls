@@ -171,10 +171,6 @@ T.SpinBox {
                 value: control.textFromValue(control.value, control.locale);
                 when: !activeFocus;
             }
-            onTextEdited: {
-                control.value = control.valueFromText(text, control.locale);
-                control.valueModified();
-            }
             onFinished: control.editingFinished()
             onEditingFinished: {
                 input.focus = false;
