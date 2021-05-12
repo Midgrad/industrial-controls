@@ -80,5 +80,6 @@
         <file>Industrial/Widgets/CalendarPicker.qml</file>
         <file>Industrial/Widgets/PropertyTable.qml</file>
         <file>Industrial/Widgets/TimePicker.qml</file>
+        <file>Industrial/Controls/FileBrowserField.qml</file>
     </qresource>
 </RCC>

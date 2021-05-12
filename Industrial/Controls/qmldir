@@ -67,3 +67,4 @@ ListButton 1.0 ListButton.qml
 ColorField 1.0 ColorField.qml
 AutoTabBar 1.0 AutoTabBar.qml
 CoordField 1.0 CoordField.qml
+FileBrowserField 1.0 FileBrowserField.qml

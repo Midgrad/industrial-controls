@@ -57,6 +57,11 @@ Pane {
             labelText: "CoordSpinBox"
         }
 
+        FileBrowserField {
+            labelText: "FileBrowserField"
+            selectMultiple: true
+        }
+
         Switch {
             text: "Switch"
         }
