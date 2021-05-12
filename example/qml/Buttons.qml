@@ -1,6 +1,7 @@
 import QtQuick 2.6
 import QtQuick.Layouts 1.3
 import Industrial.Controls 1.0
+import Industrial.Widgets 1.0
 
 Pane {
     id: root
@@ -15,10 +16,11 @@ Pane {
             buttonGrid.visibleChildren[i].enabled = !checkDisable.checked;
             if (checkCheckable.checked === false) buttonGrid.visibleChildren[i].checked = false;
         }
-        for (var i = 0; i < buttonOtherGrid.visibleChildren.length; ++i) {
-            if ( buttonOtherGrid.visibleChildren[i].Layout.fillHeight === true) continue;
-            buttonOtherGrid.visibleChildren[i].flat = checkFlat.checked;
-            buttonOtherGrid.visibleChildren[i].enabled = !checkDisable.checked;
+        for (var j = 0; j < buttonOtherGrid.visibleChildren.length; ++j) {
+            if ( buttonOtherGrid.visibleChildren[j].Layout.fillHeight === true) continue;
+            buttonOtherGrid.visibleChildren[j].flat = checkFlat.checked;
+            buttonOtherGrid.visibleChildren[j].checkable = checkCheckable.checked;
+            buttonOtherGrid.visibleChildren[j].enabled = !checkDisable.checked;
         }
     }
 
@@ -260,6 +262,48 @@ Pane {
                 iconSource: "qrc:/icons/plus.svg"
                 tipText: qsTr("Menu")
                 model: listModel
+            }
+
+            ButtonBar {
+                Layout.columnSpan: 3
+                Layout.fillWidth: true
+
+                Button {
+                    type: Theme.Primary
+                    text: checked ? qsTr("Close") : qsTr("Button")
+                }
+                Button {
+                    type: Theme.Primary
+                    text: checked ? qsTr("Close") : qsTr("Button")
+                }
+                Button {
+                    type: Theme.Primary
+                    text: checked ? qsTr("Close") : qsTr("Button")
+                }
+                Button {
+                    type: Theme.Primary
+                    text: checked ? qsTr("Close") : qsTr("Button")
+                }
+                Button {
+                    type: Theme.Primary
+                    text: checked ? qsTr("Close") : qsTr("Button")
+                }
+                Button {
+                    type: Theme.Primary
+                    text: checked ? qsTr("Close") : qsTr("Button")
+                }
+            }
+
+            StandartButtons {
+                buttons: [Theme.Apply, Theme.Restore, Theme.Cancel]
+                Layout.columnSpan: 3
+                Layout.fillWidth: true
+            }
+
+            StandartButtons {
+                buttons: [Theme.Yes, Theme.No, Theme.Cancel]
+                Layout.columnSpan: 3
+                Layout.fillWidth: true
             }
 
             Item { Layout.fillHeight: true }

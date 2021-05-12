@@ -4,8 +4,23 @@ Row {
     id: row
     
     property bool setButtonWidth: true
+    property bool flat: false
+    property bool checkable: false
     
     spacing: 1
+
+    onFlatChanged: {
+        for (var i = 0; i < visibleChildren.length; ++i) {
+            visibleChildren[i].flat = row.flat;
+        }
+    }
+
+    onCheckableChanged: {
+        for (var i = 0; i < visibleChildren.length; ++i) {
+            visibleChildren[i].checkable = row.checkable;
+            if (!row.checkable) visibleChildren[i].checked = false;
+        }
+    }
 
     onVisibleChildrenChanged: {
         var buttons = [];

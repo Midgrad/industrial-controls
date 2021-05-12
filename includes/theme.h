@@ -283,6 +283,20 @@ public:
         Title
     };
 
+    enum StandartButtonsButtons
+    {
+        Yes,
+        Ok,
+        Apply,
+        Open,
+        Save,
+        Restore,
+        Reset,
+        Cancel,
+        No,
+        Close
+    };
+
     ~IndustrialTheme();
 
     static IndustrialTheme* instance();
@@ -368,6 +382,7 @@ private:
 
     Q_ENUM(ButtonType);
     Q_ENUM(LabelType);
+    Q_ENUM(StandartButtonsButtons);
 };
 Q_DECLARE_METATYPE(IndustrialThemeFactors)
 Q_DECLARE_METATYPE(IndustrialThemeColors)
