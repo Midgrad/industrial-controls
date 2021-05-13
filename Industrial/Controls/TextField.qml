@@ -10,6 +10,7 @@ T.TextField {
     property alias flat: background.flat
     property alias underline: background.underline
     property alias backgroundColor: background.color
+    property alias caution: background.caution
     property alias isValid: background.isValid
     property alias labelText: background.text
     property alias labelFontPixelSize: background.fontPixelSize

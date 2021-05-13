@@ -2,207 +2,202 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ru_RU">
 <context>
+    <name>AutoTabBar</name>
+    <message>
+        <location filename="../Industrial/Controls/AutoTabBar.qml" line="40"/>
+        <source>Collapsed tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Buttons</name>
     <message>
-        <location filename="../example/qml/Buttons.qml" line="20"/>
-        <source>Text</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/qml/Buttons.qml" line="26"/>
-        <source>Icon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/qml/Buttons.qml" line="32"/>
-        <source>Text &amp; icon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/qml/Buttons.qml" line="38"/>
-        <source>Disabled text</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../example/qml/Buttons.qml" line="44"/>
-        <source>Disabled icon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/qml/Buttons.qml" line="49"/>
-        <source>Common</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/qml/Buttons.qml" line="52"/>
-        <source>Common button</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/qml/Buttons.qml" line="58"/>
-        <source>Icon button</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/qml/Buttons.qml" line="63"/>
-        <source>Up button</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/qml/Buttons.qml" line="68"/>
-        <source>Disabled button</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/qml/Buttons.qml" line="79"/>
         <source>Flat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../example/qml/Buttons.qml" line="82"/>
-        <source>Flat button</source>
+        <location filename="../example/qml/Buttons.qml" line="58"/>
+        <source>Disable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../example/qml/Buttons.qml" line="89"/>
-        <source>Flat icon button</source>
+        <location filename="../example/qml/Buttons.qml" line="77"/>
+        <location filename="../example/qml/Buttons.qml" line="84"/>
+        <location filename="../example/qml/Buttons.qml" line="96"/>
+        <location filename="../example/qml/Buttons.qml" line="103"/>
+        <location filename="../example/qml/Buttons.qml" line="115"/>
+        <location filename="../example/qml/Buttons.qml" line="122"/>
+        <location filename="../example/qml/Buttons.qml" line="134"/>
+        <location filename="../example/qml/Buttons.qml" line="141"/>
+        <location filename="../example/qml/Buttons.qml" line="153"/>
+        <location filename="../example/qml/Buttons.qml" line="160"/>
+        <location filename="../example/qml/Buttons.qml" line="172"/>
+        <location filename="../example/qml/Buttons.qml" line="180"/>
+        <location filename="../example/qml/Buttons.qml" line="194"/>
+        <location filename="../example/qml/Buttons.qml" line="201"/>
+        <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../example/qml/Buttons.qml" line="95"/>
-        <source>Down button</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/qml/Buttons.qml" line="101"/>
-        <source>Disabled flat button</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/qml/Buttons.qml" line="114"/>
+        <location filename="../example/qml/Buttons.qml" line="77"/>
+        <location filename="../example/qml/Buttons.qml" line="79"/>
+        <location filename="../example/qml/Buttons.qml" line="84"/>
+        <location filename="../example/qml/Buttons.qml" line="85"/>
+        <location filename="../example/qml/Buttons.qml" line="91"/>
+        <location filename="../example/qml/Buttons.qml" line="96"/>
+        <location filename="../example/qml/Buttons.qml" line="98"/>
+        <location filename="../example/qml/Buttons.qml" line="103"/>
+        <location filename="../example/qml/Buttons.qml" line="104"/>
+        <location filename="../example/qml/Buttons.qml" line="110"/>
+        <location filename="../example/qml/Buttons.qml" line="115"/>
         <location filename="../example/qml/Buttons.qml" line="117"/>
+        <location filename="../example/qml/Buttons.qml" line="122"/>
+        <location filename="../example/qml/Buttons.qml" line="123"/>
+        <location filename="../example/qml/Buttons.qml" line="129"/>
+        <location filename="../example/qml/Buttons.qml" line="134"/>
+        <location filename="../example/qml/Buttons.qml" line="136"/>
+        <location filename="../example/qml/Buttons.qml" line="141"/>
+        <location filename="../example/qml/Buttons.qml" line="142"/>
+        <location filename="../example/qml/Buttons.qml" line="148"/>
+        <location filename="../example/qml/Buttons.qml" line="153"/>
+        <location filename="../example/qml/Buttons.qml" line="155"/>
+        <location filename="../example/qml/Buttons.qml" line="160"/>
+        <location filename="../example/qml/Buttons.qml" line="161"/>
+        <location filename="../example/qml/Buttons.qml" line="167"/>
+        <location filename="../example/qml/Buttons.qml" line="172"/>
+        <location filename="../example/qml/Buttons.qml" line="174"/>
+        <location filename="../example/qml/Buttons.qml" line="180"/>
+        <location filename="../example/qml/Buttons.qml" line="181"/>
+        <location filename="../example/qml/Buttons.qml" line="188"/>
+        <location filename="../example/qml/Buttons.qml" line="194"/>
+        <location filename="../example/qml/Buttons.qml" line="196"/>
+        <location filename="../example/qml/Buttons.qml" line="201"/>
+        <location filename="../example/qml/Buttons.qml" line="202"/>
+        <location filename="../example/qml/Buttons.qml" line="208"/>
+        <source>Button</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../example/qml/Buttons.qml" line="240"/>
+        <location filename="../example/qml/Buttons.qml" line="241"/>
+        <location filename="../example/qml/Buttons.qml" line="242"/>
+        <location filename="../example/qml/Buttons.qml" line="243"/>
+        <location filename="../example/qml/Buttons.qml" line="244"/>
+        <source>Menu item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../example/qml/Buttons.qml" line="247"/>
+        <location filename="../example/qml/Buttons.qml" line="249"/>
+        <location filename="../example/qml/Buttons.qml" line="254"/>
+        <location filename="../example/qml/Buttons.qml" line="255"/>
+        <location filename="../example/qml/Buttons.qml" line="261"/>
+        <source>Menu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../example/qml/Buttons.qml" line="51"/>
         <source>Checkable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../example/qml/Buttons.qml" line="124"/>
-        <location filename="../example/qml/Buttons.qml" line="160"/>
-        <source>Checkable icon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/qml/Buttons.qml" line="130"/>
-        <source>Left button</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/qml/Buttons.qml" line="136"/>
-        <location filename="../example/qml/Buttons.qml" line="174"/>
-        <source>Disabled checkable</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/qml/Buttons.qml" line="149"/>
-        <source>Checkable &amp; flat</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/qml/Buttons.qml" line="152"/>
-        <source>Checkable flat</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/qml/Buttons.qml" line="167"/>
-        <source>Right button</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/qml/Buttons.qml" line="189"/>
-        <location filename="../example/qml/Buttons.qml" line="192"/>
+        <location filename="../example/qml/Buttons.qml" line="223"/>
+        <location filename="../example/qml/Buttons.qml" line="225"/>
+        <location filename="../example/qml/Buttons.qml" line="229"/>
+        <location filename="../example/qml/Buttons.qml" line="230"/>
+        <location filename="../example/qml/Buttons.qml" line="235"/>
         <source>Delay</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/qml/Buttons.qml" line="198"/>
-        <source>Delay icon button</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/qml/Buttons.qml" line="203"/>
-        <source>Delay down</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/qml/Buttons.qml" line="209"/>
-        <source>Delay up</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ColorPicker</name>
     <message>
-        <location filename="../Industrial/Widgets/ColorPicker.qml" line="38"/>
+        <location filename="../Industrial/Widgets/ColorPicker.qml" line="18"/>
         <source>R</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Industrial/Widgets/ColorPicker.qml" line="64"/>
+        <location filename="../Industrial/Widgets/ColorPicker.qml" line="48"/>
         <source>G</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Industrial/Widgets/ColorPicker.qml" line="74"/>
+        <location filename="../Industrial/Widgets/ColorPicker.qml" line="61"/>
         <source>B</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Industrial/Widgets/ColorPicker.qml" line="85"/>
         <source>Assign</source>
-        <translation>Задать</translation>
+        <translation type="vanished">Задать</translation>
     </message>
 </context>
 <context>
     <name>Configuration</name>
     <message>
-        <location filename="../example/qml/Configuration.qml" line="27"/>
+        <location filename="../example/qml/Configuration.qml" line="30"/>
         <source>Base size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../example/qml/Configuration.qml" line="36"/>
+        <location filename="../example/qml/Configuration.qml" line="39"/>
         <source>Day</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../example/qml/Configuration.qml" line="42"/>
+        <location filename="../example/qml/Configuration.qml" line="45"/>
         <source>Night</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../example/qml/Configuration.qml" line="49"/>
+        <location filename="../example/qml/Configuration.qml" line="52"/>
         <source>Reload</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
+    <name>CoordField</name>
+    <message>
+        <location filename="../Industrial/Controls/CoordField.qml" line="99"/>
+        <source>W</source>
+        <translation type="unfinished">З</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Controls/CoordField.qml" line="99"/>
+        <source>S</source>
+        <translation type="unfinished">Ю</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Controls/CoordField.qml" line="99"/>
+        <source>E</source>
+        <translation type="unfinished">В</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Controls/CoordField.qml" line="99"/>
+        <source>N</source>
+        <translation type="unfinished">С</translation>
+    </message>
+</context>
+<context>
     <name>CoordSpinBox</name>
     <message>
-        <location filename="../Industrial/Controls/CoordSpinBox.qml" line="19"/>
+        <location filename="../Industrial/Controls/CoordSpinBox.qml" line="34"/>
         <source>W</source>
         <translation>З</translation>
     </message>
     <message>
-        <location filename="../Industrial/Controls/CoordSpinBox.qml" line="19"/>
+        <location filename="../Industrial/Controls/CoordSpinBox.qml" line="34"/>
         <source>S</source>
         <translation>Ю</translation>
     </message>
     <message>
-        <location filename="../Industrial/Controls/CoordSpinBox.qml" line="20"/>
+        <location filename="../Industrial/Controls/CoordSpinBox.qml" line="35"/>
         <source>E</source>
         <translation>В</translation>
     </message>
     <message>
-        <location filename="../Industrial/Controls/CoordSpinBox.qml" line="20"/>
+        <location filename="../Industrial/Controls/CoordSpinBox.qml" line="35"/>
         <source>N</source>
         <translation>С</translation>
     </message>
@@ -254,12 +249,12 @@
     </message>
     <message>
         <location filename="../example/qml/Edits.qml" line="59"/>
-        <location filename="../example/qml/Edits.qml" line="161"/>
-        <location filename="../example/qml/Edits.qml" line="169"/>
-        <location filename="../example/qml/Edits.qml" line="238"/>
-        <location filename="../example/qml/Edits.qml" line="247"/>
-        <location filename="../example/qml/Edits.qml" line="318"/>
-        <location filename="../example/qml/Edits.qml" line="327"/>
+        <location filename="../example/qml/Edits.qml" line="160"/>
+        <location filename="../example/qml/Edits.qml" line="168"/>
+        <location filename="../example/qml/Edits.qml" line="236"/>
+        <location filename="../example/qml/Edits.qml" line="245"/>
+        <location filename="../example/qml/Edits.qml" line="315"/>
+        <location filename="../example/qml/Edits.qml" line="324"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
@@ -270,12 +265,12 @@
     </message>
     <message>
         <location filename="../example/qml/Edits.qml" line="78"/>
-        <location filename="../example/qml/Edits.qml" line="175"/>
-        <location filename="../example/qml/Edits.qml" line="182"/>
-        <location filename="../example/qml/Edits.qml" line="253"/>
-        <location filename="../example/qml/Edits.qml" line="261"/>
-        <location filename="../example/qml/Edits.qml" line="333"/>
-        <location filename="../example/qml/Edits.qml" line="341"/>
+        <location filename="../example/qml/Edits.qml" line="174"/>
+        <location filename="../example/qml/Edits.qml" line="181"/>
+        <location filename="../example/qml/Edits.qml" line="251"/>
+        <location filename="../example/qml/Edits.qml" line="259"/>
+        <location filename="../example/qml/Edits.qml" line="330"/>
+        <location filename="../example/qml/Edits.qml" line="338"/>
         <source>Filter fields</source>
         <translation type="unfinished"></translation>
     </message>
@@ -311,36 +306,36 @@
     </message>
     <message>
         <location filename="../example/qml/Edits.qml" line="102"/>
-        <location filename="../example/qml/Edits.qml" line="188"/>
-        <location filename="../example/qml/Edits.qml" line="195"/>
-        <location filename="../example/qml/Edits.qml" line="267"/>
-        <location filename="../example/qml/Edits.qml" line="275"/>
-        <location filename="../example/qml/Edits.qml" line="347"/>
-        <location filename="../example/qml/Edits.qml" line="355"/>
+        <location filename="../example/qml/Edits.qml" line="187"/>
+        <location filename="../example/qml/Edits.qml" line="194"/>
+        <location filename="../example/qml/Edits.qml" line="265"/>
+        <location filename="../example/qml/Edits.qml" line="273"/>
+        <location filename="../example/qml/Edits.qml" line="344"/>
+        <location filename="../example/qml/Edits.qml" line="352"/>
         <source>Combobox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../example/qml/Edits.qml" line="103"/>
-        <location filename="../example/qml/Edits.qml" line="195"/>
-        <location filename="../example/qml/Edits.qml" line="275"/>
-        <location filename="../example/qml/Edits.qml" line="355"/>
+        <location filename="../example/qml/Edits.qml" line="194"/>
+        <location filename="../example/qml/Edits.qml" line="273"/>
+        <location filename="../example/qml/Edits.qml" line="352"/>
         <source>This</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../example/qml/Edits.qml" line="103"/>
-        <location filename="../example/qml/Edits.qml" line="195"/>
-        <location filename="../example/qml/Edits.qml" line="275"/>
-        <location filename="../example/qml/Edits.qml" line="355"/>
+        <location filename="../example/qml/Edits.qml" line="194"/>
+        <location filename="../example/qml/Edits.qml" line="273"/>
+        <location filename="../example/qml/Edits.qml" line="352"/>
         <source>Is</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../example/qml/Edits.qml" line="103"/>
-        <location filename="../example/qml/Edits.qml" line="195"/>
-        <location filename="../example/qml/Edits.qml" line="275"/>
-        <location filename="../example/qml/Edits.qml" line="355"/>
+        <location filename="../example/qml/Edits.qml" line="194"/>
+        <location filename="../example/qml/Edits.qml" line="273"/>
+        <location filename="../example/qml/Edits.qml" line="352"/>
         <source>Example</source>
         <translation type="unfinished"></translation>
     </message>
@@ -360,21 +355,182 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../example/qml/Edits.qml" line="136"/>
-        <location filename="../example/qml/Edits.qml" line="211"/>
-        <location filename="../example/qml/Edits.qml" line="291"/>
+        <location filename="../example/qml/Edits.qml" line="135"/>
+        <location filename="../example/qml/Edits.qml" line="209"/>
+        <location filename="../example/qml/Edits.qml" line="288"/>
         <source>Sample fields</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../example/qml/Edits.qml" line="148"/>
-        <location filename="../example/qml/Edits.qml" line="155"/>
-        <location filename="../example/qml/Edits.qml" line="224"/>
-        <location filename="../example/qml/Edits.qml" line="232"/>
-        <location filename="../example/qml/Edits.qml" line="304"/>
-        <location filename="../example/qml/Edits.qml" line="312"/>
+        <location filename="../example/qml/Edits.qml" line="147"/>
+        <location filename="../example/qml/Edits.qml" line="154"/>
+        <location filename="../example/qml/Edits.qml" line="222"/>
+        <location filename="../example/qml/Edits.qml" line="230"/>
+        <location filename="../example/qml/Edits.qml" line="301"/>
+        <location filename="../example/qml/Edits.qml" line="309"/>
         <source>Placeholder</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FileBrowser</name>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="11"/>
+        <source>Open</source>
+        <translation>Открыть</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="12"/>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="395"/>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="451"/>
+        <source>Cancel</source>
+        <translation>Отмена</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="54"/>
+        <source>bytes</source>
+        <translation>Б</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="54"/>
+        <source>KB</source>
+        <translation>КиБ</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="54"/>
+        <source>MB</source>
+        <translation>МиБ</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="54"/>
+        <source>GB</source>
+        <translation>ГиБ</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="269"/>
+        <source>New folder</source>
+        <translation>Новая папка</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="277"/>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="442"/>
+        <source>Rename</source>
+        <translation>Переименовать</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="286"/>
+        <source>Delete files</source>
+        <translation>Удалить файл</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="316"/>
+        <source>Remove from favorites</source>
+        <translation>Удалить из избранного</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="316"/>
+        <source>Add to favorites</source>
+        <translation>Добавить в избранное</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="332"/>
+        <source>Show hidden</source>
+        <translation>Показать скрытое</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="339"/>
+        <source>Show side panel</source>
+        <translation>Показать боковую панель</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="370"/>
+        <source>Create new folder</source>
+        <translation>Создать новую папку</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="376"/>
+        <source>Folder name</source>
+        <translation>Имя папки</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="386"/>
+        <source>Create</source>
+        <translation>Создать</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="426"/>
+        <source>Rename file</source>
+        <translation>Переименовать файл</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="432"/>
+        <source>New name</source>
+        <translation>Новое имя</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="475"/>
+        <source>Are you sure?</source>
+        <translation>Вы уверены?</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="483"/>
+        <source>Yes</source>
+        <translation>Да</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="489"/>
+        <source>No</source>
+        <translation>Нет</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="523"/>
+        <source>Locations</source>
+        <translation>Места</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="540"/>
+        <source>Favorites</source>
+        <translation>Избранное</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="664"/>
+        <source>No files found</source>
+        <translation>Файлов не найдено</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="684"/>
+        <source>Name</source>
+        <translation>Имя</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="691"/>
+        <source>Size</source>
+        <translation>Размер</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="698"/>
+        <source>Type</source>
+        <translation>Тип</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="705"/>
+        <source>Modification time</source>
+        <translation>Последнее изменение</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="753"/>
+        <source>Folder</source>
+        <translation>Папка</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="782"/>
+        <source>File name</source>
+        <translation>Имя файла</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Widgets/FileBrowser.qml" line="791"/>
+        <source>File type</source>
+        <translation>Тип файла</translation>
     </message>
 </context>
 <context>
@@ -384,7 +540,7 @@
         <translation type="vanished">Фильтр</translation>
     </message>
     <message>
-        <location filename="../Industrial/Controls/FilterField.qml" line="35"/>
+        <location filename="../Industrial/Controls/FilterField.qml" line="36"/>
         <source>Clear filter</source>
         <translation>Очистить фильтр</translation>
     </message>
@@ -438,38 +594,45 @@
     </message>
     <message>
         <location filename="../example/qml/Inputs.qml" line="80"/>
+        <location filename="../example/qml/Inputs.qml" line="102"/>
         <source>Coordinates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../example/qml/Inputs.qml" line="85"/>
+        <location filename="../example/qml/Inputs.qml" line="109"/>
         <source>Flat coordinates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../example/qml/Inputs.qml" line="93"/>
+        <location filename="../example/qml/Inputs.qml" line="115"/>
         <source>Disabled coordinates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../example/qml/Inputs.qml" line="108"/>
-        <location filename="../example/qml/Inputs.qml" line="155"/>
-        <location filename="../example/qml/Inputs.qml" line="205"/>
-        <source>Spin</source>
+        <location filename="../example/qml/Inputs.qml" line="98"/>
+        <source>Coord field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../example/qml/Inputs.qml" line="121"/>
-        <location filename="../example/qml/Inputs.qml" line="169"/>
-        <location filename="../example/qml/Inputs.qml" line="219"/>
-        <source>Real</source>
+        <location filename="../example/qml/Inputs.qml" line="120"/>
+        <source>Date input</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../example/qml/Inputs.qml" line="134"/>
-        <location filename="../example/qml/Inputs.qml" line="183"/>
-        <location filename="../example/qml/Inputs.qml" line="233"/>
-        <source>Coords</source>
+        <location filename="../example/qml/Inputs.qml" line="141"/>
+        <source>Time input</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../example/qml/Inputs.qml" line="163"/>
+        <source>Date and time input</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../example/qml/Inputs.qml" line="184"/>
+        <source>Color input</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -489,7 +652,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../example/qml/Main.qml" line="25"/>
+        <location filename="../example/qml/Main.qml" line="23"/>
         <source>Configure</source>
         <translation type="unfinished"></translation>
     </message>
@@ -497,32 +660,74 @@
 <context>
     <name>Menus</name>
     <message>
-        <location filename="../example/qml/Menus.qml" line="21"/>
+        <location filename="../example/qml/Menus.qml" line="22"/>
         <source>Click here to open menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../example/qml/Menus.qml" line="27"/>
+        <location filename="../example/qml/Menus.qml" line="32"/>
         <source>Menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../example/qml/Menus.qml" line="30"/>
-        <source>Info</source>
+        <location filename="../example/qml/Menus.qml" line="35"/>
+        <source>New...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../example/qml/Menus.qml" line="34"/>
-        <source>Add</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../example/qml/Menus.qml" line="39"/>
-        <source>Remove</source>
+        <location filename="../example/qml/Menus.qml" line="40"/>
+        <source>Open...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../example/qml/Menus.qml" line="45"/>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../example/qml/Menus.qml" line="52"/>
+        <source>Icons</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../example/qml/Menus.qml" line="55"/>
+        <source>Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../example/qml/Menus.qml" line="61"/>
+        <source>Configure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../example/qml/Menus.qml" line="67"/>
+        <source>Plugins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../example/qml/Menus.qml" line="74"/>
+        <source>Calendar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../example/qml/Menus.qml" line="81"/>
+        <source>Checkable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../example/qml/Menus.qml" line="103"/>
+        <source>Check and some more text...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../example/qml/Menus.qml" line="112"/>
+        <source>Exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../example/qml/Menus.qml" line="84"/>
+        <location filename="../example/qml/Menus.qml" line="90"/>
+        <location filename="../example/qml/Menus.qml" line="96"/>
         <source>Check</source>
         <translation type="unfinished"></translation>
     </message>
@@ -638,9 +843,45 @@
 <context>
     <name>RealSpinBox</name>
     <message>
-        <location filename="../Industrial/Controls/RealSpinBox.qml" line="22"/>
+        <location filename="../Industrial/Controls/RealSpinBox.qml" line="26"/>
         <source>N/D</source>
         <translation>Н/Д</translation>
+    </message>
+</context>
+<context>
+    <name>Test</name>
+    <message>
+        <location filename="../example/qml/Test.qml" line="46"/>
+        <source>Open file dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../example/qml/Test.qml" line="51"/>
+        <source>Selected files</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>helper</name>
+    <message>
+        <location filename="../Industrial/Controls/helper.js" line="54"/>
+        <source>W</source>
+        <translation type="unfinished">З</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Controls/helper.js" line="54"/>
+        <source>S</source>
+        <translation type="unfinished">Ю</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Controls/helper.js" line="54"/>
+        <source>E</source>
+        <translation type="unfinished">В</translation>
+    </message>
+    <message>
+        <location filename="../Industrial/Controls/helper.js" line="54"/>
+        <source>N</source>
+        <translation type="unfinished">С</translation>
     </message>
 </context>
 </TS>

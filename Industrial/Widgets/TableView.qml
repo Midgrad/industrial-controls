@@ -186,7 +186,7 @@ Item {
 
             Rectangle {
                 width: root.width
-                height: Controls.Theme.border
+                height: 2
                 anchors.top: parent.bottom
 
                 color: Controls.Theme.colors.control
@@ -264,18 +264,16 @@ Item {
 
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.left
-                    anchors.margins: Controls.Theme.auxFontSize * Controls.Theme.factors.margins
+                    anchors.margins: Controls.Theme.padding
                 }
 
                 Controls.ColoredIcon {
+                    height: Controls.Theme.baseSize * 0.5
                     width: height
-                    height: parent.height
                     visible: root.currentSortRole === modelData.role
-
                     source: root.currentSortOrder === Qt.DescendingOrder ?
-                                "qrc:/icons/up" : "qrc:/icons/down"
+                                "qrc:/icons/up.svg" : "qrc:/icons/down.svg"
                     color: Controls.Theme.colors.description
-
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: sortLabel.right
                 }
@@ -301,7 +299,7 @@ Item {
                 x: parent.width - width
                 anchors.verticalCenter: parent.verticalCenter
 
-                width: Controls.Theme.border
+                width: 2
                 height: parent.height / 2
 
                 color: Controls.Theme.colors.control

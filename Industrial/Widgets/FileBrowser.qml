@@ -1,6 +1,7 @@
 import QtQuick 2.6
 import QtQuick.Layouts 1.3
 import Qt.labs.settings 1.0
+import QtQuick.Controls.Styles 1.2
 import Industrial.Controls 1.0 as Controls
 import Industrial 1.0
 
@@ -135,16 +136,16 @@ Controls.Frame {
 
         Controls.Pane {
             implicitHeight: Controls.Theme.baseSize + padding * 2
+            padding: Controls.Theme.padding
             Layout.fillWidth: true
 
-            Item {
+            RowLayout {
                 anchors.fill: parent
-                
+                spacing: Controls.Theme.padding
+
                 Controls.ButtonBar {
                     id: arrowButtons
-
                     setButtonWidth: false
-                    anchors.left: parent.left
 
                     Controls.Button {
                         enabled: _historyPosition > 0
@@ -172,21 +173,8 @@ Controls.Frame {
 
                 Controls.ButtonBar {
                     id: pathView
-
                     setButtonWidth: false
-
-                    anchors.left: arrowButtons.right
-                    anchors.right: optionsButton.left
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-
-                    anchors.leftMargin: {
-                        if (sidebarVisible) {
-                            return _sidebarWidth - (arrowButtons.width + Controls.Theme.padding);
-                        }
-                        return Controls.Theme.padding;
-                    }
-                    anchors.rightMargin: Controls.Theme.padding
+                    Layout.fillWidth: true
 
                     function update() {
                         var buttons = [];
@@ -258,11 +246,8 @@ Controls.Frame {
 
                 Controls.Button {
                     id: optionsButton
-
                     iconSource: "/icons/burger.svg"
                     Layout.alignment: Qt.AlignRight
-                    anchors.right: parent.right
-
                     highlighted: optionsPopup.visible
                     onClicked: {
                         if (optionsPopup.opened) {
@@ -278,7 +263,6 @@ Controls.Frame {
                     id: optionsPopup
                     x: parent.width - width
                     y: parent.height
-                    padding: Controls.Theme.padding
                     backgroundColor: Controls.Theme.colors.raised
 
                     Controls.MenuItem {
@@ -307,10 +291,7 @@ Controls.Frame {
                         }
                     }
 
-                    Rectangle {
-                        height: 1
-                        color: Controls.Theme.colors.control
-                    }
+                    Controls.MenuSeparator {}
 
                     Controls.MenuItem {
                         id: favoriteButton
@@ -345,19 +326,18 @@ Controls.Frame {
                         }
                     }
 
-                    Rectangle {
-                        height: 1
-                        color: Controls.Theme.colors.control
-                    }
+                    Controls.MenuSeparator {}
 
-                    Controls.CheckBox {
+                    Controls.MenuItem {
                         text: qsTr("Show hidden")
+                        checkable: true
                         checked: showHidden
                         onClicked: showHidden = checked
                     }
 
-                    Controls.CheckBox {
+                    Controls.MenuItem {
                         text: qsTr("Show side panel")
+                        checkable: true
                         checked: sidebarVisible
                         onClicked: sidebarVisible = checked
                     }
@@ -367,6 +347,7 @@ Controls.Frame {
                     id: createDir
                     x: parent.width - width
                     y: parent.height
+                    width: Controls.Theme.baseSize * 10
 
                     function doCreate() {
                         if (dirModel.createFolder(createDirName.text)) {
@@ -383,10 +364,11 @@ Controls.Frame {
                     }
 
                     ColumnLayout {
+                        anchors.fill: parent
+
                         Controls.Label {
                             text: qsTr("Create new folder")
-                            font.weight: Font.Medium
-                            Layout.alignment: Qt.AlignCenter
+                            type: Controls.Theme.Title
                         }
 
                         Controls.TextField {
@@ -394,6 +376,7 @@ Controls.Frame {
                             labelText: qsTr("Folder name")
                             validator: filenameValidator
                             onAccepted: createDir.doCreate()
+                            Layout.fillWidth: true
                         }
 
                         Controls.ButtonBar {
@@ -420,6 +403,7 @@ Controls.Frame {
                     id: renamePopup
                     x: parent.width - width
                     y: parent.height
+                    width: Controls.Theme.baseSize * 10
 
                     function doRename() {
                         if (dirModel.renameFile(dirModel.urlToName(fileUrl), renameName.text)) {
@@ -436,10 +420,11 @@ Controls.Frame {
                     }
 
                     ColumnLayout {
+                        anchors.fill: parent
+
                         Controls.Label {
                             text: qsTr("Rename file")
-                            font.weight: Font.Medium
-                            Layout.alignment: Qt.AlignCenter
+                            type: Controls.Theme.Title
                         }
 
                         Controls.TextField {
@@ -447,6 +432,7 @@ Controls.Frame {
                             labelText: qsTr("New name")
                             validator: filenameValidator
                             onAccepted: renamePopup.doRename()
+                            Layout.fillWidth: true
                         }
 
                         Controls.ButtonBar {
@@ -473,6 +459,7 @@ Controls.Frame {
                     id: deletePopup
                     x: parent.width - width
                     y: parent.height
+                    width: Controls.Theme.baseSize * 10
 
                     function doDelete() {
                         for (var i = 0; i < fileUrls.length; ++i) {
@@ -482,10 +469,11 @@ Controls.Frame {
                     }
 
                     ColumnLayout {
+                        anchors.fill: parent
+
                         Controls.Label {
                             text: qsTr("Are you sure?")
-                            font.weight: Font.Medium
-                            Layout.alignment: Qt.AlignCenter
+                            type: Controls.Theme.Title
                         }
 
                         Controls.ButtonBar {
@@ -513,144 +501,114 @@ Controls.Frame {
 
             Item {
                 id: sidebar
-
+                visible: sidebarVisible
                 anchors.left: parent.left
                 anchors.right: sidebarHandle.left
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
+                clip: true
 
-                visible: sidebarVisible
+                Flickable {
+                    anchors.fill: parent
+                    contentHeight: sidebarList.implicitHeight
+                    flickableDirection: Flickable.VerticalFlick
+                    boundsBehavior: Flickable.StopAtBounds
 
-                ColumnLayout {
-                    width: parent.width
-                    anchors.top: parent.top
-                    anchors.bottom: sidebarSplitHandle.top
+                    ColumnLayout {
+                        id: sidebarList
+                        anchors.fill: parent
+                        spacing: 0
 
-                    Rectangle {
-                        implicitHeight: Controls.Theme.border
-                        Layout.fillWidth: true
+                        Controls.Label {
+                            text: qsTr("Locations")
+                            type: Controls.Theme.Title
+                            padding: Controls.Theme.padding * 0.5
+                            leftPadding: Controls.Theme.padding
+                            rightPadding: Controls.Theme.padding
+                        }
 
-                        color: Controls.Theme.colors.control
-                        opacity: 0.5
+                        ListWrapper {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            color: Controls.Theme.colors.background
+
+                            model: shortcuts.displayList
+                            delegate: sidebarEntry
+                        }
+
+                        Controls.Label {
+                            text: qsTr("Favorites")
+                            type: Controls.Theme.Title
+                            padding: Controls.Theme.padding * 0.5
+                            leftPadding: Controls.Theme.padding
+                            rightPadding: Controls.Theme.padding
+                        }
+
+                        ListWrapper {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            color: Controls.Theme.colors.background
+
+                            model: favorites
+                            delegate: sidebarEntry
+                        }
                     }
 
-                    Controls.Label {
-                        text: qsTr("Locations")
-                        color: Controls.Theme.colors.control
-                        font.pixelSize: Controls.Theme.auxFontSize
-                        font.weight: Font.Medium
-                        font.capitalization: Font.AllUppercase
-                        padding: Controls.Theme.padding
-                    }
+                    Component {
+                        id: sidebarEntry
 
-                    ListWrapper {
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        color: Controls.Theme.colors.background
+                        Item {
+                            readonly property bool isHighlighted: folder === modelData.url
+                            width: parent.width
+                            height: Controls.Theme.baseSize * 0.75
 
-                        model: shortcuts.displayList
-                        delegate: sidebarEntry
-                    }
-                }
+                            Controls.ContentItem {
+                                text: modelData.name
+                                anchors.fill: parent
+                                anchors.leftMargin: Controls.Theme.padding * 2
+                                anchors.rightMargin: Controls.Theme.padding * 2
+                                iconSource: "qrc:/icons/folder-2.svg"
+                                textColor: isHighlighted ? Controls.Theme.colors.controlText
+                                                         : Controls.Theme.colors.description
+                                font.pixelSize: Controls.Theme.auxFontSize
+                                horizontalAlignment: Qt.AlignLeft
+                            }
 
-                Rectangle {
-                    readonly property real headerSize: Controls.Theme.baseSize +
-                                                       Controls.Theme.padding * 2
+                            Rectangle {
+                                anchors.fill: parent
+                                visible: parent.isHighlighted
+                                z: -1
+                                color: Controls.Theme.colors.control
+                                opacity: 0.25
+                            }
 
-                    id: sidebarSplitHandle
-
-                    y: Math.min(_sidebarSplit, sidebar.height - headerSize)
-                    width: parent.width
-                    height: Controls.Theme.border
-                    Layout.fillWidth: true
-
-                    color: Controls.Theme.colors.control
-                    opacity: 0.5
-
-                    MouseArea {
-                        y: -height / 2
-                        width: parent.width
-                        height: Controls.Theme.sliderSize * 2
-
-                        cursorShape: Qt.SizeVerCursor
-                        hoverEnabled: true
-
-                        drag.threshold: 0
-                        drag.target: parent
-                        drag.axis: Drag.YAxis
-                        drag.minimumY: parent.headerSize
-                        drag.maximumY: sidebar.height - parent.headerSize
-
-                        onPositionChanged: {
-                            if (pressed) {
-                                _sidebarSplit = parent.y;
+                            Controls.MouseArea {
+                                anchors.fill: parent
+                                onClicked: folder = modelData.url
                             }
                         }
                     }
-                }
 
-                ColumnLayout {
-                    width: parent.width
-                    anchors.top: sidebarSplitHandle.bottom
-                    anchors.bottom: parent.bottom
-
-                    Controls.Label {
-                        text: qsTr("Favorites")
-                        color: Controls.Theme.colors.control
-                        font.pixelSize: Controls.Theme.auxFontSize
-                        font.weight: Font.Medium
-                        font.capitalization: Font.AllUppercase
-                        padding: Controls.Theme.padding
-                    }
-
-                    ListWrapper {
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        color: Controls.Theme.colors.background
-
-                        model: favorites
-                        delegate: sidebarEntry
-                    }
-
-                    Rectangle {
-                        implicitHeight: Controls.Theme.border
-                        Layout.fillWidth: true
-
-                        color: Controls.Theme.colors.control
-                        opacity: 0.5
+                    Controls.ScrollBar.vertical: Controls.ScrollBar {
+                        visible: sidebarList.implicitHeight > sidebar.height
                     }
                 }
+            }
 
-                Component {
-                    id: sidebarEntry
+            Rectangle {
+                implicitHeight: 2
+                width: parent.width
+                anchors.top: parent.top
+                color: Controls.Theme.colors.control
+                opacity: 0.5
+            }
 
-                    Controls.ContentItem {
-                        readonly property bool isHighlighted: folder === modelData.url
-
-                        width: parent.width
-                        height: Controls.Theme.baseSize
-
-                        text: modelData.name
-                        iconSource: "/icons/folder-2.svg"
-                        textColor: isHighlighted ? Controls.Theme.colors.controlText
-                                                 : Controls.Theme.colors.description
-
-                        horizontalAlignment: Qt.AlignLeft
-
-                        Rectangle {
-                            anchors.fill: parent
-                            visible: parent.isHighlighted
-                            z: -1
-                            color: Controls.Theme.colors.control
-                            opacity: 0.25
-                        }
-
-                        Controls.MouseArea {
-                            anchors.fill: parent
-                            onClicked: folder = modelData.url
-                        }
-                    }
-                }
+            Rectangle {
+                implicitHeight: 2
+                width: parent.width
+                anchors.bottom: parent.bottom
+                color: Controls.Theme.colors.control
+                opacity: 0.5
             }
 
             Item {
@@ -701,6 +659,7 @@ Controls.Frame {
 
                 list.color: Controls.Theme.colors.raised
                 list.faderColor: Controls.Theme.colors.raised
+                list.radius: 0
 
                 list.emptyText: qsTr("No files found")
                 list.spacing: 0
@@ -757,10 +716,12 @@ Controls.Frame {
                         height: Controls.Theme.baseSize
 
                         Controls.ColoredIcon {
+                            source: fileView.isDir(styleData.row) ?
+                                        "qrc:/icons/folder.svg" : "qrc:/icons/file.svg"
                             color: fileView.isDir(styleData.row) ?
                                        Controls.Theme.colors.link : Controls.Theme.colors.fileIcon
-                            source: fileView.isDir(styleData.row) ?
-                                        "/icons/folder.svg" : "/icons/file.svg"
+                            height: Controls.Theme.baseSize
+                            width: height
                         }
 
                         Controls.Label {
@@ -808,42 +769,39 @@ Controls.Frame {
 
         Controls.Pane {
             id: bottomPane
+            padding: Controls.Theme.padding
             Layout.fillWidth: true
 
             RowLayout {
                 anchors.fill: parent
+                spacing: Controls.Theme.padding
 
-                Item {
-                    implicitWidth: _sidebarWidth - bottomPane.padding - parent.spacing -
-                                   (nameField.visible ? 0 : filterLabel.implicitWidth + parent.spacing)
+                Controls.Label {
+                    id: nameLabel
+                    text: qsTr("File name")
+                    type: Controls.Theme.Label
+                    visible: !selectExisting
                 }
 
                 Controls.TextField {
                     id: nameField
-                    visible: !selectExisting
-                    labelText: qsTr("File name")
                     Layout.fillWidth: true
-
                     validator: filenameValidator
                     onAccepted: fileUrls = [text]
+                    visible: !selectExisting
                 }
 
                 Controls.Label {
                     id: filterLabel
-
                     text: qsTr("File type")
-                    color: Controls.Theme.colors.text
-                    font.pixelSize: Controls.Theme.auxFontSize
-
+                    type: Controls.Theme.Label
                     visible: filterList.visible
-                    padding: Controls.Theme.padding
                 }
 
                 Controls.ComboBox {
                     id: filterList
                     visible: nameFilters.length !== 0 && !selectFolder
                     Layout.fillWidth: true
-
                     model: nameFilters
                     currentIndex: nameFilters.indexOf(selectedNameFilter)
                     onActivated: {
@@ -878,6 +836,49 @@ Controls.Frame {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    MouseArea {
+        id: resize
+        anchors {
+            right: parent.right
+            bottom: parent.bottom
+        }
+        width: Controls.Theme.baseSize * 0.4
+        height: Controls.Theme.baseSize * 0.4
+        cursorShape: Qt.SizeFDiagCursor
+
+        property point clickPos: "1,1"
+
+        onPressed: {
+            resize.clickPos = Qt.point(mouse.x, mouse.y)
+        }
+
+        onPositionChanged: {
+            var delta = Qt.point(mouse.x - resize.clickPos.x, mouse.y - resize.clickPos.y)
+            root.width += delta.x;
+            root.height += delta.y;
+            if (root.width < Controls.Theme.baseSize * 10) root.width = Controls.Theme.baseSize * 10;
+            if (root.height < Controls.Theme.baseSize * 6) root.height = Controls.Theme.baseSize * 6;
+        }
+
+        Canvas {
+            id: canvas
+            anchors.fill: parent
+
+            onPaint: {
+                var ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, width, height);
+                ctx.fillStyle = Controls.Theme.colors.control;
+                ctx.globalAlpha = 0.5;
+                ctx.beginPath();
+                ctx.moveTo(width, 0);
+                ctx.lineTo(width, height);
+                ctx.lineTo(0, height);
+                ctx.closePath();
+                ctx.fill();
             }
         }
     }
