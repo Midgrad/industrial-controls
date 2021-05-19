@@ -16,7 +16,7 @@ Rectangle {
     property color _hoveredColor: Qt.hsla(Theme.colors.highlight.hslHue,
                                          Theme.colors.highlight.hslSaturation,
                                          Theme.colors.highlight.hslLightness, 0.2)
-    property alias text: label.text
+    property alias text: button.text
     property alias amountVisible: amountLabel.visible
     property alias rightPadding: rightPaddingItem.width
 
@@ -70,6 +70,7 @@ Rectangle {
             Layout.fillHeight: true
             Layout.leftMargin: Theme.margins
             wrapMode: Text.Wrap
+            visible: false
         }
 
         Label {
