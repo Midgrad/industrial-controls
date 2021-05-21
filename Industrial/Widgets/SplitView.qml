@@ -5,8 +5,8 @@ import Industrial.Controls 1.0 as Controls
 Item {
     id: root
 
-    property Component topItemDelegate
-    property Component bottomItemDelegate
+    property Component topItemDelegate: Item {}
+    property Component bottomItemDelegate: Item {}
     property real minHandleY: 0
     property real maxHandleY: height - handle.height
 
