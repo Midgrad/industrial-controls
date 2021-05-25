@@ -21,8 +21,8 @@ set(QML_IMPORT_PATH "${QML_IMPORT_DIRS}" CACHE STRING "Qt Creator extra qml impo
 find_package(Qt5 COMPONENTS Core Quick REQUIRED)
 
 # Executable target
-file(GLOB_RECURSE SOURCES "main.cpp" "gui_configurator.h" "gui_configurator.cpp")
-file(GLOB_RECURSE QML_SOURCES "qml/*.qml")
+file(GLOB SOURCES "main.cpp" "gui_configurator.h" "gui_configurator.cpp")
+file(GLOB QML_SOURCES "qml/*.qml")
 add_executable(${PROJECT_NAME} ${SOURCES} ${QML_SOURCES})
 
 # Link with libraries
