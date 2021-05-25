@@ -107,15 +107,7 @@ Pane {
             property var groupContent: _model
             property bool expanded: _expanded
             height: !expanded ? Theme.baseSize : Theme.baseSize + itemList.implicitHeight
-            /*
-            onExpandedChanged: {
-                //Записываем все открытые группы в массив
-                root.groupExpanded[_model.index] = expanded;
-                //Если одна группа открытая, то dragEnabled запрещен на этом уровне
-                root.dragEnabled = !(root.groupExpanded.reduce((a, b) => a + b, 0));
-                console.log(root.dragEnabled)
-            }
-            */
+
             ColumnLayout {
                 id: column
                 anchors.fill: parent
