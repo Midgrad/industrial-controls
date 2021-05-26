@@ -231,7 +231,6 @@ Pane {
                         iconSource: checked ? "qrc:/icons/password_hide.svg" : "qrc:/icons/password_show.svg"
                         round: true
                         checkable: true
-
                     }
                 }
             }
