@@ -20,7 +20,7 @@ ColumnLayout {
         TabButton { text: "Table" }
         TabButton { text: "List" }
         TabButton { text: "Menu" }
-        TabButton { text: "Test" }        
+        TabButton { text: "Test" }
         TabButton { text: "Disabled"; enabled: false }
     }
 
