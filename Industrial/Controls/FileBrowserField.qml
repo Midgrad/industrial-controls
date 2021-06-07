@@ -12,6 +12,8 @@ TextField {
     property string folder: ".."
     property var nameFilters: ["Filter 1 (*.txt)", "Filter 2 (*.cpp *.json)", "Any (*)"]
     property string separator: ", "
+    property int popupVerticalPosition: Popup.Bottom
+    property int popupHorizontalAlignment: Popup.Left
 
     rightPadding: button.visible ? button.width + Theme.padding : Theme.padding
 
@@ -43,8 +45,11 @@ TextField {
         closePolicy: Popup.NoAutoClose
         width: fileBrowser.width
         height: fileBrowser.height
-        y: parent.height
-        padding: 0
+
+        y: popupVerticalPosition === Popup.Bottom ? parent.height : -(height)
+        x: popupHorizontalAlignment === Popup.Left ? 0 : -(width - parent.width)
+
+        padding: 0        
 
         FileBrowser {
             id: fileBrowser

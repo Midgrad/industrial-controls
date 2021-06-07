@@ -7,6 +7,16 @@ import Industrial.Controls 1.0
 T.Popup {
     id: control
 
+    enum HorizontalPosition {
+        Left,
+        Right
+    }
+
+    enum VerticalPosition {
+        Top,
+        Bottom
+    }
+
     property color backgroundColor: Theme.colors.raised
 
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
