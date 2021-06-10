@@ -59,5 +59,6 @@
         <file>icons/map.svg</file>
         <file>icons/settings_dialog.svg</file>
         <file>icons/error.svg</file>
+        <file>icons/help.svg</file>
     </qresource>
 </RCC>
