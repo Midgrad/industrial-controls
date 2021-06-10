@@ -4,23 +4,27 @@
 
 namespace
 {
-const QString qrc = "qrc";
-const QString colon = ":";
-const QString slash = "/";
+    const QString local = "file://";
+    const QString qrc = "qrc";
+    const QString colon = ":";
+    const QString slash = "/";
 
-const QStringList colors = { "white", "#ffffff" };
+    const QStringList colors = { "white", "#ffffff" };
 
-QString formatSource(QString source)
-{
-    if (source.startsWith(qrc))
-        source.remove(0, 3);
+    QString formatSource(QString source)
+    {
+        if (source.startsWith(qrc))
+            source.remove(0, qrc.size());
 
-    if (source.startsWith(slash))
-        source = colon + source;
+        if (source.startsWith(slash))
+            source = colon + source;
 
-    return source;
-}
-} // namespace
+        if (source.startsWith(local))
+            source.remove(0, local.size());
+    
+        return source;
+    }
+} // namespace 
 
 SvgItem::SvgItem(QQuickItem* parent) : QQuickPaintedItem(parent), m_color(Qt::white)
 {
