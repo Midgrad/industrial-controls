@@ -52,6 +52,7 @@ Rectangle {
             top: parent.top
         }
         height: 0
+        radius: Theme.rounding
         color: Theme.colors.hover
     }
 
@@ -89,10 +90,9 @@ Rectangle {
                 anchors.fill: parent
                 drag.target: root.dragEnabled ? parent : null
                 drag.smoothed: false
-                drag.minimumX: -contentItem.width + 1
-                drag.maximumX: - contentItem.width + 1
-                drag.minimumY: -1
-                drag.maximumY: draggedItemParent.height - contentItem.height + 1
+                drag.axis: Drag.YAxis
+                drag.minimumY: -2
+                drag.maximumY: draggedItemParent.height - contentItem.height + 2
                 hoverEnabled: true
                 onEntered: root.entered()
                 onExited: root.exited()
@@ -118,6 +118,7 @@ Rectangle {
             top: wrapperParent.bottom
         }
         height: 0
+        radius: Theme.rounding
         color: Theme.colors.hover
     }
 

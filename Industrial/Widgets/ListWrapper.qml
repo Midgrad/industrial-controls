@@ -41,9 +41,6 @@ Rectangle {
         highlightResizeDuration: 0
         currentIndex: -1
         highlightMoveDuration: Controls.Theme.animationTime
-        preferredHighlightBegin: Controls.Theme.baseSize * 2
-        preferredHighlightEnd: Controls.Theme.baseSize * 2
-        highlightRangeMode: ListView.ApplyRange
         property bool showFooter: true
 
         onContentYChanged: {

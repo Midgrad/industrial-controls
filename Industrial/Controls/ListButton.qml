@@ -16,11 +16,14 @@ Rectangle {
     property color _hoveredColor: Qt.hsla(Theme.colors.highlight.hslHue,
                                          Theme.colors.highlight.hslSaturation,
                                          Theme.colors.highlight.hslLightness, 0.2)
-    property alias text: label.text
+
+    property alias expandEnabled: button.enabled
+    property alias buttonText: button.text
+    property alias labelText: label.text
     property alias amountVisible: amountLabel.visible
     property alias rightPadding: rightPaddingItem.width
 
-    signal mouseAreaPressed()
+    signal pressed()
 
     height: Theme.baseSize
 
@@ -32,20 +35,21 @@ Rectangle {
         anchors.fill: parent
         propagateComposedEvents: true
         onPressed: {
-            control.mouseAreaPressed()
-            mouse.accepted = false
+            control.pressed();
+            mouse.accepted = false;
         }
     }
 
     RowLayout {
         id: layout
+        spacing: 0
         anchors.fill: parent
 
         Button {
             id: button
             flat: true
-            iconSource: control.expanded ? "/icons/down.svg"
-                                         : "/icons/right.svg"
+            horizontalAlignment: Text.AlignLeft
+            iconSource: control.expanded ? "/icons/down.svg" : "/icons/right.svg"
             iconColor: control.selected ?
                            Qt.hsla(Theme.colors.selection.hslHue,
                                    Theme.colors.selection.hslSaturation,
@@ -62,14 +66,16 @@ Rectangle {
                 color: control.selected ? Theme.colors.highlight
                                                 : "transparent"
             }
+            Layout.fillWidth: text.length
         }
 
         Label {
             id: label
-            Layout.fillWidth: true
+            wrapMode: Text.Wrap
+            visible: text.length
+            Layout.fillWidth: visible
             Layout.fillHeight: true
             Layout.leftMargin: Theme.margins
-            wrapMode: Text.Wrap
         }
 
         Label {
