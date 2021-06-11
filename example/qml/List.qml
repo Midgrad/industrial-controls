@@ -14,6 +14,14 @@ Pane {
 
     padding: Theme.padding * 2
 
+    function sumArray(array) {
+        var sum = 0;
+        array.forEach(function(value, index) {
+            sum += +value;
+        });
+        return sum;
+    }
+
     RowLayout {
         anchors.fill: parent
         spacing: Theme.spacing
@@ -169,7 +177,7 @@ Pane {
                         //Записываем все открытые группы в массив
                         root.groupExpanded[_model.index] = control.expanded;
                         //Если одна группа открытая, то dragEnabled запрещен на этом уровне
-                        root.dragEnabled = !(root.groupExpanded.reduce((a, b) => a + b, 0));
+                        root.dragEnabled = !sumArray(root.groupExpanded);
                     }
 
                     model: itemModel
