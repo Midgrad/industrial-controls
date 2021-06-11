@@ -17,7 +17,7 @@ Pane {
     function sumArray(array) {
         var sum = 0;
         array.forEach(function(value, index) {
-            sum += +value;
+            sum += value;
         });
         return sum;
     }
