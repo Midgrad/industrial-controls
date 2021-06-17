@@ -9,8 +9,8 @@ Rectangle {
     property real padding: Theme.padding
     property real topPadding
     property real bottomPadding
-    property real leftPadding //: Theme.padding * 2 ///////////////////////////////////////////
-    property real rightPadding //: Theme.padding * 2
+    property real leftPadding
+    property real rightPadding
     property real labelWidth: root.width / 2
     property real rowSpacing: 0
     property real columnSpacing: Theme.padding
@@ -52,11 +52,6 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
         }
     }
-    //////////////////////////////////////////////////////////////
-    //Component {
-    //    id: item
-    //    Item { Layout.fillHeight: true }
-    //}
 
     function createTable() {
         var new_children = Object.values(children).splice(1, children.length);
@@ -67,7 +62,6 @@ Rectangle {
             if (new_children[i+1] instanceof Slider || new_children[i+1] instanceof RadioButton || new_children[i+1] instanceof CheckBox || new_children[i+1] instanceof Switch ) {
                 new_children[i].text = new_children[i+1].text;
                 new_children[i+1].text = "";
-                //new_children[i+1].leftPadding = 0; /////////////////////////////////////////////////////////////
             }
             else {
                 new_children[i].text = new_children[i+1].labelText;
@@ -76,13 +70,11 @@ Rectangle {
             }
 
             new_children[i].Layout.minimumHeight = Theme.baseSize;
-            new_children[i].Layout.minimumWidth = labelWidth; //////////////////////////////////////////////////
+            new_children[i].Layout.minimumWidth = labelWidth;
             new_children[i+1].Layout.minimumHeight = new_children[i].Layout.minimumHeight;
             new_children[i+1].Layout.fillWidth = true;
             root.implicitHeight += new_children[i].Layout.minimumHeight;
         }
-        //new_children.splice(new_children.length, 0, item.createObject()); ///////////////////////////////////////////////
-        //root.implicitHeight += new_children[i].Layout.minimumHeight; ///////////////////////////////////////////////
         root.implicitHeight += table.anchors.topMargin + table.anchors.bottomMargin
         table.children = new_children;
     }

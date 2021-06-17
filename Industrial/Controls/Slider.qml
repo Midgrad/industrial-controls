@@ -14,7 +14,7 @@ T.Slider {
     property alias text: textItem.text
 
     implicitWidth: Theme.baseSize * 6
-    implicitHeight: handle.height + topPadding
+    implicitHeight: Theme.baseSize
     topPadding: textItem.visible ? textItem.contentHeight : 0
     focusPolicy: Qt.NoFocus
     hoverEnabled: true
