@@ -8,7 +8,6 @@ BackgroundItem {
     property bool hovered: true
     property bool inputed: true
     property bool table: false
-    property bool spin: false
     property bool caution: false
     property bool isValid: true
     property bool highlighted: false
@@ -24,6 +23,7 @@ BackgroundItem {
     property alias labelRightPadding: textItem.rightPadding
 
     property alias fontPixelSize: textItem.fontPixelSizeWhenInputed
+    property alias textAlignment: textItem.horizontalAlignment
 
     property alias highlighterHeight: highlighter.height
     property alias highlighterColor: highlighter.color
@@ -76,7 +76,7 @@ BackgroundItem {
         leftPadding: control.parent.leftPadding ? control.parent.leftPadding : control.textPadding
         rightPadding: control.parent.rightPadding ? control.parent.rightPadding : control.textPadding
 
-        horizontalAlignment: spin ? Text.AlignHCenter : Text.AlignLeft
+        horizontalAlignment: Text.AlignLeft
 
         anchors.verticalCenter: inputed ? undefined : parent.verticalCenter
         anchors.top: inputed ? parent.top : undefined

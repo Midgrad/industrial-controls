@@ -99,7 +99,7 @@ T.SpinBox {
         highlighted: control.activeFocus
         isValid: control.isValid
         textPadding: down.indicator.width + Theme.padding
-        spin: true
+        textAlignment: Text.AlignHCenter
         highlighterHeight: !vertical ? Theme.underline : 0
         bottomCropping: !vertical ? radius : 0
     }

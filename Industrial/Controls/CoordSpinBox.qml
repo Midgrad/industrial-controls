@@ -122,7 +122,7 @@ T.Control {
         highlighted: _focusedItem
         highlighterColor: Theme.colors.control
         isValid: control.isValid
-        spin: true
+        textAlignment: Text.AlignHCenter
     }
 
     contentItem: FocusScope {
