@@ -287,8 +287,8 @@ T.Control {
         anchors.bottom: parent.bottom
         width: parent.width
         height: Theme.border
-        visible: control.enabled
         color: {
+            if (!control.enabled) return Theme.colors.background;
             if (!control.isValid || !control.isValid && highlighted) return Theme.colors.negative;
             if (control.caution || control.caution && highlighted) return Theme.colors.neutral;
             if (background.highlighted) return Theme.colors.selection;
