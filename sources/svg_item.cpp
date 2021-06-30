@@ -4,7 +4,8 @@
 
 namespace
 {
-    const QString local = "file://";
+    const QString absolute = "file://";
+    const QString local = "file:";
     const QString qrc = "qrc";
     const QString colon = ":";
     const QString slash = "/";
@@ -19,7 +20,9 @@ namespace
         if (source.startsWith(slash))
             source = colon + source;
 
-        if (source.startsWith(local))
+        if (source.startsWith(absolute))
+            source.remove(0, absolute.size());
+        else if (source.startsWith(local))
             source.remove(0, local.size());
     
         return source;
