@@ -42,7 +42,7 @@ T.Button {
     property alias toolTipWidth: toolTip.width
 
     implicitWidth: Math.max(implicitHeight, content.implicitWidth + control.padding * 2)
-    implicitHeight: Theme.baseSize
+    implicitHeight: Math.max(Theme.baseSize, content.implicitHeight + control.padding * 2)
     focusPolicy: Qt.NoFocus
     hoverEnabled: true
     padding: text.length > 0 ? Theme.padding : 0
@@ -62,7 +62,8 @@ T.Button {
             if (control.type === Theme.Secondary) {
                 if (!control.enabled)
                     return control.flat ? "transparent" : control.disabledColor;
-                if (control.pressed || control.pressedImpl || control.highlighted || control.checked || control.flat)
+                if (control.pressed || control.pressedImpl || control.highlighted ||
+                    control.checked || control.flat)
                     return "transparent";
                 return Theme.colors.controlBorder;
             }
