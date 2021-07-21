@@ -283,7 +283,7 @@ public:
         Title
     };
 
-    enum StandartButtonsButtons
+    enum StandardButtonsButtons
     {
         Yes,
         Ok,
@@ -382,7 +382,7 @@ private:
 
     Q_ENUM(ButtonType);
     Q_ENUM(LabelType);
-    Q_ENUM(StandartButtonsButtons);
+    Q_ENUM(StandardButtonsButtons);
 };
 Q_DECLARE_METATYPE(IndustrialThemeFactors)
 Q_DECLARE_METATYPE(IndustrialThemeColors)

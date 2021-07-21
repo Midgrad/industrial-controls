@@ -294,13 +294,13 @@ Pane {
                 }
             }
 
-            StandartButtons {
+            StandardButtons {
                 buttons: [Theme.Apply, Theme.Restore, Theme.Cancel]
                 Layout.columnSpan: 3
                 Layout.fillWidth: true
             }
 
-            StandartButtons {
+            StandardButtons {
                 buttons: [Theme.Yes, Theme.No, Theme.Cancel]
                 Layout.columnSpan: 3
                 Layout.fillWidth: true
