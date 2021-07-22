@@ -41,9 +41,7 @@ Controls.Frame {
 
     property var _history: []
     property int _historyPosition: -1
-
     property int _sidebarWidth: Controls.Theme.baseSize * 5
-    property int _sidebarSplit: Controls.Theme.baseSize * 9
 
     signal accepted()
     signal rejected()
@@ -119,7 +117,6 @@ Controls.Frame {
         property alias showHidden: root.showHidden
         property alias sidebarVisible: root.sidebarVisible
         property alias sidebarWidth: root._sidebarWidth
-        property alias sidebarSplit: root._sidebarSplit
         property alias favorites: root.favorites
     }
 
@@ -193,6 +190,7 @@ Controls.Frame {
                         for (var j = buttons.length - 1; j >= 0; --j) {
                             var button = buttons[j];
                             button.visible = true;
+                            button.height = Controls.Theme.baseSize;
 
                             if (button.implicitWidth + spacing > widthLeft) {
                                 for (; j >= 0; --j) {
@@ -720,8 +718,8 @@ Controls.Frame {
                                         "qrc:/icons/folder.svg" : "qrc:/icons/file.svg"
                             color: fileView.isDir(styleData.row) ?
                                        Controls.Theme.colors.link : Controls.Theme.colors.fileIcon
-                            height: Controls.Theme.baseSize
-                            width: height
+                            implicitHeight: Controls.Theme.baseSize
+                            implicitWidth: implicitHeight
                         }
 
                         Controls.Label {
@@ -818,7 +816,8 @@ Controls.Frame {
                         highlighted: true
 
                         text: acceptLabel
-                        padding: Controls.Theme.padding * 3
+                        padding: Controls.Theme.padding * 4
+                        height: Controls.Theme.baseSize
 
                         onClicked: {
                             root.visible = false;
@@ -828,7 +827,8 @@ Controls.Frame {
 
                     Controls.Button {
                         text: rejectLabel
-                        padding: Controls.Theme.padding * 3
+                        padding: Controls.Theme.padding * 4
+                        height: Controls.Theme.baseSize
 
                         onClicked: {
                             root.visible = false;
