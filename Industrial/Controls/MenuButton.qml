@@ -21,11 +21,10 @@ Button {
     signal triggered(var modelData)
     signal checked(var modelData, bool checked)
 
+    highlighted: menu.visible
     enabled: repeater.count
     onClicked: menu.visible ? menu.close() : menu.open()
     onEnabledChanged: if (!enabled && menu.visible) menu.close()
-
-    Binding on checked { value: menu.visible; when: !control.activeFocus }
 
     Menu {
         id: menu
