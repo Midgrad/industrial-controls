@@ -20,7 +20,7 @@ TextField {
     signal finished()
 
     validator: RegExpValidator {
-        regExp: /^[A-zЁёА-я0-9 _\-\(\)!@#\.\+\/:]*$/
+        regExp: /^[A-zЁёА-я0-9 _\-\(\)!@#,\.\+\/:]*$/
     }
 
     function validate() {
