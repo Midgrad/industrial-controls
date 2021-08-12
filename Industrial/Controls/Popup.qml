@@ -19,6 +19,8 @@ T.Popup {
 
     property color backgroundColor: Theme.colors.raised
 
+    property alias backgroundOpacity: backgroundRect.opacity
+
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
                             contentWidth > 0 ? contentWidth + leftPadding + rightPadding : 0)
     implicitHeight: Math.max(background ? background.implicitHeight : 0,
