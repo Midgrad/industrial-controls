@@ -69,11 +69,11 @@ public:
 private:
     qreal m_mainFontSize = 0.5;    // Основной шрифт
     qreal m_auxFontSize = 0.4;     // Вспомогательный шрифт
-    qreal m_spacing = 0.4;         // Отступы между компонентами
+    qreal m_spacing = 0.25;        // Отступы между компонентами
     qreal m_margins = 0.25;        // Отступы от внешних границ
     qreal m_padding = 0.25;        // Отступы от внутренних границ
     qreal m_iconSize = 0.625;      // Размер пиктограм
-    qreal m_scrollSize = 0.0625;   // Размер скроллбара
+    qreal m_scrollSize = 0.125;    // Размер скроллбара
     qreal m_sliderSize = 0.125;    // Высота слайдера
     qreal m_switchSize = 0.75;     // Высота свича
     qreal m_handleSize = 0.625;    // Хендл у слайдеров и свичей

@@ -25,11 +25,11 @@ namespace
 //public:
 //    qreal mainFontSize = 0.5;     // Основной шрифт
 //    qreal auxFontSize = 0.4;      // Вспомогательный шрифт
-//    qreal spacing = 0.4;          // Отступы между компонентами
+//    qreal spacing = 0.25;          // Отступы между компонентами
 //    qreal margins = 0.25;         // Отступы от внешних границ
 //    qreal padding = 0.25;         // Отступы от внутренних границ
 //    qreal iconSize = 0.625;       // Размер пиктограм
-//    qreal scrollSize = 0.0625;    // Размер скроллбара
+//    qreal scrollSize = 0.125;    // Размер скроллбара
 //    qreal sliderSize = 0.125;     // Высота слайдера
 //    qreal switchSize = 0.75;      // Высота свича
 //    qreal handleSize = 0.625;     // Хендл у слайдеров и свичей

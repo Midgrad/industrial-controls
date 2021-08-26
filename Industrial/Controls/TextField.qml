@@ -15,6 +15,7 @@ T.TextField {
     property alias labelText: background.text
     property alias labelFontPixelSize: background.fontPixelSize
     property alias labelTextAlignment: background.textAlignment
+    readonly property alias highlighted: background.highlighted
 
     clip: true
     implicitWidth: background.implicitWidth

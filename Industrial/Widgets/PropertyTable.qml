@@ -70,6 +70,7 @@ Rectangle {
             }
 
             new_children[i].Layout.minimumHeight = Theme.baseSize;
+            new_children[i].Layout.wrapMode = Text.Wrap;
             new_children[i].Layout.minimumWidth = labelWidth;
             new_children[i+1].Layout.minimumHeight = new_children[i].Layout.minimumHeight;
             new_children[i+1].Layout.fillWidth = true;
