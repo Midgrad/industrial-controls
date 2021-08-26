@@ -10,6 +10,7 @@ TextField {
     property bool selectMultiple: false
     property string defaultSuffix: ".suffix"
     property string folder: ".."
+    property string lastFolder: ".."
     property var nameFilters: ["Filter 1 (*.txt)", "Filter 2 (*.cpp *.json)", "Any (*)"]
     property string separator: ", "
     property int popupVerticalPosition: Popup.Bottom
@@ -63,12 +64,14 @@ TextField {
             nameFilters: control.nameFilters
 
             onAccepted: {
+                control.lastFolder = fileBrowser.folder;
                 control.text = fileBrowser.fileUrls.join(separator);
                 fileBrowser.visible = true;
                 popup.visible = false;
 
             }
             onRejected: {
+                control.lastFolder = fileBrowser.folder;
                 fileBrowser.visible = true;
                 popup.visible = false;
             }
