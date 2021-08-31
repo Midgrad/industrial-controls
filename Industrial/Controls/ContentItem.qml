@@ -8,9 +8,9 @@ Item {
 
     property color textColor: Theme.colors.text
     property color iconColor: textColor
-    property real iconSize: Theme.iconSize
 
     property alias spacing: row.spacing
+    property alias iconSize: icon.width
     property alias iconSource: icon.source
     property alias font: label.font
     property alias text: label.text
@@ -39,8 +39,8 @@ Item {
 
         ColoredIcon {
             id: icon
-            implicitWidth: iconSize
-            implicitHeight: iconSize
+            implicitHeight: Math.max(width, Theme.iconSize)
+            implicitWidth: implicitHeight
             color: iconColor
             visible: iconSource != ""
             Layout.leftMargin: text.length > 0 ? (Math.min(content.height, content.width) - width) / 2 : (content.width - width) / 2

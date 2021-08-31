@@ -10,6 +10,7 @@ T.TabButton {
     property color backgroundColor: Theme.colors.background
     property alias iconSource: content.iconSource
     property alias iconColor: content.iconColor
+    property alias iconSize: content.iconSize
     property alias textColor: content.textColor
 
     // TODO: flat
