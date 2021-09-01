@@ -37,6 +37,8 @@ T.Button {
     property alias radius: backgroundItem.radius
     property alias backgroundOpacity: backgroundItem.opacity
     property alias hoverColor: backgroundItem.hoverColor
+    property alias borderColor: backgroundItem.borderColor
+    property alias borderWidth: backgroundItem.borderWidth
     property alias toolTipX: toolTip.x
     property alias toolTipY: toolTip.y
     property alias toolTipWidth: toolTip.width

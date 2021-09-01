@@ -17,6 +17,9 @@ T.DelayButton {
     property alias textColor: content.textColor
     property alias iconColor: content.iconColor
     property alias backgroundColor: backgroundItem.color
+    property alias borderColor: backgroundItem.borderColor
+    property alias borderWidth: backgroundItem.borderWidth
+    property alias fillColor: fill.color
 
     implicitWidth: Math.max(implicitHeight, content.implicitWidth + control.padding * 2)
     implicitHeight: Theme.baseSize
@@ -73,6 +76,7 @@ T.DelayButton {
             clip: true
 
             Rectangle {
+                id: fill
                 radius: backgroundItem.radius
                 anchors.fill: parent
                 anchors.rightMargin: -backgroundItem.radius
