@@ -51,6 +51,7 @@ Rectangle {
             hoverEnabled: false
             highlightColor: "transparent"
             flat: true
+            enabled: false
         }
 
         Label {
