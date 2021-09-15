@@ -60,5 +60,6 @@
         <file>icons/settings_dialog.svg</file>
         <file>icons/error.svg</file>
         <file>icons/help.svg</file>
+        <file>icons/panels.svg</file>
     </qresource>
 </RCC>
