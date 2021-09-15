@@ -31,6 +31,11 @@ Item {
     }
     implicitHeight: Math.max(icon.implicitHeight, label.implicitHeight)
 
+    FontMetrics {
+        id: metrics
+        font: label.font
+    }
+
     RowLayout {
         id: row
         anchors.centerIn: parent
@@ -42,8 +47,9 @@ Item {
             implicitHeight: Math.max(width, Theme.iconSize)
             implicitWidth: implicitHeight
             color: iconColor
-            visible: iconSource != ""
-            Layout.leftMargin: text.length > 0 ? (Math.min(content.height, content.width) - width) / 2 : (content.width - width) / 2
+            visible: iconSource !== ""
+            Layout.leftMargin: text.length > 0 ? (Math.min(content.height, content.width) - width)
+                                                 / 2 : (content.width - width) / 2
         }
 
         Text {
@@ -54,6 +60,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             visible: text.length > 0
+            Layout.minimumWidth: metrics.advanceWidth(text)
             Layout.fillWidth: true
         }
     }
