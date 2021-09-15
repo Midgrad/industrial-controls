@@ -8,12 +8,14 @@ T.ProgressBar {
     id: control
 
     property bool flat: false
+    property real radius: height / 2
 
     implicitWidth: Theme.baseSize * 4
     implicitHeight: Theme.baseSize
 
     background: Rectangle {
-        radius: parent.height / 2
+
+        radius: control.radius
         color: {
             if (!control.enabled) return "transparent";
             if (flat) return "transparent";
@@ -31,7 +33,7 @@ T.ProgressBar {
             visible: false
             anchors.fill: parent
             color: Theme.colors.negative
-            radius: parent.height / 2
+            radius: control.radius
         }
     }
 
