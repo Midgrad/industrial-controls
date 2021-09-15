@@ -28,6 +28,7 @@ T.ToolTip {
         font: control.font
         color: Theme.colors.tipText
         horizontalAlignment: Qt.AlignHCenter
+        wrapMode: Text.Wrap
     }
 
     background: Rectangle {
