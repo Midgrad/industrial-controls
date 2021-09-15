@@ -2,11 +2,11 @@ import QtQuick 2.6
 
 Row {
     id: row
-    
+
     property bool setButtonWidth: true
     property bool flat: false
     property bool checkable: false
-    
+
     spacing: 1
 
     onFlatChanged: {
@@ -43,6 +43,8 @@ Row {
             }
             button.leftCropped = j > 0;
             button.rightCropped = j < buttonsCnt - 1;
+            button.flat = row.flat;
+            button.checkable = row.checkable;
         }
     }
 }
