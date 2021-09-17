@@ -44,7 +44,7 @@ T.Button {
     property alias toolTipWidth: toolTip.width
 
     implicitWidth: Math.max(implicitHeight, content.implicitWidth + control.padding * 2)
-    implicitHeight: Math.max(Theme.baseSize, content.implicitHeight + control.padding * 2)
+    implicitHeight: Theme.baseSize
     focusPolicy: Qt.NoFocus
     hoverEnabled: true
     padding: text.length > 0 ? Theme.padding : 0
