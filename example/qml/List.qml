@@ -8,7 +8,7 @@ Pane {
 
     property var groupSelected: null
     property var itemSelected: null
-    property var stepSizeTree: Theme.baseSize * 0.5
+    property real stepSizeTree: Theme.baseSize * 0.5
     property var groupExpanded: []
     property bool dragEnabled: true
 
