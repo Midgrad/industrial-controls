@@ -32,6 +32,7 @@ T.Button {
     property alias iconColor: content.iconColor
     property alias iconSize: content.iconSize
     property alias textSize: content.textSize
+    property alias elide: content.elide
     property alias contentWidth: content.width
     property alias horizontalAlignment: content.horizontalAlignment
     property alias radius: backgroundItem.radius
@@ -160,7 +161,7 @@ T.Button {
                 switch (control.type) {
                 case Theme.Primary:
                 case Theme.LinkPrimary:
-                    return Theme.colors.controlText;
+                    return control.textColor;
                 case Theme.Secondary:
                 case Theme.LinkSecondary:
                     return Theme.colors.description;
@@ -176,12 +177,12 @@ T.Button {
                 case Theme.Secondary:
                     return Theme.colors.description;
                 case Theme.LinkPrimary:
-                    return Theme.colors.controlText;
+                    return control.textColor;
                 case Theme.LinkSecondary:
                     return Theme.colors.description;
                 }
             }
-            return Theme.colors.controlText;
+            return control.textColor;
         }
     }
 
