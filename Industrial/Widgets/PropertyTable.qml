@@ -5,7 +5,7 @@ import Industrial.Controls 1.0
 Rectangle {
     id: root
 
-    property alias backgroundColor: root.color
+    property bool flat: false
     property real padding: Theme.padding
     property real topPadding
     property real bottomPadding
@@ -15,8 +15,10 @@ Rectangle {
     property real rowSpacing: 0
     property real columnSpacing: Theme.padding
 
+    property alias backgroundColor: root.color
+
     width: Theme.baseSize * 10
-    color: Theme.colors.background
+    color: flat ? "transparent" : Theme.colors.background
     clip: true
 
     Flickable {
@@ -54,33 +56,37 @@ Rectangle {
     }
 
     function createTable() {
-        var new_children = Object.values(children).splice(1, children.length);
-        var length = new_children.length;
+        var newChildren = Object.values(children).splice(1, children.length);
+        var length = newChildren.length;
         for (var i = 0; i < length * 2; i += 2) {
-            new_children.splice(i, 0, label.createObject());
+            newChildren.splice(i, 0, label.createObject());
+            var current = newChildren[i];
+            var next = newChildren[i + 1];
 
-            if (new_children[i+1] instanceof Slider || new_children[i+1] instanceof RadioButton || new_children[i+1] instanceof CheckBox || new_children[i+1] instanceof Switch ) {
-                new_children[i].text = new_children[i+1].text;
-                new_children[i+1].text = "";
+            if (next instanceof Slider ||
+                    next instanceof RadioButton ||
+                    next instanceof CheckBox ||
+                    next instanceof Switch ) {
+                current.text = next.text;
+                next.text = "";
             }
             else {
-                new_children[i].text = new_children[i+1].labelText;
-                new_children[i+1].labelText = "";
-                new_children[i+1].table = true;
+                current.text = next.labelText;
+                next.labelText = "";
+                next.table = !root.flat;
+                next.flat = root.flat;
             }
 
-            new_children[i].Layout.minimumHeight = Theme.baseSize;
-            new_children[i].Layout.wrapMode = Text.Wrap;
-            new_children[i].Layout.minimumWidth = labelWidth;
-            new_children[i+1].Layout.minimumHeight = new_children[i].Layout.minimumHeight;
-            new_children[i+1].Layout.fillWidth = true;
-            root.implicitHeight += new_children[i].Layout.minimumHeight;
+            current.Layout.minimumHeight = Theme.baseSize;
+            current.Layout.wrapMode = Text.Wrap;
+            current.Layout.minimumWidth = labelWidth;
+            next.Layout.minimumHeight = current.Layout.minimumHeight;
+            next.Layout.fillWidth = true;
+            root.implicitHeight += current.Layout.minimumHeight;
         }
         root.implicitHeight += table.anchors.topMargin + table.anchors.bottomMargin
-        table.children = new_children;
+        table.children = newChildren;
     }
 
-    Component.onCompleted: {
-        createTable();
-    }
+    Component.onCompleted: createTable()
 }
