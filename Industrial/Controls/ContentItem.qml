@@ -7,8 +7,8 @@ Item {
     property int spacing: Theme.spacing
     property color textColor: Theme.colors.text
     property color iconColor: textColor
+    property size iconSize: Qt.size(Theme.iconSize, Theme.iconSize)
 
-    property alias iconSize: icon.width
     property alias iconSource: icon.source
     property alias font: label.font
     property alias text: label.text
@@ -41,8 +41,8 @@ Item {
         anchors.leftMargin: text.length > 0 ? (Math.min(content.height, content.width) - width)
                                               / 2 : (content.width - width) / 2
         anchors.verticalCenter: parent.verticalCenter
-        height: Theme.iconSize
-        width: height
+        height: iconSize.height
+        width: iconSize.width
         visible: iconSource !== ""
         color: iconColor
     }

@@ -35,8 +35,9 @@ Item {
         enabled: menu.contentModel.count > 0
         width: Controls.Theme.baseSize * 0.5
         height: Controls.Theme.baseSize * 0.75
-        iconSize: height - Controls.Theme.padding
         padding: 0
+
+        onHeightChanged: iconSize.width = height - Controls.Theme.padding
         onClicked: menu.open()
 
         Menu {
