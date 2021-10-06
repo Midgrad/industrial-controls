@@ -74,8 +74,8 @@ Rectangle {
                 current.text = next.labelText;
                 next.labelText = "";
                 next.table = !root.flat;
-                next.flat = root.flat;
             }
+            next.flat = root.flat;
 
             current.Layout.minimumHeight = Theme.baseSize;
             current.Layout.wrapMode = Text.Wrap;
