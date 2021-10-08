@@ -6,6 +6,7 @@ import Industrial.Controls 1.0
 T.ToolTip {
     id: control
     property bool сloseOnClick: true
+    property var wrapMode: Text.Wrap
 
     x: parent ? (parent.width - implicitWidth) / 2 : 0
     y: -implicitHeight - 3
@@ -28,7 +29,7 @@ T.ToolTip {
         font: control.font
         color: Theme.colors.tipText
         horizontalAlignment: Qt.AlignHCenter
-        wrapMode: Text.Wrap
+        wrapMode: control.wrapMode
     }
 
     background: Rectangle {
