@@ -16,7 +16,7 @@ T.ToolTip {
     implicitHeight: Math.max(background ? background.implicitHeight : 0,
                              contentItem.implicitHeight + topPadding + bottomPadding)
 
-    font.pixelSize: Theme.auxFontSize
+    font.pixelSize: Theme.tipFontSize
     margins: Theme.margins
     padding: Theme.padding
     topPadding: Theme.padding * 0.5

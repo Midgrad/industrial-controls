@@ -54,6 +54,7 @@ QVariantMap IndustrialThemeFactors::toMap() const
     return {
         { "mainFontSize", m_mainFontSize },
         { "auxFontSize", m_auxFontSize },
+        { "tipFontSize", m_tipFontSize },
         { "spacing", m_spacing },
         { "margins", m_margins },
         { "padding", m_padding },
@@ -75,6 +76,7 @@ void IndustrialThemeFactors::fromMap(const QVariantMap &map)
 {
     ::setValueFromMap(map, "mainFontSize", m_mainFontSize);
     ::setValueFromMap(map, "auxFontSize", m_auxFontSize);
+    ::setValueFromMap(map, "tipFontSize", m_tipFontSize);
     ::setValueFromMap(map, "spacing", m_spacing);
     ::setValueFromMap(map, "margins", m_margins);
     ::setValueFromMap(map, "padding", m_padding);
@@ -99,6 +101,11 @@ qreal IndustrialThemeFactors::mainFontSize() const
 qreal IndustrialThemeFactors::auxFontSize() const
 {
     return m_auxFontSize;
+}
+
+qreal IndustrialThemeFactors::tipFontSize() const
+{
+    return m_tipFontSize;
 }
 
 qreal IndustrialThemeFactors::spacing() const
@@ -179,6 +186,11 @@ void IndustrialThemeFactors::setMainFontSize(qreal value)
 void IndustrialThemeFactors::setAuxFontSize(qreal value)
 {
     m_auxFontSize = value;
+}
+
+void IndustrialThemeFactors::setTipFontSize(qreal value)
+{
+    m_tipFontSize = value;
 }
 
 void IndustrialThemeFactors::setSpacing(qreal value)
@@ -663,6 +675,7 @@ void IndustrialTheme::notifySizesChanged()
 
     emit this->mainFontSizeChanged();
     emit this->auxFontSizeChanged();
+    emit this->tipFontSizeChanged();
     emit this->spacingChanged();
     emit this->marginsChanged();
     emit this->paddingChanged();
@@ -748,6 +761,11 @@ qreal IndustrialTheme::mainFontSize() const
 qreal IndustrialTheme::auxFontSize() const
 {
     return d->baseSize * d->factors.auxFontSize();
+}
+
+qreal IndustrialTheme::tipFontSize() const
+{
+    return d->baseSize * d->factors.tipFontSize();
 }
 
 qreal IndustrialTheme::spacing() const

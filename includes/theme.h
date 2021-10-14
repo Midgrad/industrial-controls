@@ -13,6 +13,7 @@ class INDUSTRIAL_CONTROLS_EXPORT IndustrialThemeFactors
 
     Q_PROPERTY(qreal mainFontSize READ mainFontSize)   // WRITE setMainFontSize)
     Q_PROPERTY(qreal auxFontSize READ auxFontSize)     // WRITE setAuxFontSize)
+    Q_PROPERTY(qreal tipFontSize READ tipFontSize)
     Q_PROPERTY(qreal spacing READ spacing)             // WRITE setSpacing)
     Q_PROPERTY(qreal margins READ margins)             // WRITE setMargins)
     Q_PROPERTY(qreal padding READ padding)             // WRITE setPadding)
@@ -34,6 +35,7 @@ public:
 
     qreal mainFontSize() const;  // Основной шрифт
     qreal auxFontSize() const;   // Вспомогательный шрифт
+    qreal tipFontSize() const;   // Шрифт тултипа
     qreal spacing() const;       // Отступы между компонентами
     qreal margins() const;       // Отступы от внешних границ
     qreal padding() const;       // Отступы от внутренних границ
@@ -51,6 +53,7 @@ public:
 
     void setMainFontSize(qreal value);
     void setAuxFontSize(qreal value);
+    void setTipFontSize(qreal value);
     void setSpacing(qreal value);
     void setMargins(qreal value);
     void setPadding(qreal value);
@@ -69,6 +72,7 @@ public:
 private:
     qreal m_mainFontSize = 0.5;    // Основной шрифт
     qreal m_auxFontSize = 0.4;     // Вспомогательный шрифт
+    qreal m_tipFontSize = 0.4;     // Шрифт тултипа
     qreal m_spacing = 0.25;        // Отступы между компонентами
     qreal m_margins = 0.25;        // Отступы от внешних границ
     qreal m_padding = 0.25;        // Отступы от внутренних границ
@@ -252,6 +256,7 @@ class INDUSTRIAL_CONTROLS_EXPORT IndustrialTheme : public QObject
 
     Q_PROPERTY(qreal mainFontSize READ mainFontSize NOTIFY mainFontSizeChanged)
     Q_PROPERTY(qreal auxFontSize READ auxFontSize NOTIFY auxFontSizeChanged)
+    Q_PROPERTY(qreal tipFontSize READ tipFontSize NOTIFY tipFontSizeChanged)
     Q_PROPERTY(qreal spacing READ spacing NOTIFY spacingChanged)
     Q_PROPERTY(qreal margins READ margins NOTIFY marginsChanged)
     Q_PROPERTY(qreal padding READ padding NOTIFY paddingChanged)
@@ -319,6 +324,7 @@ public:
 
     qreal mainFontSize() const;
     qreal auxFontSize() const;
+    qreal tipFontSize() const;
     qreal spacing() const;
     qreal margins() const;
     qreal padding() const;
@@ -360,6 +366,7 @@ signals:
 
     void mainFontSizeChanged();
     void auxFontSizeChanged();
+    void tipFontSizeChanged();
     void spacingChanged();
     void marginsChanged();
     void paddingChanged();
