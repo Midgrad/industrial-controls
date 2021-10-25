@@ -1,6 +1,5 @@
 import QtQuick 2.6
 import QtQuick.Layouts 1.3
-
 import Industrial.Controls 1.0
 
 Rectangle {
@@ -10,48 +9,74 @@ Rectangle {
     property bool selected: false
     property bool hovered: false
     property int amount: 0
-    property int leftPadding: 0
-    property int rightPadding: 0
+    property int leftPadding: Theme.padding
+    property int rightPadding: Theme.padding * 2
 
-    property alias expandEnabled: button.enabled //TODO: удалить параметр
-    property alias buttonText: button.text
+    /////////////////////////////
+    //property alias expandEnabled ///////////////: button.enabled //TODO: удалить параметр //////////////////////////////////////////
+    //property alias buttonText ////////////////: button.text /////////////////////////////////////////////////////////////////////
+    property bool expandEnabled
+    property string buttonText
+    /////////////////////////////////
+
     property alias labelText: label.text
+    property alias horizontalAlignment: label.horizontalAlignment ////////////////////////////////
     property alias amountVisible: amountLabel.visible
 
-    signal pressed()
+    signal clicked()
+    //signal pressed()
+    //signal doubleClicked()
 
-    height: Theme.baseSize
+    implicitHeight: Theme.baseSize
     radius: Theme.rounding
-
     color: selected ? Theme.colors.selection : hovered ? Theme.colors.hover : expanded ?
        Theme.colors.line : "transparent"
+    //color: selected ? Theme.colors.selection : hovered ? "Red" : expanded ?
+       //Theme.colors.line : "Grey"
+
+
 
     MouseArea {
         id: mouseArea
         anchors.fill: parent
         propagateComposedEvents: true
 
+//        hoverEnabled: true
+//        onEntered: hovered = true;
+//        onExited: hovered = false;//////////////////////////////
+
+//        onDoubleClicked: {////////////////////////////////
+//            control.doubleClicked();
+//            mouse.accepted = false;
+
+//            console.log("2222222222222");/////////////////////////
+//        }
+
+        //onClicked: {
         onPressed: {
-            control.pressed();
+            control.clicked();
             mouse.accepted = false;
         }
+
+//        onPressed: {
+//            control.pressed();
+//            mouse.accepted = false;
+//        }
     }
 
     RowLayout {
         id: layout
         spacing: 0
         anchors.fill: parent
-        anchors.leftMargin: leftPadding
+        anchors.leftMargin: 0
         anchors.rightMargin: rightPadding
 
-        Button {
-            id: button
+        ContentItem {
+            id: icon
+            implicitHeight: Theme.baseSize
+            implicitWidth: Theme.baseSize
             iconSource: control.expanded ? "/icons/down.svg" : "/icons/right.svg"
             iconColor: control.selected ? Theme.colors.controlText : Theme.colors.description
-            hoverEnabled: false
-            highlightColor: "transparent"
-            flat: true
-            enabled: false
         }
 
         Label {
