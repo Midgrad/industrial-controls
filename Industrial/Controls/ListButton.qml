@@ -2,81 +2,74 @@ import QtQuick 2.6
 import QtQuick.Layouts 1.3
 import Industrial.Controls 1.0
 
-Rectangle {
+Item {
     id: control
+
+    property alias borderWidth: backgraund.borderWidth
+    property alias borderColor: backgraund.borderColor
+    property alias radius: backgraund.radius
+    property alias color: backgraund.color
+    property alias hoverColor: backgraund.hoverColor
+
+    property alias iconColor: icon.iconColor
+    property alias iconSource: icon.iconSource
+
+    property alias labelText: label.text
+    property alias labelType: label.type
+    property alias labelFont: label.font
+    property alias labelSize: label.font.pixelSize
+    property alias horizontalAlignment: label.horizontalAlignment
+
+    property alias amountType: amountLabel.type
+    property alias amountFont: amountLabel.font
+    property alias amountSize: amountLabel.font.pixelSize
+    property alias amountVisible: amountLabel.visible
 
     property bool expanded: false
     property bool selected: false
     property bool hovered: false
+    property color labelColor: Theme.colors.text
     property int amount: 0
-    property int leftPadding: Theme.padding
+    property int leftPadding: 0
     property int rightPadding: Theme.padding * 2
 
-    /////////////////////////////
-    //property alias expandEnabled ///////////////: button.enabled //TODO: удалить параметр //////////////////////////////////////////
-    //property alias buttonText ////////////////: button.text /////////////////////////////////////////////////////////////////////
-    property bool expandEnabled
-    property string buttonText
-    /////////////////////////////////
-
-    property alias labelText: label.text
-    property alias horizontalAlignment: label.horizontalAlignment ////////////////////////////////
-    property alias amountVisible: amountLabel.visible
+    implicitHeight: Theme.baseSize
 
     signal clicked()
-    //signal pressed()
-    //signal doubleClicked()
-
-    implicitHeight: Theme.baseSize
-    radius: Theme.rounding
-    color: selected ? Theme.colors.selection : hovered ? Theme.colors.hover : expanded ?
-       Theme.colors.line : "transparent"
-    //color: selected ? Theme.colors.selection : hovered ? "Red" : expanded ?
-       //Theme.colors.line : "Grey"
-
-
 
     MouseArea {
         id: mouseArea
         anchors.fill: parent
         propagateComposedEvents: true
+        hoverEnabled: true
+        onEntered: hovered = true;
+        onExited: hovered = false;
 
-//        hoverEnabled: true
-//        onEntered: hovered = true;
-//        onExited: hovered = false;//////////////////////////////
-
-//        onDoubleClicked: {////////////////////////////////
-//            control.doubleClicked();
-//            mouse.accepted = false;
-
-//            console.log("2222222222222");/////////////////////////
-//        }
-
-        //onClicked: {
         onPressed: {
             control.clicked();
             mouse.accepted = false;
         }
+    }
 
-//        onPressed: {
-//            control.pressed();
-//            mouse.accepted = false;
-//        }
+    BackgroundItem {
+        id: backgraund
+        anchors.fill: parent
+        color: selected ? Theme.colors.selection : expanded ? Theme.colors.line : "transparent"
+        hovered: control.hovered && !control.selected
     }
 
     RowLayout {
         id: layout
         spacing: 0
         anchors.fill: parent
-        anchors.leftMargin: 0
+        anchors.leftMargin: leftPadding
         anchors.rightMargin: rightPadding
 
         ContentItem {
             id: icon
-            implicitHeight: Theme.baseSize
-            implicitWidth: Theme.baseSize
             iconSource: control.expanded ? "/icons/down.svg" : "/icons/right.svg"
             iconColor: control.selected ? Theme.colors.controlText : Theme.colors.description
+            Layout.preferredWidth: Theme.baseSize
         }
 
         Label {

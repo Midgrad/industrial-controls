@@ -6,7 +6,6 @@ import Industrial.Controls 1.0
 Pane {
     id: root
 
-    //property var groupSelected: null ///////////////////////
     property var itemSelected: null
     property real stepSizeTree: Theme.baseSize
     property var groupExpanded: []
@@ -40,8 +39,8 @@ Pane {
             delegate: Draggable {
                 width: parent.width
                 draggedItemParent: itemList
+
                 onMoveItemRequested: itemModel.move(from, to, 1)
-                //onClicked: root.itemSelected = model //Слишком долгий отклик
 
                 Loader {
                     sourceComponent: itemComponent
@@ -64,12 +63,12 @@ Pane {
 
             delegate: Draggable {
                 width: parent.width
+                color: "transparent"
                 draggedItemParent: groupList
                 dragEnabled: root.dragEnabled
-                onMoveItemRequested: groupModel.move(from, to, 1);
-                //onClicked: loader._expanded = !loader._expanded //Слишком долгий отклик
 
-                onDoubleClicked: { ////////////////////////////////////////////////
+                onMoveItemRequested: groupModel.move(from, to, 1);
+                onDoubleClicked: {
                     root.itemSelected = groupList;
                     loader._expanded = !loader._expanded;
                 }
@@ -113,6 +112,7 @@ Pane {
 
         Item {
             id: control
+
             property var groupContent: _model
             property bool expanded: _expanded
             height: !expanded ? Theme.baseSize : Theme.baseSize + itemList.implicitHeight
@@ -125,17 +125,14 @@ Pane {
                 ListButton {
                     id: listButton
                     Layout.fillWidth: true
+                    rightPadding: visibilityButton.width + Theme.padding * 2
                     labelText: _text ? _text : ""
                     amount: itemList ? itemList.count : 0
                     amountVisible: true
                     expanded: control.expanded
                     selected: root.itemSelected === listButton
+
                     onClicked: root.itemSelected = listButton
-//                    onDoubleClicked: {
-//                        root.itemSelected = listButton;
-//                        control.expanded = !control.expanded;
-//                    }
-                    rightPadding: visibilityButton.width + Theme.padding * 2
 
                     Button {
                         id: visibilityButton
@@ -156,6 +153,7 @@ Pane {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     visible: expanded
+                    color: listButton.selected ? Theme.colors.hover : "transparent"
 
                     onVisibleChanged: {
                         //Записываем все открытые группы в массив
@@ -169,8 +167,8 @@ Pane {
                     delegate: Draggable {
                         width: parent.width
                         draggedItemParent: itemList
+
                         onMoveItemRequested: itemModel.move(from, to, 1)
-                        //onClicked: root.itemSelected = model //Слишком долгий отклик
 
                         Loader {
                             sourceComponent: itemComponent
