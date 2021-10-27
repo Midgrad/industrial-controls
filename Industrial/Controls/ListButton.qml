@@ -1,40 +1,61 @@
 import QtQuick 2.6
 import QtQuick.Layouts 1.3
-
 import Industrial.Controls 1.0
 
-Rectangle {
+Item {
     id: control
+
+    property alias borderWidth: backgraund.borderWidth
+    property alias borderColor: backgraund.borderColor
+    property alias radius: backgraund.radius
+    property alias color: backgraund.color
+    property alias hoverColor: backgraund.hoverColor
+
+    property alias iconColor: icon.iconColor
+    property alias iconSource: icon.iconSource
+
+    property alias labelText: label.text
+    property alias labelType: label.type
+    property alias labelFont: label.font
+    property alias labelSize: label.font.pixelSize
+    property alias horizontalAlignment: label.horizontalAlignment
+
+    property alias amountType: amountLabel.type
+    property alias amountFont: amountLabel.font
+    property alias amountSize: amountLabel.font.pixelSize
+    property alias amountVisible: amountLabel.visible
 
     property bool expanded: false
     property bool selected: false
     property bool hovered: false
+    property color labelColor: Theme.colors.text
     property int amount: 0
     property int leftPadding: 0
-    property int rightPadding: 0
+    property int rightPadding: Theme.padding * 2
 
-    property alias expandEnabled: button.enabled //TODO: удалить параметр
-    property alias buttonText: button.text
-    property alias labelText: label.text
-    property alias amountVisible: amountLabel.visible
+    implicitHeight: Theme.baseSize
 
-    signal pressed()
-
-    height: Theme.baseSize
-    radius: Theme.rounding
-
-    color: selected ? Theme.colors.selection : hovered ? Theme.colors.hover : expanded ?
-       Theme.colors.line : "transparent"
+    signal clicked()
 
     MouseArea {
         id: mouseArea
         anchors.fill: parent
         propagateComposedEvents: true
+        hoverEnabled: true
+        onEntered: hovered = true;
+        onExited: hovered = false;
 
         onPressed: {
-            control.pressed();
+            control.clicked();
             mouse.accepted = false;
         }
+    }
+
+    BackgroundItem {
+        id: backgraund
+        anchors.fill: parent
+        color: selected ? Theme.colors.selection : expanded ? Theme.colors.line : "transparent"
+        hovered: control.hovered && !control.selected
     }
 
     RowLayout {
@@ -44,14 +65,11 @@ Rectangle {
         anchors.leftMargin: leftPadding
         anchors.rightMargin: rightPadding
 
-        Button {
-            id: button
+        ContentItem {
+            id: icon
             iconSource: control.expanded ? "/icons/down.svg" : "/icons/right.svg"
             iconColor: control.selected ? Theme.colors.controlText : Theme.colors.description
-            hoverEnabled: false
-            highlightColor: "transparent"
-            flat: true
-            enabled: false
+            Layout.preferredWidth: Theme.baseSize
         }
 
         Label {

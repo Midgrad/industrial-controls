@@ -6,9 +6,8 @@ import Industrial.Controls 1.0
 Pane {
     id: root
 
-    property var groupSelected: null
     property var itemSelected: null
-    property real stepSizeTree: Theme.baseSize * 0.5
+    property real stepSizeTree: Theme.baseSize
     property var groupExpanded: []
     property bool dragEnabled: true
 
@@ -40,8 +39,8 @@ Pane {
             delegate: Draggable {
                 width: parent.width
                 draggedItemParent: itemList
+
                 onMoveItemRequested: itemModel.move(from, to, 1)
-                onClicked: root.itemSelected = model
 
                 Loader {
                     sourceComponent: itemComponent
@@ -64,13 +63,14 @@ Pane {
 
             delegate: Draggable {
                 width: parent.width
+                color: "transparent"
                 draggedItemParent: groupList
                 dragEnabled: root.dragEnabled
+
                 onMoveItemRequested: groupModel.move(from, to, 1);
-                onClicked: root.groupSelected = model
                 onDoubleClicked: {
+                    root.itemSelected = groupList;
                     loader._expanded = !loader._expanded;
-                    root.groupSelected = model;
                 }
 
                 Loader {
@@ -112,6 +112,7 @@ Pane {
 
         Item {
             id: control
+
             property var groupContent: _model
             property bool expanded: _expanded
             height: !expanded ? Theme.baseSize : Theme.baseSize + itemList.implicitHeight
@@ -121,47 +122,27 @@ Pane {
                 anchors.fill: parent
                 spacing: 0
 
-                Rectangle {
-                    id: backgraund
+                ListButton {
+                    id: listButton
                     Layout.fillWidth: true
-                    implicitHeight: Theme.baseSize
-                    color: (groupContent === root.groupSelected  && expanded) ? Theme.colors.line :
-                                 (groupContent === root.groupSelected) ?
-                                     Theme.colors.selection : "transparent"
-                    radius: Theme.rounding
+                    rightPadding: visibilityButton.width + Theme.padding * 2
+                    labelText: _text ? _text : ""
+                    amount: itemList ? itemList.count : 0
+                    amountVisible: true
+                    expanded: control.expanded
+                    selected: root.itemSelected === listButton
 
-                    RowLayout {
-                        id: row
-                        anchors.fill: parent
-                        anchors.leftMargin: Theme.padding
+                    onClicked: root.itemSelected = listButton
+
+                    Button {
+                        id: visibilityButton
+                        type: root.itemSelected === listButton ? Theme.LinkPrimary : Theme.LinkSecondary
+                        checkedTextColor: root.itemSelected === listButton ?
+                                              Theme.colors.text : Theme.colors.highlight
+                        iconSource: checked ? "qrc:/icons/password_hide.svg" : "qrc:/icons/password_show.svg"
+                        checkable: true
+                        anchors.right: parent.right
                         anchors.rightMargin: Theme.padding
-
-                        Button {
-                            id: expandButton
-                            type: groupContent === root.groupSelected ? Theme.LinkPrimary : Theme.LinkSecondary
-                            iconSource: expanded ? "qrc:/icons/down.svg" : "qrc:/icons/right.svg"
-                            round: true
-                            onClicked: {
-                                _expanded = !_expanded;
-                                root.groupSelected = groupContent
-                            }
-                        }
-
-                        Label {
-                            type: Theme.Text
-                            text: _text
-                            Layout.fillWidth: true
-                        }
-
-                        Button {
-                            id: visibilityButton
-                            type: groupContent === root.groupSelected ? Theme.LinkPrimary : Theme.LinkSecondary
-                            checkedTextColor: groupContent === root.groupSelected ?
-                                                  Theme.colors.text : Theme.colors.highlight
-                            iconSource: checked ? "qrc:/icons/password_hide.svg" : "qrc:/icons/password_show.svg"
-                            round: true
-                            checkable: true
-                        }
                     }
                 }
 
@@ -172,6 +153,7 @@ Pane {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     visible: expanded
+                    color: listButton.selected ? Theme.colors.hover : "transparent"
 
                     onVisibleChanged: {
                         //Записываем все открытые группы в массив
@@ -185,18 +167,14 @@ Pane {
                     delegate: Draggable {
                         width: parent.width
                         draggedItemParent: itemList
+
                         onMoveItemRequested: itemModel.move(from, to, 1)
-                        onClicked: {
-                            root.itemSelected = model;
-                            root.groupSelected = groupContent;
-                        }
 
                         Loader {
                             sourceComponent: itemComponent
                             property var _model: model
                             property string _text: model.text
-                            property real _leftMargin: Theme.padding + expandButton.width +
-                                                       row.spacing + root.stepSizeTree
+                            property real _leftMargin: root.stepSizeTree
                             width: parent.width
                         }
                     }
@@ -213,17 +191,36 @@ Pane {
             property var itemContent: _model
             height: Theme.baseSize
 
+            MouseArea {
+                id: mouseArea
+                anchors.fill: parent
+                propagateComposedEvents: true
+
+                onPressed: {
+                    root.itemSelected = itemContent
+                    mouse.accepted = false;
+                }
+            }
+
             Rectangle {
                 id: backgraund
                 anchors.fill: parent
-                color: (itemContent === root.itemSelected) ? Theme.colors.selection : "transparent"
+                color: root.itemSelected === itemContent ? Theme.colors.selection : "transparent"
                 radius: Theme.rounding
 
                 RowLayout {
                     id: row
+                    spacing: Theme.padding
                     anchors.fill: parent
                     anchors.leftMargin: _leftMargin
                     anchors.rightMargin: Theme.padding
+
+                    ColoredIcon {
+                        source: "qrc:/icons/image.svg"
+                        color: root.itemSelected === itemContent ? Theme.colors.controlText : Theme.colors.description
+                        implicitHeight: Theme.iconSize
+                        implicitWidth: Theme.iconSize
+                    }
 
                     Label {
                         type: Theme.Text
@@ -232,12 +229,11 @@ Pane {
                     }
 
                     Button {
-                        id: visibilityButton
-                        type: itemContent === root.itemSelected ? Theme.LinkPrimary : Theme.LinkSecondary
-                        checkedTextColor: itemContent === root.itemSelected ?
+                        id: visibilityButton2
+                        type: root.itemSelected === itemContent ? Theme.LinkPrimary : Theme.LinkSecondary
+                        checkedTextColor: root.itemSelected === itemContent ?
                                               Theme.colors.text : Theme.colors.highlight
                         iconSource: checked ? "qrc:/icons/password_hide.svg" : "qrc:/icons/password_show.svg"
-                        round: true
                         checkable: true
                     }
                 }
