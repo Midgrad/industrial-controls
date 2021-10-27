@@ -155,7 +155,7 @@ T.Button {
                 return control.flat ? control.disabledColor : control.disabledTextColor;
             }
             if (control.pressed || control.pressedImpl) return control.highlightTextColor;
-            if (control.highlighted || control.hovered) return control.textColor;
+            if (control.highlighted) return control.selectionTextColor;
             if (control.checked) return control.checkedTextColor;
             if (control.flat) {
                 switch (control.type) {
