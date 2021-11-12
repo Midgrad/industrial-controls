@@ -8,6 +8,10 @@ import Industrial.Controls 1.0
 T.Menu {
     id: control
 
+    //Component.onCompleted: console.log(visible) //////////
+    visible: false //////////////////
+    //property bool zz: false /////
+
     property alias menuSize: backgroundRect.implicitWidth
     property alias backgroundColor: backgroundRect.color
 
@@ -63,6 +67,9 @@ T.Menu {
 
         implicitWidth: label.implicitWidth + leftPadding + rightPadding
         implicitHeight: Theme.baseSize
+        //height: control.visible ? implicitHeight : 0 ////////////////////
+        visible: control.visible//////////////////
+        //visible: control.zz ///////////////////////
 
         padding: 0
         leftPadding: icon.source == "" ? Theme.padding * 2 : icon.x + icon.width + Theme.padding
