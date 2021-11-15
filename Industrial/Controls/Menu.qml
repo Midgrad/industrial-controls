@@ -10,6 +10,7 @@ T.Menu {
 
     property alias menuSize: backgroundRect.implicitWidth
     property alias backgroundColor: backgroundRect.color
+    property alias border: backgroundRect.border
 
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
                             contentItem ? contentItem.implicitWidth + leftPadding + rightPadding : 0)
