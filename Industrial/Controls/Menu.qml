@@ -8,6 +8,8 @@ import Industrial.Controls 1.0
 T.Menu {
     id: control
 
+    property bool flat: false
+
     property alias menuSize: backgroundRect.implicitWidth
     property alias backgroundColor: backgroundRect.color
     property alias border: backgroundRect.border
