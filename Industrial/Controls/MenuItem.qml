@@ -9,12 +9,13 @@ T.MenuItem {
     property string iconSource: ""
     property bool selected: false
 
+    property alias textColor: label.color
     property alias iconColor: icon.color
     property alias horizontalAlignment: label.horizontalAlignment
 
     implicitWidth: label.implicitWidth + leftPadding + rightPadding
     implicitHeight: Theme.baseSize
-    //width: parent.width //
+    height: visible ? implicitHeight : 0
 
     focusPolicy: Qt.NoFocus
     padding: 0
