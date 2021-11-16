@@ -47,7 +47,6 @@ T.Menu {
         implicitHeight: Theme.baseSize
 
         color: Theme.colors.raised
-        border.color: Theme.colors.border
         radius: Theme.rounding
 
         Shadow {
@@ -65,7 +64,7 @@ T.Menu {
         implicitHeight: Theme.baseSize
 
         padding: 0
-        leftPadding: icon.source == "" ? Theme.padding * 2 : icon.x + icon.width + Theme.padding
+        leftPadding: icon.source === "" ? Theme.padding * 2 : icon.x + icon.width + Theme.padding
         rightPadding: arrow.visible ? arrow.width + Theme.padding * 2 : Theme.padding * 2
 
         indicator: ColoredIcon {
