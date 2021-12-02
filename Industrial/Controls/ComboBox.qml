@@ -11,6 +11,9 @@ T.ComboBox {
     property string iconRole: "icon"
     property string displayIcon: currentItem && currentItem[control.iconRole] !== undefined ?
                                      currentItem[control.iconRole] : ""
+    property string valueRole: "value"
+    property var currentValue: currentItem && currentItem[control.valueRole] !== undefined ?
+                                   currentItem[control.valueRole] : null
 
     property alias table: background.table
     property alias isValid: background.isValid
