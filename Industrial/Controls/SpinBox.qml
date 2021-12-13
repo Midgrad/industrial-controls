@@ -296,14 +296,14 @@ T.SpinBox {
 
     Keys.onPressed: {
         if (event.key === Qt.Key_Z) stepSize = stepSizeTwo;
-        if (event.key === Qt.Key_X) stepSize = stepSizeThree;
+        else if (event.key === Qt.Key_X) stepSize = stepSizeThree;
         else return;
         event.accepted = true;
     }
 
     Keys.onReleased: {
         if (event.key === Qt.Key_Z) stepSize = stepSizeDefault;
-        if (event.key === Qt.Key_X) stepSize = stepSizeDefault;
+        else if (event.key === Qt.Key_X) stepSize = stepSizeDefault;
         else return;
         event.accepted = true;
     }
