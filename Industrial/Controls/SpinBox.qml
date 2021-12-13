@@ -36,8 +36,8 @@ T.SpinBox {
     signal editingFinished()
 
     value: 0
-    from: -100000
-    to: 100000
+    from: -Number.MIN_VALUE
+    to: Number.MAX_VALUE
     stepSize: stepSizeDefault
 
     implicitWidth: !vertical ? Theme.baseSize * 4 : Theme.baseSize
@@ -67,7 +67,7 @@ T.SpinBox {
     }
 
     onActiveFocusChanged: {
-        if(activeFocus) {
+        if (activeFocus) {
             input.focus = true;
             input.selectAll();
         }
@@ -215,7 +215,8 @@ T.SpinBox {
         rightCropping: !vertical ? radius : 0
         bottomCropping: !vertical ? (round ? 0 : radius) : 0
         topCropping: !vertical ? 0 : radius
-        color: down.pressed && enabled || keyDown && control.activeFocus ? Theme.colors.selection : "transparent"
+        color: down.pressed && enabled || keyDown && control.activeFocus ?
+                   Theme.colors.selection : "transparent"
         hovered: down.hovered
 
         ColoredIcon {
@@ -250,7 +251,8 @@ T.SpinBox {
         }
         leftCropping: !vertical ? radius : 0
         bottomCropping: round ? 0 : radius
-        color: up.pressed && enabled || keyUp && control.activeFocus ? Theme.colors.selection : "transparent"
+        color: up.pressed && enabled || keyUp && control.activeFocus ?
+                   Theme.colors.selection : "transparent"
         hovered: up.hovered
 
         ColoredIcon {
