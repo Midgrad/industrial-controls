@@ -35,6 +35,10 @@ T.TextField {
         regExp: /[A-zЁёА-я0-9 !@#$&()\-`.+,\/\"=№;%:?*{}|’<>~°']*/
     }
 
+    onTextChanged: {
+         if (!activeFocus) cursorPosition = 0;
+    }
+
     background: BackgroundInput {
         id: background
         hovered: control.hovered
