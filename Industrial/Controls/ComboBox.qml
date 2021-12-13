@@ -1,11 +1,18 @@
 import QtQuick 2.6
 import QtQuick.Templates 2.1 as T
+import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.3
 
 import Industrial.Controls 1.0
 
 T.ComboBox {
     id: control
+
+    property int stepSize: stepSizeDefault
+    property int stepSizeDefault: 1
+    property int stepSizeTwo: 10
+    property int stepSizeThree: 20
+    property int flickVelocity: 2500
 
     property var currentItem: model && model[currentIndex] ? model[currentIndex] : undefined
     property string iconRole: "icon"
@@ -123,6 +130,7 @@ T.ComboBox {
     }
 
     popup: Popup {
+        id: popup
         y: control.height
         backgroundColor: Theme.colors.raised
         width: control.width
@@ -133,11 +141,42 @@ T.ComboBox {
         bottomPadding: Theme.padding
 
         contentItem: ListView {
+            id: listView
             clip: true
             implicitHeight: contentHeight
             model: control.popup.visible ? control.delegateModel : null
             currentIndex: control.highlightedIndex
-            boundsBehavior: Flickable.StopAtBounds
+            boundsBehavior: Flickable.StopAtBounds            
+            maximumFlickVelocity: flickVelocity * stepSize
+            ScrollBar.vertical: ScrollBar {
+                visible: listView.implicitHeight > listView.height
+            }
+        }
+    }
+
+    Keys.onPressed: {
+        if (event.key === Qt.Key_Z) stepSize = stepSizeTwo;
+        else if (event.key === Qt.Key_Z && event.key === Qt.Key_Up) stepSize = stepSizeTwo;
+        else if (event.key === Qt.Key_X) stepSize = stepSizeThree;
+        else return;
+        event.accepted = true;
+    }
+
+    Keys.onReleased: {
+        if (event.key === Qt.Key_Z) stepSize = stepSizeDefault;
+        else if (event.key === Qt.Key_X) stepSize = stepSizeDefault;
+        else return;
+        event.accepted = true;
+    }
+
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+
+        onClicked: {
+            control.forceActiveFocus();
+            popup.visible = control.model.length > 0 ? !popup.visible : false;
+            console.log( control.model.length );
         }
     }
 }
