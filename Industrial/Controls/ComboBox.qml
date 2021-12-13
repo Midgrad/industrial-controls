@@ -145,6 +145,7 @@ T.ComboBox {
             clip: true
             implicitHeight: contentHeight
             model: control.popup.visible ? control.delegateModel : null
+            cacheBuffer: Theme.baseSize * 20
             currentIndex: control.highlightedIndex
             boundsBehavior: Flickable.StopAtBounds            
             maximumFlickVelocity: flickVelocity * stepSize
@@ -156,7 +157,6 @@ T.ComboBox {
 
     Keys.onPressed: {
         if (event.key === Qt.Key_Z) stepSize = stepSizeTwo;
-        else if (event.key === Qt.Key_Z && event.key === Qt.Key_Up) stepSize = stepSizeTwo;
         else if (event.key === Qt.Key_X) stepSize = stepSizeThree;
         else return;
         event.accepted = true;
@@ -176,7 +176,6 @@ T.ComboBox {
         onClicked: {
             control.forceActiveFocus();
             popup.visible = control.model.length > 0 ? !popup.visible : false;
-            console.log( control.model.length );
         }
     }
 }
