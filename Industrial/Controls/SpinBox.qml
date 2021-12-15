@@ -36,7 +36,7 @@ T.SpinBox {
     signal editingFinished()
 
     value: 0
-    from: -Number.MIN_VALUE
+    from: Number.MIN_VALUE
     to: Number.MAX_VALUE
     stepSize: stepSizeDefault
 
@@ -65,6 +65,8 @@ T.SpinBox {
         input.text = Qt.binding(function() { return control.textFromValue(value, locale) });
         mouseSlide = true;
     }
+
+    Component.onCompleted: input.text = Qt.binding(function() { return control.textFromValue(value, locale) });
 
     onActiveFocusChanged: {
         if (activeFocus) {
@@ -167,15 +169,11 @@ T.SpinBox {
             topPadding: labelText.length > 0 ? (Theme.auxFontSize / 1.2 - Theme.border) : 0
             verticalAlignment: Text.AlignVCenter
             overwriteMode: false
-            Binding on text {
-                value: control.textFromValue(control.value, control.locale);
-                when: !activeFocus;
-            }
-            onFinished: control.editingFinished()
             onEditingFinished: {
                 input.focus = false;
                 control.validate();
                 control.valueModified();
+                control.editingFinished();
             }
             maximumLength: Math.max(from.toString().length, to.toString().length) + 1
             selectionColor: background.highlighterColor

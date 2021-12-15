@@ -36,18 +36,25 @@ Pane {
 
         Label { text: qsTr("Spinboxes"); font.pixelSize: Theme.auxFontSize }
 
-        SpinBox {
+        RealSpinBox {
             id: spin
+            precision: 0
+            from: 0
+            to: 10
             Layout.fillWidth: true
         }
 
-        SpinBox {
+        RealSpinBox {
             flat: true
+            precision: 1
+            from: -100
+            to: 100
             Layout.fillWidth: true
         }
 
-        SpinBox {
+        RealSpinBox {
             value: spin.value
+            precision: 0
             enabled: false
             Layout.fillWidth: true
         }
@@ -56,6 +63,7 @@ Pane {
 
         RealSpinBox {
             id: realSpin
+            precision: 5
             labelText: qsTr("Real spinbox")
             Layout.fillWidth: true
         }
@@ -67,7 +75,7 @@ Pane {
         }
 
         RealSpinBox {
-            realValue: realSpin.realValue
+            value: realSpin.value
             labelText: qsTr("Disabled real spinbox")
             enabled: false
             Layout.fillWidth: true
