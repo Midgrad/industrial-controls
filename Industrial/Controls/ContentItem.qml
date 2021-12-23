@@ -38,8 +38,7 @@ Item {
     ColoredIcon {
         id: icon
         anchors.left: parent.left
-        anchors.leftMargin: text.length > 0 ? (Math.min(content.height, content.width) - width)
-                                              / 2 : (content.width - width) / 2
+        anchors.leftMargin: text.length > 0 ? 0 : (content.width - width) / 2
         anchors.verticalCenter: parent.verticalCenter
         height: iconSize.height
         width: iconSize.width
