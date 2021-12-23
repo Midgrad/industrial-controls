@@ -64,7 +64,8 @@ T.Menu {
         property string iconSource: ""
 
         implicitWidth: label.implicitWidth + leftPadding + rightPadding
-        implicitHeight: Theme.baseSize
+        implicitHeight: enabled ? Theme.baseSize : 0
+        clip: true
 
         padding: 0
         leftPadding: icon.source === "" ? Theme.padding * 2 : icon.x + icon.width + Theme.padding
