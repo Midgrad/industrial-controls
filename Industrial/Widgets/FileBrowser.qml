@@ -11,6 +11,8 @@ Controls.Frame {
     property string acceptLabel: qsTr("Open")
     property string rejectLabel: qsTr("Cancel")
     property string title: ""
+    property int windowHeight
+    property int windowWidth
 
     property url fileUrl: fileUrls.length === 1 ? fileUrls[0] : ""
     property var fileUrls: {
@@ -107,8 +109,8 @@ Controls.Frame {
     visible: false
     padding: 0
 
-    implicitWidth: Controls.Theme.baseSize * 25
-    implicitHeight: Controls.Theme.baseSize * 14
+    width: Controls.Theme.baseSize * 25 < windowWidth ? Controls.Theme.baseSize * 25 : windowWidth
+    height: Controls.Theme.baseSize * 14 < windowHeight ? Controls.Theme.baseSize * 14 : windowHeight
 
     Settings {
         id: settings
@@ -858,8 +860,8 @@ Controls.Frame {
 
         onPositionChanged: {
             var delta = Qt.point(mouse.x - resize.clickPos.x, mouse.y - resize.clickPos.y)
-            root.width += delta.x;
-            root.height += delta.y;
+            root.width = root.width + delta.x < windowWidth ? root.width + delta.x : windowWidth
+            root.height = root.height + delta.y < windowHeight ? root.height + delta.y : windowHeight
             if (root.width < Controls.Theme.baseSize * 10) root.width = Controls.Theme.baseSize * 10;
             if (root.height < Controls.Theme.baseSize * 6) root.height = Controls.Theme.baseSize * 6;
         }

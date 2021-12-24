@@ -1,4 +1,5 @@
 import QtQuick 2.6
+import QtQuick.Window 2.3
 import Industrial.Widgets 1.0
 import Industrial.Controls 1.0
 
@@ -50,11 +51,17 @@ TextField {
         y: popupVerticalPosition === Popup.Bottom ? parent.height : -(height)
         x: popupHorizontalAlignment === Popup.Left ? 0 : -(width - parent.width)
 
-        padding: 0        
+        padding: 0
+        bottomMargin: 1
+        topMargin: 1
+        leftMargin: 1
+        rightMargin: 1
 
         FileBrowser {
             id: fileBrowser
             visible: popup.visible
+            windowHeight: Window.height - control.y - control.height
+            windowWidth: Window.width - control.x - control.width
 
             selectFolder: control.selectFolder
             selectExisting: control.selectExisting
