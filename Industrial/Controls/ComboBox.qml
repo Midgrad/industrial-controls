@@ -28,8 +28,14 @@ T.ComboBox {
     property alias labelColor: background.textColor
     property alias labelWidth: background.textWidth //FIXME
     property alias backgroundColor: background.color
+    property alias backgroundUnderline: background.underline
     property alias contentColor: content.textColor
+    property alias displayIconColor: content.iconColor
     property alias horizontalAlignment: content.horizontalAlignment
+    property alias bottomCropping: background.bottomCropping
+    property alias topCropping: background.topCropping
+    property alias leftCropping: background.leftCropping
+    property alias rightCropping: background.rightCropping
     property Component delegateContent
 
     function findIndex(item) {
