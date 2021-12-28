@@ -16,6 +16,7 @@ T.Pane {
     contentHeight: contentItem.implicitHeight || (contentChildren.length === 1 ? contentChildren[0].implicitHeight : 0)
 
     padding: Theme.padding * 2
+    focusPolicy: Qt.ClickFocus
 
     background: Rectangle {
         color: backgroundColor

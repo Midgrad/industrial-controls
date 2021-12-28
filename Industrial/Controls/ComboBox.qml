@@ -36,6 +36,7 @@ T.ComboBox {
     property alias topCropping: background.topCropping
     property alias leftCropping: background.leftCropping
     property alias rightCropping: background.rightCropping
+    property alias selectionColor: background.highlighterColor
     property Component delegateContent
 
     function findIndex(item) {
