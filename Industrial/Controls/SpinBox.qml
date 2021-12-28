@@ -30,6 +30,7 @@ T.SpinBox {
     property alias labelText: background.text
     property alias flat: background.flat
     property alias labelFontPixelSize: background.fontPixelSize
+    property alias selectionColor: background.highlighterColor
 
     property QtObject _input: input
 

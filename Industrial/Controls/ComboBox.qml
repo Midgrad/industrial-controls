@@ -30,6 +30,7 @@ T.ComboBox {
     property alias backgroundColor: background.color
     property alias contentColor: content.textColor
     property alias horizontalAlignment: content.horizontalAlignment
+    property alias selectionColor: background.highlighterColor
     property Component delegateContent
 
     function findIndex(item) {
