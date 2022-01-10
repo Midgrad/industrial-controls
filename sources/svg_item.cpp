@@ -4,30 +4,30 @@
 
 namespace
 {
-    const QString absolute = "file://";
-    const QString local = "file:";
-    const QString qrc = "qrc";
-    const QString colon = ":";
-    const QString slash = "/";
+const QString absolute = "file://";
+const QString local = "file:";
+const QString qrc = "qrc";
+const QString colon = ":";
+const QString slash = "/";
 
-    const QStringList colors = { "white", "#ffffff" };
+const QStringList colors = { "white", "#ffffff" };
 
-    QString formatSource(QString source)
-    {
-        if (source.startsWith(qrc))
-            source.remove(0, qrc.size());
+QString formatSource(QString source)
+{
+    if (source.startsWith(qrc))
+        source.remove(0, qrc.size());
 
-        if (source.startsWith(slash))
-            source = colon + source;
+    if (source.startsWith(slash))
+        source = colon + source;
 
-        if (source.startsWith(absolute))
-            source.remove(0, absolute.size());
-        else if (source.startsWith(local))
-            source.remove(0, local.size());
-    
-        return source;
-    }
-} // namespace 
+    if (source.startsWith(absolute))
+        source.remove(0, absolute.size());
+    else if (source.startsWith(local))
+        source.remove(0, local.size());
+
+    return source;
+}
+} // namespace
 
 SvgItem::SvgItem(QQuickItem* parent) : QQuickPaintedItem(parent), m_color(Qt::white)
 {
@@ -46,6 +46,11 @@ QString SvgItem::source() const
     return m_source;
 }
 
+QString SvgItem::content() const
+{
+    return m_content;
+}
+
 QColor SvgItem::color() const
 {
     return m_color;
@@ -60,6 +65,17 @@ void SvgItem::setSource(const QString& source)
 
     this->prerender();
     emit sourceChanged(m_source);
+}
+
+void SvgItem::setContent(const QString& content)
+{
+    if (m_content == content)
+        return;
+
+    m_content = content;
+
+    this->prerender();
+    emit contentChanged(m_content);
 }
 
 void SvgItem::setColor(const QColor& color)
@@ -81,14 +97,15 @@ void SvgItem::prerender()
         m_renderer = nullptr;
     }
 
-    if (m_source.isEmpty())
-        return;
+    QString content = m_content;
 
-    QFile file(::formatSource(m_source));
-    if (!file.open(QIODevice::ReadOnly))
-        return;
+    if (!m_source.isEmpty())
+    {
+        QFile file(::formatSource(m_source));
+        if (file.open(QIODevice::ReadOnly))
+            content = file.readAll();
+    }
 
-    QString content = file.readAll();
     if (content.isEmpty())
         return;
 
