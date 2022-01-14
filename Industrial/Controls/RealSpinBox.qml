@@ -33,9 +33,11 @@ T.Control {
     readonly property bool _decreaseEnabled: value > from
 
     property alias table: background.table
+    property alias underline: background.underline
     property alias caution: background.caution
     property alias backgroundColor: background.color
     property alias labelText: background.text
+    property alias labelFontPixelSize: background.fontPixelSize
     property alias flat: background.flat
 
     property var validator: DoubleValidator {
