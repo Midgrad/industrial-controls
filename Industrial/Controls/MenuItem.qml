@@ -18,7 +18,7 @@ T.MenuItem {
     height: visible ? implicitHeight : 0
 
     focusPolicy: Qt.NoFocus
-    padding: 0
+    padding: Theme.padding
     leftPadding: icon.source == "" ? Theme.padding * 2 : icon.x + icon.width + Theme.padding
     rightPadding: Theme.padding * 2
     font.pixelSize: Theme.mainFontSize
@@ -36,8 +36,8 @@ T.MenuItem {
 
     indicator: ColoredIcon {
         id: icon
-        x: Theme.padding
-        anchors.verticalCenter: parent.verticalCenter
+        x: control.padding
+        y: control.padding
         source: {
             if (!checkable) return control.iconSource;
             if (control.checked) return control.iconSource.length > 0 ? control.iconSource: "qrc:/icons/ok.svg";
