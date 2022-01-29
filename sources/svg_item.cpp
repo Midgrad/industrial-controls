@@ -1,6 +1,9 @@
 #include "svg_item.h"
 
 #include <QSvgRenderer>
+#include <QGuiApplication>
+#include <QScreen>
+#include <QPainter>
 
 namespace
 {
@@ -35,10 +38,15 @@ SvgItem::SvgItem(QQuickItem* parent) : QQuickPaintedItem(parent), m_color(Qt::wh
 
 void SvgItem::paint(QPainter* painter)
 {
-    if (m_renderer)
-    {
-        m_renderer->render(painter);
-    }
+    if (!m_renderer)
+        return;
+
+    const qreal pixelRatio = qApp->primaryScreen()->devicePixelRatio();
+
+    painter->scale(1 / pixelRatio, 1 / pixelRatio);
+    this->setTextureSize(m_renderer->defaultSize() * pixelRatio);
+
+    m_renderer->render(painter);
 }
 
 QString SvgItem::source() const
