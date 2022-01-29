@@ -42,9 +42,7 @@ void SvgItem::paint(QPainter* painter)
         return;
 
     const qreal pixelRatio = qApp->primaryScreen()->devicePixelRatio();
-
     painter->scale(1 / pixelRatio, 1 / pixelRatio);
-    this->setTextureSize(m_renderer->defaultSize() * pixelRatio);
 
     m_renderer->render(painter);
 }
