@@ -56,6 +56,7 @@ Rectangle {
             width: parent.width
             faderOffset: offset
             faderHeight: list.contentY
+            visible: list.count > 0
 
             Binding on faderColor {
                 when: listRoot.faderColor !== undefined
@@ -64,7 +65,7 @@ Rectangle {
         }
 
         footer: ListFader {
-            visible: listRoot.alwaysShowFooterFader || list.showFooter
+            visible: list.count > 0 && (listRoot.alwaysShowFooterFader || list.showFooter)
             width: parent.width
             faderOffset: offset
             faderHeight: (list.contentHeight - list.height) - list.contentY
