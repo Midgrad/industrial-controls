@@ -18,13 +18,13 @@ T.CheckBox {
 
     spacing: Theme.spacing
     implicitWidth: text.length > 0 ? contentItem.implicitWidth + spacing : indicator.implicitWidth
-    implicitHeight: Theme.baseSize
+    implicitHeight: Math.max(base.implicitHeight, label.implicitHeight)
     hoverEnabled: true
 
     indicator: CheckMarkBase {
         id: base
         x: control.leftPadding
-        y: parent.height / 2 - height / 2
+        y: control.topPadding
         down: control.down
         hovered: control.hovered
         checked: control.checked
@@ -46,6 +46,9 @@ T.CheckBox {
         font: control.font
         leftPadding: indicator.width + spacing
         verticalAlignment: Text.AlignVCenter
+        wrapMode: Text.WordWrap
+        elide: Text.ElideNone
+        clip: true
     }
 
     ToolTip {

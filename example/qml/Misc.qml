@@ -38,7 +38,7 @@ Pane {
 
         CheckBox {
             id: _checkbox
-            text: qsTr("Basic checkbox")
+            text: qsTr("Basic checkbox with loooooooooooooooooooooooooong text")
             Layout.fillWidth: true
         }
 
