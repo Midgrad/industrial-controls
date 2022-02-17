@@ -22,7 +22,7 @@ Rectangle {
     property bool alwaysShowFooterFader: false
 
     function toBeginning() { list.positionViewAtBeginning() }
-    function toIndex(index) { list.positionViewAtIndex(index, ListView.Visible) }
+    function toIndex(index, mode = ListView.Contain) { list.positionViewAtIndex(index, mode) }
     function toEnd() { list.positionViewAtEnd() }
 
     implicitWidth: list.contentWidth
