@@ -9,6 +9,11 @@ T.Pane {
     property color backgroundColor: Theme.colors.background
     property int radius: Theme.rounding
 
+    property bool topCropped: false
+    property bool bottomCropped: false
+    property bool leftCropped: false
+    property bool rightCropped: false
+
     implicitWidth: Math.max(background ? background.implicitWidth : 0, contentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(background ? background.implicitHeight : 0, contentHeight + topPadding + bottomPadding)
 
@@ -18,8 +23,19 @@ T.Pane {
     padding: Theme.padding * 2
     focusPolicy: Qt.ClickFocus
 
-    background: Rectangle {
-        color: backgroundColor
-        radius: control.radius
+    background: Item {
+        anchors.fill: parent
+        clip: true
+
+        Rectangle {
+            id: background
+            anchors.fill: parent
+            anchors.topMargin: topCropped ? -radius : 0
+            anchors.bottomMargin: bottomCropped ? -radius : 0
+            anchors.leftMargin: leftCropped ? -radius : 0
+            anchors.rightMargin: rightCropped ? -radius : 0
+            radius: control.radius
+            color: control.backgroundColor
+        }
     }
 }
