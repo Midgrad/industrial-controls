@@ -3,8 +3,10 @@ import QtQuick.Templates 2.4 as T
 
 import Industrial.Controls 1.0
 
-T.TabBar { // TODO: replace with model-based bar
+T.TabBar {
     id: control
+
+    property bool flat: false
 
     property alias backgroundColor: backgroundRect.color
 
@@ -31,15 +33,12 @@ T.TabBar { // TODO: replace with model-based bar
         preferredHighlightEnd: width - 40
     }
 
-//    implicitWidth: Theme.baseSize * count * 6
-//    implicitHeight: Theme.baseSize
-
     background: Item {
         clip: true
 
         Rectangle {
             id: backgroundRect
-            color: Theme.colors.sunken
+            color: flat ? "transparent" : Theme.colors.sunken
             anchors.fill: parent
             radius: Theme.rounding
             anchors.bottomMargin: -radius
