@@ -17,7 +17,7 @@ T.ComboBox {
     property var currentItem: model && model[currentIndex] ? model[currentIndex] : undefined
     property string iconRole: "icon"
     property string displayIcon: currentItem && currentItem[control.iconRole] !== undefined ?
-                                     currentItem[control.iconRole] : ""
+                                     iconFunction(currentItem[control.iconRole]) : ""
     property string valueRole: "value"
     property var currentValue: currentItem && currentItem[control.valueRole] !== undefined ?
                                    currentItem[control.valueRole] : null
@@ -46,13 +46,15 @@ T.ComboBox {
         return -1;
     }
 
+    property var iconFunction: (icon) => { return icon;}
+
     implicitWidth: background.implicitWidth
     implicitHeight: labelText.length > 0 ? Theme.baseSize * 1.25 : Theme.baseSize
     font.pixelSize: Theme.mainFontSize
     clip: true
     textRole: "text"
     displayText: currentItem && currentItem[control.textRole] !== undefined ?
-                     currentItem[control.textRole] : currentItem
+                                currentItem[control.textRole] : currentItem
 
     leftPadding: Theme.padding
     rightPadding: Theme.padding + Theme.baseSize
@@ -88,22 +90,24 @@ T.ComboBox {
         id: delegate
         width: control.width
         horizontalAlignment: control.horizontalAlignment
+
+        readonly property var delegateModel: {
+            if (typeof (modelData) !== "undefined")
+                return modelData;
+            return model;
+        }
+
         text: {
-            if (typeof (modelData) !== "undefined") {
-                return modelData[control.textRole] ? modelData[control.textRole] : modelData;
-            }
-            if (model !== undefined) {
-                return model[control.textRole] ? model[control.textRole] : model;
+            if (typeof (delegateModel) !== "undefined") {
+                return delegateModel[control.textRole] ? delegateModel[control.textRole] : delegateModel;
             }
             return ""
         }
 
         iconSource: {
-            if (typeof (modelData) !== "undefined") {
-                return modelData[control.iconRole] ? modelData[control.iconRole] : "";
-            }
-            if (model !== undefined) {
-                return model[control.iconRole] ? model[control.iconRole] : "";
+            if (typeof (delegateModel) !== "undefined") {
+                return delegateModel[control.iconRole] ? iconFunction(delegateModel[control.iconRole])
+                                                       : "";
             }
             return ""
         }
@@ -113,12 +117,7 @@ T.ComboBox {
         isValid: control.isValid
 
         Loader {
-            property var delegateModel: {
-                if (typeof (modelData) !== "undefined")
-                    return modelData;
-                return model;
-            }
-
+            readonly property alias delegateModel: delegate.delegateModel
             anchors.right: parent.right
             anchors.rightMargin: Theme.margins
             anchors.verticalCenter: parent.verticalCenter
@@ -157,7 +156,7 @@ T.ComboBox {
             model: control.popup.visible ? control.delegateModel : null
             cacheBuffer: Theme.baseSize * 20
             currentIndex: control.highlightedIndex
-            boundsBehavior: Flickable.StopAtBounds            
+            boundsBehavior: Flickable.StopAtBounds
             maximumFlickVelocity: flickVelocity * stepSize
             ScrollBar.vertical: ScrollBar {
                 visible: listView.implicitHeight > listView.height
