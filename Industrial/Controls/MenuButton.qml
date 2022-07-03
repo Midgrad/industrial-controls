@@ -26,7 +26,8 @@ Button {
     onClicked: menu.visible ? menu.close() : menu.open()
     onEnabledChanged: if (!enabled && menu.visible) menu.close()
 
-    function itemAt(index) { return repeater.itemAt(index) }
+    function itemAt(index) { return repeater.itemAt(index); }
+    function close() { menu.close(); }
 
     Menu {
         id: menu
